@@ -15,7 +15,8 @@
       styles: []
     },
     init: function() {
-      this.parent.init.call(this.parent, this);
+      //this.parent.init.call(this.parent, this);
+      this.parent.init.call(this);
 
       //this.activityInitialized = true;
       this.onCourseDataLoaded();
