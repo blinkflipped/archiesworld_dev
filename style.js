@@ -2,11 +2,13 @@
   'use strict';
 
   var OxfordArchiesworldDevStyle = function () {
-    blink.theme.styles.oxford_archiesworld_dev.apply(this, arguments);
+    //blink.theme.styles.oxford_archiesworld_dev.apply(this, arguments);
+    blink.theme.styles.basic.apply(this, arguments);
   }
 
   OxfordArchiesworldDevStyle.prototype = {
-    parent: blink.theme.styles.oxford_archiesworld_dev.prototype,
+    //parent: blink.theme.styles.oxford_archiesworld_dev.prototype,
+    parent: blink.theme.styles.basic.prototype,
     bodyClassName: 'content_type_clase_oaw_dev',
     ckEditorStyles: {
       name: 'oaw-dev',
@@ -47,7 +49,8 @@
   };
 
 
-  OxfordArchiesworldDevStyle.prototype = _.extend({}, new blink.theme.styles.oxford_archiesworld_dev(), OxfordArchiesworldDevStyle.prototype);
+  //OxfordArchiesworldDevStyle.prototype = _.extend({}, new blink.theme.styles.oxford_archiesworld_dev(), OxfordArchiesworldDevStyle.prototype);
+  OxfordArchiesworldDevStyle.prototype = _.extend({}, new blink.theme.styles.basic(), OxfordArchiesworldDevStyle.prototype);
 
   blink.theme.styles['oaw-dev'] = OxfordArchiesworldDevStyle;
 
