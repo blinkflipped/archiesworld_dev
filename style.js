@@ -11,7 +11,7 @@
     parent: blink.theme.styles.basic.prototype,
     bodyClassName: 'content_type_clase_oaw_dev',
     ckEditorStyles: {
-      name: 'oaw-dev',
+      name: 'oaw_dev',
       styles: []
     },
     init: function() {
@@ -19,7 +19,7 @@
       this.parent.init.call(this);
 
       //this.activityInitialized = true;
-      this.onCourseDataLoaded();
+      //this.onCourseDataLoaded();
       //this.fetchData();
 
       //this.preventTouchCarousel();
@@ -54,7 +54,7 @@
   //OxfordArchiesworldDevStyle.prototype = _.extend({}, new blink.theme.styles.oxford_archiesworld_dev(), OxfordArchiesworldDevStyle.prototype);
   OxfordArchiesworldDevStyle.prototype = _.extend({}, new blink.theme.styles.basic(), OxfordArchiesworldDevStyle.prototype);
 
-  blink.theme.styles['oaw-dev'] = OxfordArchiesworldDevStyle;
+  blink.theme.styles['oaw_dev'] = OxfordArchiesworldDevStyle;
 
   blink.events.on('digitalbook:bpdfloaded', function () {
     // Ejemplo carga de datos del curso desde un libro digital.
