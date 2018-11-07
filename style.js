@@ -2,11 +2,11 @@
   'use strict';
 
   var OxfordArchiesworldDevStyle = function () {
-    blink.theme.styles.oxford_archiesworld.apply(this, arguments);
+    blink.theme.styles.oxford_archiesworld_dev.apply(this, arguments);
   }
 
   OxfordArchiesworldDevStyle.prototype = {
-    parent: blink.theme.styles.oxford_archiesworld.prototype,
+    parent: blink.theme.styles.oxford_archiesworld_dev.prototype,
     bodyClassName: 'content_type_clase_oaw_dev',
     ckEditorStyles: {
       name: 'oaw-dev',
@@ -47,7 +47,7 @@
   };
 
 
-  OxfordArchiesworldDevStyle.prototype = _.extend({}, new blink.theme.styles.oxford_archiesworld(), OxfordArchiesworldDevStyle.prototype);
+  OxfordArchiesworldDevStyle.prototype = _.extend({}, new blink.theme.styles.oxford_archiesworld_dev(), OxfordArchiesworldDevStyle.prototype);
 
   blink.theme.styles['oaw-dev'] = OxfordArchiesworldDevStyle;
 
@@ -74,7 +74,6 @@
 //  Vendors                         //
 //                                  //
 //----------------------------------//
-
 
 /*!
  * imagesLoaded PACKAGED v4.1.4
