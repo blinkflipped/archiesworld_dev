@@ -18,6 +18,7 @@
       this.parent.init.call(this.parent, this);
 
       //this.activityInitialized = true;
+      this.onCourseDataLoaded();
       //this.fetchData();
 
       //this.preventTouchCarousel();
