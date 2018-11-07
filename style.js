@@ -20,12 +20,20 @@
 
       //this.activityInitialized = true;
       //this.onCourseDataLoaded();
-      //this.fetchData();
+      this.fetchData();
 
       //this.preventTouchCarousel();
     },
     removeFinalSlide: function () {
       this.parent.removeFinalSlide.call(this.parent, this, true);
+    },
+    /**
+     * Carga de datos del libro en un actividad
+     */
+    fetchData: function() {
+      blink.getCourse(idcurso).done((function(data) {
+        this.onCourseDataLoaded(data);
+      }).bind(this));
     },
     onCourseDataLoaded: function(data) {
       oawApp.config.bookcover = oawApp.getCover(data);
