@@ -38,7 +38,32 @@
     flex-wrap: wrap;
     &_4 {
       .oaw-grid-item {
-        &_1 {}
+        width: 50%;
+        min-width: 50%;
+      }
+    }
+    &_5 {
+      .oaw-grid-item {
+        width: 50%;
+        min-width: 50%;
+        &_1,
+        &_2,
+        &_3 {
+          width: 33.333%;
+          min-width: 33.333%;
+        }
+      }
+    }
+    &_5b {
+      .oaw-grid-item {
+        width: 50%;
+        min-width: 50%;
+        &_3,
+        &_4,
+        &_5 {
+          width: 33.333%;
+          min-width: 33.333%;
+        }
       }
     }
   }

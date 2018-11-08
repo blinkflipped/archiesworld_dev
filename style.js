@@ -46,7 +46,7 @@
       var isBookCover = idclase.toString() === oawApp.config.bookcover.id;
       console.log("Test 2");
       if (isBookCover) {
-        this.loadUserData();
+        //this.loadUserData();
         $('html').addClass('oaw-isBookCover');
         var updateHash = false;
         oawApp.loadSplash(data, updateHash);

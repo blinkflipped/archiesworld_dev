@@ -175,6 +175,21 @@ body.view-mode {
 .oaw-grid_lesson {
   display: flex;
   flex-wrap: wrap; }
+  .oaw-grid_lesson_4 .oaw-grid-item {
+    width: 50%;
+    min-width: 50%; }
+  .oaw-grid_lesson_5 .oaw-grid-item {
+    width: 50%;
+    min-width: 50%; }
+    .oaw-grid_lesson_5 .oaw-grid-item_1, .oaw-grid_lesson_5 .oaw-grid-item_2, .oaw-grid_lesson_5 .oaw-grid-item_3 {
+      width: 33.333%;
+      min-width: 33.333%; }
+  .oaw-grid_lesson_5b .oaw-grid-item {
+    width: 50%;
+    min-width: 50%; }
+    .oaw-grid_lesson_5b .oaw-grid-item_3, .oaw-grid_lesson_5b .oaw-grid-item_4, .oaw-grid_lesson_5b .oaw-grid-item_5 {
+      width: 33.333%;
+      min-width: 33.333%; }
 
 .oaw-card {
   height: 100%; }
