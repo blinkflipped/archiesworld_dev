@@ -155,6 +155,23 @@ oawApp.text = {
 //----------------------------------//
 
 
+// Object fit support
+oawApp.objectFitSupport = function() {
+
+  if ( ! Modernizr.objectfit ) {
+    $('.oaw-unit-content-background').each(function () {
+      var $container = $(this),
+          imgUrl = $container.find('img').prop('src');
+      if (imgUrl && !$container.hasClass('compat-object-fit')) {
+        $container
+          .css('backgroundImage', 'url(' + imgUrl + ')')
+          .addClass('compat-object-fit');
+      }
+    });
+  }
+}
+
+
 // DEV Console
 oawApp.console = function(logValue) {
   if (oawApp.config.isDEV) {
