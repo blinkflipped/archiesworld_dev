@@ -30,7 +30,7 @@
     init: function (scope) {
       var that = scope || this;
       this.parent.init.call(that);
-      this.parent.onCourseDataLoaded();
+      this.onCourseDataLoaded();
       console.log("test");
     },
     removeFinalSlide: function () {
