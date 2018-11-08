@@ -49,6 +49,8 @@ body.view-mode.body_curso {
 
 
 .oaw-body {
+	font-family: $font_family_1;
+	@include font-size(1.2);
 	* {
 		box-sizing: border-box;
 	}

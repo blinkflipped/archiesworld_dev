@@ -30,7 +30,7 @@
     init: function (scope) {
       var that = scope || this;
       this.parent.init.call(that);
-      this.onCourseDataLoaded();
+      this.fetchData();
       console.log("test");
     },
     removeFinalSlide: function () {
@@ -55,6 +55,13 @@
       }
 
     },
+
+    fetchData: function() {
+      blink.getCourse(idcurso).done((function(data) {
+        this.onCourseDataLoaded(data);
+      }).bind(this));
+    },
+
 
     /*loadUserData: function() {
       var urlSeguimiento = '/include/javascript/seguimientoCurso.js.php?idcurso=' + idcurso;

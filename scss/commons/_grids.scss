@@ -31,4 +31,16 @@
       min-width: 33.3333%;
     }
   }
+
+
+  &_lesson {
+    display: flex;
+    flex-wrap: wrap;
+    &_4 {
+      .oaw-grid-item {
+        &_1 {}
+      }
+    }
+  }
+
 }

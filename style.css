@@ -20,8 +20,12 @@ body.view-mode {
   .abp-isBookCover body.view-mode::before, .htmlReady body.view-mode.abp-body-home::before, .htmlReady body.view-mode.abp-body-unit::before {
     z-index: 110; }
 
-.oaw-body * {
-  box-sizing: border-box; }
+.oaw-body {
+  font-family: "Comfortaa", cursive;
+  font-size: 12px;
+  font-size: 1.2rem; }
+  .oaw-body * {
+    box-sizing: border-box; }
 
 .oaw-button {
   font-family: "Comfortaa", cursive;
@@ -168,6 +172,9 @@ body.view-mode {
   .oaw-grid_3 .oaw-grid-item {
     width: 33.333%;
     min-width: 33.3333%; }
+.oaw-grid_lesson {
+  display: flex;
+  flex-wrap: wrap; }
 
 .oaw-card {
   height: 100%; }
@@ -218,10 +225,18 @@ body.view-mode {
       z-index: 10;
       width: 100%;
       height: 100%;
-      text-align: center; }
+      text-align: center;
+      font-size: 18px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.03px; }
       .oaw-page-header-title-inner {
         height: 60px;
-        padding: 10px; }
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
         .oaw-page-header-title-inner img {
           width: 100%;
           height: 100%;
@@ -280,6 +295,24 @@ body.view-mode {
       .oaw-page_project .oaw-page-content .oaw-projects-list > * {
         min-width: 100%; }
   .oaw-page_project .oaw-grid_3 .oaw-grid-item {
+    height: 130px; }
+
+.oaw-page_lesson {
+  height: 100vh; }
+  .oaw-page_lesson .oaw-page-content {
+    height: calc(100vh - 190px); }
+    .oaw-page_lesson .oaw-page-content .oaw-inner, .oaw-page_lesson .oaw-page-content .oaw-grid {
+      height: 100%; }
+      .oaw-page_lesson .oaw-page-content .oaw-inner .oaw-projects-list, .oaw-page_lesson .oaw-page-content .oaw-grid .oaw-projects-list {
+        height: 100%; }
+    .oaw-page_lesson .oaw-page-content .oaw-projects-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+      .oaw-page_lesson .oaw-page-content .oaw-projects-list > * {
+        min-width: 100%; }
+  .oaw-page_lesson .oaw-grid_3 .oaw-grid-item {
     height: 130px; }
 
 @media (max-height: 600px) {
