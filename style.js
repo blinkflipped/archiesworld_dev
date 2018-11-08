@@ -276,7 +276,7 @@ oawApp.hashDistributor = function(currentHash,data,updateHash) {
     // This works different because we need an ID to load the Unit
     var oawunit = oawApp.getIDByHash(currentHash),
         unitExists = (oawApp.config.unitsIDs.indexOf(oawunit) >= 0),
-        activeAreaTeacher = currentHash.includes(oawApp.config.tree[1].suffix[1]);
+        activeAreaTeacher = currentHash.includes(oawApp.config.tree[2].suffix[1]);
 
     if (oawunit !== '' && oawunit !== null && unitExists) {
       var currentUnit = oawunit;
@@ -404,7 +404,7 @@ oawApp.loadHomepage = function(data,updateHash) {
   oawApp.console('Loading Homepage');
   oawApp.unitAlreayLoaded = false;
 
-  var currentIndex = 0;
+  var currentIndex = 1;
   var currentPage = oawApp.config.tree[currentIndex].id,
       bodyClass = oawApp.config.tree[currentIndex].class,
       hash = oawApp.config.tree[currentIndex].hash,
