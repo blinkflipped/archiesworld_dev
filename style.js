@@ -43,7 +43,7 @@
     onCourseDataLoaded: function(data) {
       oawApp.config.bookcover = oawApp.getCover(data);
       var isBookCover = idclase.toString() === oawApp.config.bookcover.id;
-
+      console.log("Test 2");
       if (isBookCover) {
         this.loadUserData();
         $('html').addClass('oaw-isBookCover');
