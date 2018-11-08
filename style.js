@@ -252,9 +252,9 @@ oawApp.getParameterByHash = function(name, url) {
 // Get ID by hash
 oawApp.getIDByHash = function(hash) {
   var unitID = hash.replace(oawApp.config.tree[1].hash, '');
-  $.each(oawApp.config.tree[1].suffix, function(i, suffix){
+  /*$.each(oawApp.config.tree[1].suffix, function(i, suffix){
     unitID = unitID.replace(suffix, '');
-  });
+  });*/
 
   return unitID;
 }
@@ -268,8 +268,10 @@ oawApp.hashDistributor = function(currentHash,data,updateHash) {
 
   var timeToWait = 500;
   if (currentHash === oawApp.config.tree[0].hash) { //Home
-    hashDistributorTimeout = setTimeout(function() {oawApp.loadHomepage(data,updateHash)}, timeToWait);
+    hashDistributorTimeout = setTimeout(function() {oawApp.loadSplash(data,updateHash)}, timeToWait);
   } else if (currentHash.startsWith(oawApp.config.tree[1].hash)) { // Unit and ID
+    hashDistributorTimeout = setTimeout(function() {oawApp.loadHomepage(data,updateHash)}, timeToWait);
+  } else if (currentHash.startsWith(oawApp.config.tree[2].hash)) { // Unit and ID
 
     // This works different because we need an ID to load the Unit
     var oawunit = oawApp.getIDByHash(currentHash),
@@ -369,7 +371,7 @@ oawApp.loadSplash = function(data,updateHash) {
   var backgroundImageSrc = oawApp.config.bookcover.image,
       backgroundImage = (backgroundImageSrc !== '' && typeof backgroundImageSrc !== 'undefined') ? 'background-image: url('+backgroundImageSrc+');' : '';
 
-  var sectionSplashHTML = '<div id="oaw-splash" style="'+backgroundImage+'"><div class="oaw-inner"><button class="oaw-button oaw-button_1"><span>'+oawApp.text.enter+'</span></button></div></div>';
+  var sectionSplashHTML = '<div id="oaw-splash" style="'+backgroundImage+'"><div class="oaw-inner"><button class="oaw-button oaw-button_1 js--loadHomepage"><span>'+oawApp.text.enter+'</span></button></div></div>';
 
   $('body').prepend(sectionSplashHTML);
 
@@ -563,3 +565,20 @@ oawApp.loadHomepage = function(data,updateHash) {
   oawApp.objectFitSupport();
 
 }
+
+
+//----------------------------------//
+//                                  //
+//  Document Ready                  //
+//                                  //
+//----------------------------------//
+
+
+$(document).ready(function() {
+
+  $('.js--loadHomepage').click(function() {
+    var hash = oawApp.config.tree[1].hash;
+    oawApp.updateHashWithListener(hash);
+  });
+
+});

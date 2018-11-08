@@ -355,7 +355,10 @@ body.view-mode {
   height: 100%;
   background: #ff8e00;
   top: 0;
-  left: 0; }
+  left: 0;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain; }
   #oaw-splash .oaw-inner {
     display: flex;
     justify-content: center;

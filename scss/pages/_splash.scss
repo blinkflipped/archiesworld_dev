@@ -5,6 +5,9 @@
   background: $color_1;
   top: 0;
   left: 0;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
   .oaw-inner {
     display: flex;
     justify-content: center;
