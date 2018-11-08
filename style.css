@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Comfortaa:300,400,700");
 body.view-mode {
-  background: #223c3f;
+  background: #ffffff;
   overflow: auto;
   padding: 0;
   margin: 0; }
@@ -12,10 +12,305 @@ body.view-mode {
     left: 0;
     right: 0;
     bottom: 0;
-    background: #223c3f;
+    background: #ffffff;
     z-index: 1002; }
   body.view-mode.canvas_events_loaded::before, .htmlReady body.view-mode::before {
     z-index: 0;
     pointer-events: none; }
   .abp-isBookCover body.view-mode::before, .htmlReady body.view-mode.abp-body-home::before, .htmlReady body.view-mode.abp-body-unit::before {
     z-index: 110; }
+
+.oaw-body * {
+  box-sizing: border-box; }
+
+.oaw-button {
+  font-family: "Comfortaa", cursive;
+  line-height: 1em;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  display: inline-block;
+  border-radius: 0;
+  position: relative;
+  background: transparent;
+  text-decoration: none;
+  transition-property: color, background-color, border-color, box-shadow, opacity, height;
+  transition-duration: .2s;
+  transition-timing-function: ease-in;
+  outline: none;
+  text-align: center;
+  box-sizing: border-box;
+  font-weight: 700; }
+  .oaw-button span {
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .oaw-button_1 {
+    background: #ffffff;
+    color: #ff8e00;
+    border-radius: 100px;
+    font-size: 20px;
+    font-size: 2rem;
+    padding: 12px 50px; }
+  .oaw-button_2 {
+    background: #ffffff;
+    color: #009edf;
+    border-radius: 100px;
+    font-size: 10px;
+    font-size: 1rem;
+    padding: 8px; }
+  .oaw-button_3 {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    letter-spacing: 0.04px;
+    width: 100%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    font-size: 1.4rem;
+    padding: 10px; }
+
+.oaw-title {
+  font-family: "Comfortaa", cursive;
+  font-weight: 700;
+  letter-spacing: -0.59px;
+  margin: 0;
+  padding: 0; }
+  .oaw-title_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    display: block; }
+  .oaw-title_image.compat-object-fit {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center; }
+    .oaw-title_image.compat-object-fit img {
+      display: none !important; }
+  .oaw-title_2 {
+    font-size: 26px;
+    font-size: 2.6rem; }
+    .oaw-title_2.oaw-title_image {
+      height: 40px;
+      margin-bottom: 20px; }
+
+.oaw-menu-nav ul {
+  padding: 20px 40px 0;
+  margin: 0px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+  .oaw-menu-nav ul li {
+    padding: 0px 10px 10px;
+    margin: 0; }
+.oaw-page_home .oaw-menu {
+  background: #009edf; }
+  .oaw-page_home .oaw-menu .oaw-button {
+    min-width: 150px; }
+
+.oaw-projects-list {
+  padding: 40px;
+  /*.oaw-grid-item & {
+  	display: flex;
+  	min-height: 100%;
+  	flex-direction: column;
+  }*/ }
+  .oaw-projects-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0px -20px 0px; }
+    .oaw-projects-list ul li {
+      padding: 0;
+      padding-bottom: 20px;
+      margin: 0; }
+
+@media (max-height: 700px) {
+  .oaw-button_3 {
+    font-size: 10px;
+    font-size: 1rem; }
+
+  .oaw-projects-list ul {
+    margin-bottom: -10px; }
+    .oaw-projects-list ul li {
+      padding-bottom: 10px; } }
+@media (max-height: 600px) {
+  .oaw-button_3 {
+    font-size: 8px;
+    font-size: 0.8rem; }
+
+  .oaw-projects-list ul {
+    margin-bottom: -6.6666666667px; }
+    .oaw-projects-list ul li {
+      padding-bottom: 6.6666666667px; } }
+.oaw-grid_1 {
+  display: flex;
+  flex-wrap: wrap; }
+  .oaw-grid_1 .oaw-grid-item {
+    width: 50%;
+    min-width: 50%; }
+    .oaw-grid_1 .oaw-grid-item_1, .oaw-grid_1 .oaw-grid-item_2, .oaw-grid_1 .oaw-grid-item_3 {
+      width: 33.3333%;
+      min-width: 33.3333%; }
+.oaw-grid_2 {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative; }
+  .oaw-grid_2 .oaw-grid-item {
+    width: 50%;
+    min-width: 50%; }
+.oaw-grid_3 {
+  display: flex;
+  flex-wrap: wrap; }
+  .oaw-grid_3 .oaw-grid-item {
+    width: 33.333%;
+    min-width: 33.3333%; }
+
+.oaw-card {
+  height: 100%; }
+  .oaw-card-image {
+    padding: 0;
+    height: 100%; }
+    .oaw-card-image-inner {
+      height: 100%; }
+      .oaw-card-image-inner img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
+        display: block; }
+      .oaw-card-image-inner.compat-object-fit {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center; }
+        .oaw-card-image-inner.compat-object-fit img {
+          display: none !important; }
+  .oaw-card_project .oaw-card-image {
+    padding: 20px; }
+
+.oaw-page {
+  position: relative;
+  z-index: 1000;
+  max-width: 100%;
+  margin: 0 auto; }
+  .oaw-page-header {
+    height: 60px; }
+    .oaw-page_home .oaw-page-header {
+      height: 270px;
+      background: #009edf; }
+    .oaw-page-header .oaw-inner {
+      height: 60px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 20px;
+      position: relative; }
+    .oaw-page-header-title {
+      padding: 0;
+      margin: 0 auto;
+      height: 60px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      text-align: center; }
+      .oaw-page-header-title-inner {
+        height: 60px;
+        padding: 10px; }
+        .oaw-page-header-title-inner img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: center center;
+          display: block; }
+        .oaw-page-header-title-inner.compat-object-fit {
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center center; }
+          .oaw-page-header-title-inner.compat-object-fit img {
+            display: none !important; }
+    .oaw-page-header-image {
+      width: 100%; }
+      .oaw-page-header-image-inner img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: right top;
+        display: block; }
+      .oaw-page-header-image-inner.compat-object-fit {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right top; }
+        .oaw-page-header-image-inner.compat-object-fit img {
+          display: none !important; }
+
+.oaw-page_home {
+  height: 100vh; }
+  .oaw-page_home .oaw-page-header,
+  .oaw-page_home .oaw-page-content {
+    height: calc(50vh - 30px); }
+  .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item {
+    height: 80px; }
+    .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_1, .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_2, .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_3 {
+      height: calc(50vh - 110px); }
+  .oaw-page_home .oaw-page-footer {
+    position: relative;
+    z-index: 10;
+    height: 60px;
+    overflow: hidden; }
+
+.oaw-page_project {
+  height: 100vh; }
+  .oaw-page_project .oaw-page-content {
+    height: calc(100vh - 190px); }
+    .oaw-page_project .oaw-page-content .oaw-inner, .oaw-page_project .oaw-page-content .oaw-grid {
+      height: 100%; }
+      .oaw-page_project .oaw-page-content .oaw-inner .oaw-projects-list, .oaw-page_project .oaw-page-content .oaw-grid .oaw-projects-list {
+        height: 100%; }
+    .oaw-page_project .oaw-page-content .oaw-projects-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+      .oaw-page_project .oaw-page-content .oaw-projects-list > * {
+        min-width: 100%; }
+  .oaw-page_project .oaw-grid_3 .oaw-grid-item {
+    height: 130px; }
+
+@media (max-height: 600px) {
+  .oaw-page_home {
+    height: 100vh; }
+    .oaw-page_home .oaw-page-header {
+      height: calc(40vh - 30px); }
+    .oaw-page_home .oaw-page-content {
+      height: calc(60vh - 30px); }
+    .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_1, .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_2, .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_3 {
+      height: calc(60vh - 110px); }
+    .oaw-page_home .oaw-page-footer {
+      position: relative;
+      z-index: 10;
+      height: 60px;
+      overflow: hidden; }
+
+  .oaw-page_project .oaw-page-content {
+    height: calc(100vh - 125px); }
+  .oaw-page_project .oaw-grid_3 .oaw-grid-item {
+    height: 65px; } }
+#oaw-splash {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #ff8e00;
+  top: 0;
+  left: 0; }
+  #oaw-splash .oaw-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%; }

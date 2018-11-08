@@ -1,30 +1,19 @@
+// Height media-queries
+
+$mq_height_1 : 700px;
+$mq_height_2 : 600px;
+$mq_height_3 : 500px;
+
 // Config stylesheet
 
-$color_1: #223c3f;
-$color_2: #e2764e;
-$color_3: #d43923;
-$color_3_b: #e6b7b0;
-
-$color_4: #417280;
-$color_5: #68b8cb;
-
-$color_6: #f4e9ce; //Custom
-
-$color_7: #ededed;
-
-$color_8: #6ecb44;
+$color_1: #ff8e00;
+$color_2: #0188cc;
+$color_3 : #009edf;
 
 $negative_color: #ffffff;
 
-$background_color: $color_1;
+$background_color: $negative_color;
 
-
-$section_header_home_minheight: 210px;
-$section_header_navigation_width: 620px;
-
-$unit_item_width: 217px;
-$unit_item_height: 294px;
-$unit_item_number_space: 12px;
 
 $space_1: 20px;
 $space_2: 30px;

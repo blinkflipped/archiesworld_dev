@@ -1,0 +1,17 @@
+.oaw-card {
+  height: 100%;
+  &-image {
+    padding: 0;
+    height: 100%;
+    &-inner {
+      height: 100%;
+      @include img-fit(contain, center center);
+    }
+  }
+
+  &_project {
+    .oaw-card-image {
+      padding: $space_1;
+    }
+  }
+}

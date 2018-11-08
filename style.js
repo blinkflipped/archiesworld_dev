@@ -2,38 +2,43 @@
   'use strict';
 
   var OxfordArchiesworldDevStyle = function () {
-    //blink.theme.styles.oxford_archiesworld_dev.apply(this, arguments);
     blink.theme.styles.basic.apply(this, arguments);
-  }
+  };
 
   OxfordArchiesworldDevStyle.prototype = {
-    //parent: blink.theme.styles.oxford_archiesworld_dev.prototype,
     parent: blink.theme.styles.basic.prototype,
-    bodyClassName: 'content_type_clase_oaw_dev',
+    bodyClassName: 'content_type_clase_archiesworld',
     ckEditorStyles: {
-      name: 'oaw_dev',
-      styles: []
+      name: 'oxford-archies-world',
+      styles: [
+        { name: 'Título 1', element: 'h4', attributes: { 'class': 'bck-title1'} },
+        { name: 'Título 2', element: 'h4', attributes: { 'class': 'bck-title2'} },
+        { name: 'Título 3', element: 'h4', attributes: { 'class': 'bck-title3'} },
+
+        { name: 'Énfasis', element: 'span', attributes: { 'class': 'bck-enfasis' }},
+        { name: 'Enunciado actividad', element: 'h4', attributes: { 'class': 'bck-title-activity' }},
+
+        { name: 'Tabla centrada', element: 'table', type: 'bck-stack-class', attributes: { 'class': 'bck-table-center'} },
+        { name: 'Celda encabezado', element: 'td', attributes: { 'class': 'bck-td' } },
+
+        { name: 'Caja 1', type: 'widget', widget: 'blink_box', attributes: { 'class': 'box-1' } },
+        { name: 'Caja 2', type: 'widget', widget: 'blink_box', attributes: { 'class': 'box-2' } },
+        { name: 'Caja 3', type: 'widget', widget: 'blink_box', attributes: { 'class': 'box-3' } }
+      ]
     },
-    init: function() {
-      //this.parent.init.call(this.parent, this);
-      this.parent.init.call(this);
 
-      //this.activityInitialized = true;
-      //this.onCourseDataLoaded();
-      this.fetchData();
-
-      //this.preventTouchCarousel();
+    init: function (scope) {
+      var that = scope || this;
+      this.parent.init.call(that);
+      console.log("test");
     },
     removeFinalSlide: function () {
-      this.parent.removeFinalSlide.call(this.parent, this, true);
+      if(!checkModoCorreccion() && !checkModoRevision()){
+        (typeof this.Slider !== 'undefined' && this.Slider.removeLastItem) && this.Slider.removeLastItem();
+      }
     },
-    /**
-     * Carga de datos del libro en un actividad
-     */
-    fetchData: function() {
-      blink.getCourse(idcurso).done((function(data) {
-        this.onCourseDataLoaded(data);
-      }).bind(this));
+    showBookIndexInClass: function () {
+      return true;
     },
     onCourseDataLoaded: function(data) {
       oawApp.config.bookcover = oawApp.getCover(data);
@@ -50,27 +55,19 @@
 
     },
 
-    loadUserData: function() {
+    /*loadUserData: function() {
       var urlSeguimiento = '/include/javascript/seguimientoCurso.js.php?idcurso=' + idcurso;
       loadScript(urlSeguimiento, true, (function(data) {
         window.actividades = actividades;
       }).bind(this));
-    },
+    },*/
   };
 
 
-  //OxfordArchiesworldDevStyle.prototype = _.extend({}, new blink.theme.styles.oxford_archiesworld_dev(), OxfordArchiesworldDevStyle.prototype);
   OxfordArchiesworldDevStyle.prototype = _.extend({}, new blink.theme.styles.basic(), OxfordArchiesworldDevStyle.prototype);
 
-  blink.theme.styles['oaw_dev'] = OxfordArchiesworldDevStyle;
+  blink.theme.styles['oxford-archiesworld-dev'] = OxfordArchiesworldDevStyle;
 
-  blink.events.on('digitalbook:bpdfloaded', function () {
-    // Ejemplo carga de datos del curso desde un libro digital.
-    blink.getCourse(idcurso).done(function (data) {
-      var style = new OxfordArchiesworldDevStyle;
-      style.onCourseDataLoaded(data);
-    });
-  });
 
 
 })( blink );
@@ -112,6 +109,8 @@ var oawApp = window.oawApp || {};
 oawApp.config = {};
 oawApp.config.isDEV = (ENTORNO === 'DEV');
 oawApp.config.coverName = 'Portada';
+oawApp.config.auxUnitName = 'Portada';
+oawApp.config.bookcover = '';
 oawApp.config.isStudent = false;
 
 oawApp.config.bodyClasses = ['oaw-body-splash', 'oaw-body-home', 'oaw-body-project'];
@@ -169,6 +168,18 @@ oawApp.removeUnusedClass = function(currentClass) {
     $body.removeClass(v);
   });
 
+}
+
+
+// Get Auxiliary Unit oawApp.config.auxUnitName
+oawApp.getAuxUnit = function(data) {
+  var auxUnit =  0;
+  $.each(data.units, function(i, unit) {
+    if (unit.title === oawApp.config.auxUnitName) {
+      auxUnit = i;
+    }
+  });
+  return auxUnit;
 }
 
 

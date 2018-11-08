@@ -1,0 +1,146 @@
+
+$page_maxwidth : 100%;
+$header_page : 60px;
+$header_page_home : 270px;
+$footer_page_home : $header_page;
+$aux_page_home : 80px;
+
+$page_project_bottom: 130px;
+
+.oaw-page {
+  position: relative;
+  z-index: 1000;
+  max-width: $page_maxwidth;
+  margin: 0 auto;
+  &-header {
+    height: $header_page;
+    .oaw-page_home & {
+      height: $header_page_home;
+      background: $color_3;
+    }
+    .oaw-inner {
+      height: $header_page;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 $space_1;
+      position: relative;
+    }
+    &-title {
+      padding: 0;
+      margin: 0 auto;
+      height: $header_page;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      &-inner {
+        height: $header_page;
+        padding: $space_1/2;
+        @include img-fit(contain, center center);
+      }
+    }
+    &-image {
+      width: 100%;
+      &-inner {
+        @include img-fit(contain, right top);
+      }
+    }
+  }
+}
+
+
+.oaw-page_home {
+  height: 100vh;
+  .oaw-page-header,
+  .oaw-page-content {
+    height: calc(50vh - #{$footer_page_home/2});
+  }
+  .oaw-page-content {
+    .oaw-grid_1 {
+      .oaw-grid-item {
+        height: $aux_page_home;
+        &_1,
+        &_2,
+        &_3 {
+          height: calc(50vh - #{$footer_page_home/2 + $aux_page_home});
+        }
+      }
+    }
+  }
+  .oaw-page-footer {
+    position: relative;
+    z-index: 10;
+    height: $footer_page_home;
+    overflow: hidden;
+  }
+}
+
+.oaw-page_project {
+  height: 100vh;
+  .oaw-page-content {
+    height: calc(100vh - #{$page_project_bottom + $header_page});
+    .oaw-inner, .oaw-grid {
+      height: 100%;
+      .oaw-projects-list {height: 100%;}
+    }
+    .oaw-projects-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &>* {
+        min-width: 100%;
+      }
+    }
+  }
+  .oaw-grid_3 {
+    .oaw-grid-item {
+      height: $page_project_bottom;
+    }
+  }
+}
+
+
+@media (max-height: $mq_height_2) {
+  .oaw-page_home {
+    height: 100vh;
+    .oaw-page-header {
+      height: calc(40vh - #{$footer_page_home/2});
+    }
+    .oaw-page-content {
+      height: calc(60vh - #{$footer_page_home/2});
+    }
+    .oaw-page-content {
+      .oaw-grid_1 {
+        .oaw-grid-item {
+          &_1,
+          &_2,
+          &_3 {
+            height: calc(60vh - #{$footer_page_home/2 + $aux_page_home});
+          }
+        }
+      }
+    }
+    .oaw-page-footer {
+      position: relative;
+      z-index: 10;
+      height: $footer_page_home;
+      overflow: hidden;
+    }
+  }
+
+  .oaw-page_project {
+    .oaw-page-content {
+      height: calc(100vh - #{$page_project_bottom/2 + $header_page});
+    }
+    .oaw-grid_3 {
+      .oaw-grid-item {
+        height: $page_project_bottom/2;
+      }
+    }
+  }
+}
