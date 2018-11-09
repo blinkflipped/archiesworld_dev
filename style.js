@@ -454,18 +454,18 @@ oawApp.loadHomepage = function(data,updateHash) {
 
           if (resourceTagsArray.length) {
             var projectIndex, projectTitle;
-
-            if (oawApp.startsWith(value,oawApp.config.tagProjectIndex)) {
-              projectIndex = value.replace(oawApp.config.tagProjectIndex, '');
-            }
-
+            $.each(resourceTagsArray, function(index, value) {
+              if (oawApp.startsWith(value,oawApp.config.tagProjectIndex)) {
+                projectIndex = value.replace(oawApp.config.tagProjectIndex, '');
+              }
+            });
             var projectTitle = resource.title,
                 projectImage = resource.fileurl;
 
             //var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? Object.keys(oawApp.bookDataOAW).length : 0;
             oawApp.bookDataOAW[projectIndex] = {
               'project_textweb' : '',
-              'project_color' : '', 
+              'project_color' : '',
               'project_title' : projectTitle,
               'project_image': projectImage,
               'topics' : {}
