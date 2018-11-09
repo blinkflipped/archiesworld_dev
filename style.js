@@ -152,7 +152,8 @@ oawApp.bookData = '';
 oawApp.bookDataOAW = {};
 
 oawApp.text = {
-  enter : 'Enter'
+  enter : 'Enter',
+  back : 'Back'
 }
 
 //----------------------------------//
@@ -272,10 +273,6 @@ oawApp.getParameterByHash = function(name, url) {
 // Get ID by hash
 oawApp.getIDByHash = function(hash) {
   var unitID = hash.replace(oawApp.config.tree[1].hash, '');
-  /*$.each(oawApp.config.tree[1].suffix, function(i, suffix){
-    unitID = unitID.replace(suffix, '');
-  });*/
-
   return unitID;
 }
 
@@ -291,17 +288,16 @@ oawApp.hashDistributor = function(currentHash,data,updateHash) {
     hashDistributorTimeout = setTimeout(function() {oawApp.loadSplash(data,updateHash)}, timeToWait);
   } else if (currentHash.startsWith(oawApp.config.tree[1].hash)) { // Home
     hashDistributorTimeout = setTimeout(function() {oawApp.loadHomepage(data,updateHash)}, timeToWait);
-  } else if (currentHash.startsWith(oawApp.config.tree[2].hash)) { // Unit and ID
+  } else if (currentHash.startsWith(oawApp.config.tree[2].hash)) { // Project and ID
 
-    // This works different because we need an ID to load the Unit
-    var oawunit = oawApp.getIDByHash(currentHash),
-        unitExists = (oawApp.config.unitsIDs.indexOf(oawunit) >= 0),
-        activeAreaTeacher = currentHash.includes(oawApp.config.tree[2].suffix[1]);
+    // This works different because we need an ID to load the Project
+    var oawproject = oawApp.getIDByHash(currentHash),
+        projectExists = (oawApp.config.unitsIDs.indexOf(oawproject) >= 0);
 
-    if (oawunit !== '' && oawunit !== null && unitExists) {
-      var currentUnit = oawunit;
+    if (oawproject !== '' && oawproject !== null && projectExists) {
+      var currentUnit = oawproject;
 
-      hashDistributorTimeout = setTimeout(function() {oawApp.loadUnit(data,currentUnit,activeAreaTeacher,updateHash)}, timeToWait);
+      hashDistributorTimeout = setTimeout(function() {oawApp.loadProject(data,currentUnit,updateHash)}, timeToWait);
 
     } else {
 
@@ -620,9 +616,10 @@ oawApp.loadHomepage = function(data,updateHash) {
           projectTitle = project.project_title;
 
       var projectItem = document.createElement('div'),
-          gridItem = Number(i) + 1;
+          gridItem = Number(i) + 1,
+          projectAction = (gridItem < 4) ? 'oaw-js--loadProject' : '';
       projectItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
-      projectItem.innerHTML = '<article class="oaw-card oaw-card_project" style="background-color: #'+projectColor+'"><a href="javascript:void(0)" class="oaw-card-inner "> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="'+projectImage+'" alt="'+projectTitle+'"> </div> </div> </a></article>';
+      projectItem.innerHTML = '<article class="oaw-card oaw-card_project" style="background-color: #'+projectColor+'"><a href="javascript:void(0)" class="oaw-card-inner '+ projectAction +'" data-project-index="'+i+'"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="'+projectImage+'" alt="'+projectTitle+'"> </div> </div> </a></article>';
       gridTopMenu.appendChild(projectItem);
     });
 
@@ -719,6 +716,67 @@ oawApp.loadHomepage = function(data,updateHash) {
 
 }
 
+// Load Project
+abpApp.loadProject = function(data,currentProject,updateHash) {
+
+  var currentIndex = 2;
+  var currentPage = abpApp.config.tree[currentIndex].id,
+      bodyClass = abpApp.config.tree[currentIndex].class,
+      hash = abpApp.config.tree[currentIndex].hash,
+      hashWithID = hash+currentProject;
+
+  abpApp.console("Load Project Index "+currentProject);
+
+  var projectTitleImage =  '', //TODO VER DONDE APARECE
+      projectTitle =  oawApp.bookDataOAW[currentProject].project_title,
+      projectColor =  oawApp.bookDataOAW[currentProject].project_color,
+      projectTopics =  oawApp.bookDataOAW[currentProject].topics;
+
+  $('.oaw-page_project').remove();
+
+  var projectStructureHTML = '<section class="oaw-page oaw-page_project"> <header class="oaw-page-header" style="background-color: #'+projectColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"> <img src="'+projectTitleImage+'" alt="'+projectTitle+'"> </div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_2 oaw-js--goback" style="color: #fbba00"> <i class="icon" aria-hidden="true"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_2"></div></div></div><footer class="oaw-page-footer"><div class="oaw-inner"><div class="oaw-grid oaw-grid_3"></div></div></footer></section>';
+
+  $('body').prepend(projectStructureHTML);
+
+
+  var topicList = document.createDocumentFragment();
+
+  $.each(projectTopics, function(i, topic){
+    if (i < 2) { //Main topics
+      var topicTextweb = topic[i].topic_textweb,
+          topicColor = topic[i].topic_color,
+          topicTitleImage = '', //TODO VER de donde sale
+          topicItem = document.createElement('div');
+
+      topicItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
+      topicItem.innerHTML = '<div class="oaw-projects-list" style="background-color: #'+projectColor+'"><h2 class="oaw-title oaw-title_image oaw-title_2"><img src="'+topicTitleImage+'"></h2><ul></ul></div>';
+
+      topicList.appendChild(topicItem);
+    } else { // Aux topics
+
+    }
+  });
+
+
+  /*  $('.abp-page_unit').imagesLoaded({background: 'div, a, span, button'}, function(){
+      if (updateHash) {
+        abpApp.updateHashWithListener(hashWithID);
+      }
+
+    });
+*/
+
+
+  $('.abp-page_unit').imagesLoaded({background: 'div, a, span, button'}, function(){
+    // Object Fit support
+    abpApp.objectFitSupport();
+    abpApp.removeUnusedClass(bodyClass);
+    $('body').addClass(bodyClass);
+    $('html, body').animate({ scrollTop: 0 }, 1);
+  });
+
+}
+
 
 //----------------------------------//
 //                                  //
@@ -729,11 +787,16 @@ oawApp.loadHomepage = function(data,updateHash) {
 
 $(document).ready(function() {
 
-  console.log("Test DOC Ready");
-
   $('body').on('click', '.oaw-js--loadHomepage', function(e) {
     e.preventDefault();
     var hash = oawApp.config.tree[1].hash;
+    oawApp.updateHashWithListener(hash);
+  });
+
+  $('body').on('click', '.oaw-js--loadProject', function(e) {
+    e.preventDefault();
+    var projectIndex = $(this).attr('data-project-index'),
+        hash = oawApp.config.tree[2].hash + projectIndex;
     oawApp.updateHashWithListener(hash);
   });
 
