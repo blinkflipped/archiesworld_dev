@@ -466,7 +466,7 @@ oawApp.loadHomepage = function(data,updateHash) {
     $.each(data.units, function(i, unit){
       if (i !== oawApp.getAuxUnit(data)) {
         var unitTags = unit.tags,
-            unitTagsArray = unitTags.split(" ");
+            unitTagsArray = (typeof unitTags !== 'undefined') ? unitTags.split(" ") : [];
 
         console.log("a");
         console.log(unitTagsArray);
@@ -477,6 +477,21 @@ oawApp.loadHomepage = function(data,updateHash) {
           if (oawApp.startsWith(value,oawApp.config.tagProjectName)) {
             var projectNameTextWeb = value;
             console.log(value);
+
+            var bookDataOAWValues = Object.values(oawApp.bookDataOAW);
+            console.log(bookDataOAWValues);
+
+            console.log(jQuery.inArray( value, bookDataOAWValues ));
+            var exists = jQuery.inArray( value, bookDataOAWValues ) >= 0;
+            if (!exists) {
+              console.log("To add");
+              var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? oawApp.bookDataOAW[Object.keys(oawApp.bookDataOAW)[Object.keys(oawApp.bookDataOAW).length - 1]] : 0;
+
+              oawApp.bookDataOAW[lastKey].project_textweb[value];
+              console.log(oawApp.bookDataOAW);
+            } else {
+              return false;
+            }
           }
 
         });
