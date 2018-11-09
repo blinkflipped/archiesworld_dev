@@ -461,9 +461,10 @@ oawApp.loadHomepage = function(data,updateHash) {
     oawApp.config.isStudent = blink.user.esAlumno();
     oawApp.bookData = data;
 
-    var isAux = (i === oawApp.getAuxUnit(data));
+
 
     $.each(data.units, function(i, unit){
+      var isAux = (i === oawApp.getAuxUnit(data));
       if (!isAux) {
 
         var unitID = unit.id,
@@ -554,6 +555,7 @@ oawApp.loadHomepage = function(data,updateHash) {
     });
 
     $.each(data.units, function(i, unit){
+      var isAux = (i === oawApp.getAuxUnit(data));
       if (isAux) {
 
         $.each(unit.resources, function(ind, resource){
@@ -604,7 +606,6 @@ oawApp.loadHomepage = function(data,updateHash) {
         });
 
       }
-
     });
 
 
