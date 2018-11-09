@@ -461,8 +461,9 @@ oawApp.loadHomepage = function(data,updateHash) {
     oawApp.config.isStudent = blink.user.esAlumno();
     oawApp.bookData = data;
 
+    var isAux = (i === oawApp.getAuxUnit(data));
+
     $.each(data.units, function(i, unit){
-      var isAux = (i === oawApp.getAuxUnit(data));
       if (!isAux) {
 
         var unitID = unit.id,
@@ -553,7 +554,6 @@ oawApp.loadHomepage = function(data,updateHash) {
     });
 
     $.each(data.units, function(i, unit){
-      var isAux = (i === oawApp.getAuxUnit(data));
       if (isAux) {
 
         $.each(unit.resources, function(ind, resource){
@@ -626,7 +626,7 @@ oawApp.loadHomepage = function(data,updateHash) {
     });
 
     var auxUnit = oawApp.getAuxUnit(oawApp.bookData),
-        headerImage = oawApp.bookData[auxUnit].image;
+        headerImage = oawApp.bookData.units[auxUnit].image;
     var homeStructure = '<section class="oaw-page oaw-page_home"> <header class="oaw-page-header"> <div class="oaw-inner"> <div class="oaw-page-header-image"> <div class="oaw-page-header-image-inner"> <img src="'+headerImage+'"> </div> </div> </div> </header> <div class="oaw-page-content"> <div class="oaw-inner"> <div class="oaw-grid oaw-grid_1">  </div> </div> </div> <footer class="oaw-page-footer"> <div class="oaw-inner"> <div class="oaw-menu oaw-menu_1"> <nav class="oaw-menu-nav"> <ul> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Icon guide</span> </a> </li> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Help / How to</span> </a> </li> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Teacher Notes</span> </a> </li> </ul> </nav> </div> </div> </footer> </section>';
 
     $('body').prepend(homeStructure);
