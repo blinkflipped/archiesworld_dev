@@ -461,7 +461,8 @@ oawApp.loadSplash = function(data,updateHash) {
             var lastKey = (Object.keys(topics).length > 0 ) ? Object.keys(topics).length : 0;
             topics[lastKey] = {
               'topic_textweb' : topicNameTextWeb,
-              'topic_color' : topicColor
+              'topic_color' : topicColor,
+              'topic_units' : {}
             };
             var lastTopicKey = (Object.keys(topics[lastKey].topic_units).length > 0 ) ? Object.keys(topics[lastKey].topic_units).length : 0;
             topics[lastKey].topic_units[lastTopicKey] = {
