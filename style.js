@@ -463,7 +463,8 @@ oawApp.loadSplash = function(data,updateHash) {
               'topic_textweb' : topicNameTextWeb,
               'topic_color' : topicColor
             };
-            topics[lastKey].topic_units[unitID] = {
+            var lastTopicKey = (Object.keys(topics[lastKey].topic_units).length > 0 ) ? Object.keys(topics[lastKey].topic_units).length : 0;
+            topics[lastKey].topic_units[lastTopicKey] = {
               'unit_template': unitTemplate,
               'unit_title' : unitTitle,
               'unit_id' : unitID
@@ -471,7 +472,8 @@ oawApp.loadSplash = function(data,updateHash) {
 
           } else {
             oawApp.console("Add Unit to topic");
-            topics[currentTopic].topic_units[unitID] = {
+            var lastTopicKey = (Object.keys(topics[currentTopic].topic_units).length > 0 ) ? Object.keys(topics[currentTopic].topic_units).length : 0;
+            topics[currentTopic].topic_units[lastTopicKey] = {
               'unit_template': unitTemplate,
               'unit_title' : unitTitle,
               'unit_id' : unitID
