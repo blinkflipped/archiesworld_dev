@@ -437,7 +437,7 @@ oawApp.loadHomepage = function(data,updateHash) {
   var isLoaded = $('.oaw-page_home').length;
   //$('.navbar .libro-left .title').text(bookTitle);
 
-  if (isLoaded) {
+  if (!isLoaded) {
 
     oawApp.config.isStudent = blink.user.esAlumno();
     oawApp.bookData = data;
@@ -468,7 +468,8 @@ oawApp.loadHomepage = function(data,updateHash) {
         var unitTags = unit.tags,
             unitTagsArray = unitTags.split(" ");
 
-
+        console.log("a");
+        console.log(unitTagsArray);
         //oawApp.config.tagProjectName; oawApp.config.tagProjectColor; oawApp.config.tagTopicName ; oawApp.config.tagTopicColor; oawApp.config.tagTemplate;
         $.each(unitTagsArray, function(index, value) {
           console.log(oawApp.startsWith(value,oawApp.config.tagProjectName));
@@ -583,7 +584,7 @@ $(document).ready(function() {
 
   console.log("Test DOC Ready");
 
-  $('.js--loadHomepage').click(function(e) {
+  $('body').on('click', '.js--loadHomepage').click(function(e) {
     e.preventDefault();
     var hash = oawApp.config.tree[1].hash;
     oawApp.updateHashWithListener(hash);
