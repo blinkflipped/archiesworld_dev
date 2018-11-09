@@ -456,7 +456,8 @@ oawApp.loadHomepage = function(data,updateHash) {
             var projectIndex, projectTitle;
             $.each(resourceTagsArray, function(index, value) {
               if (oawApp.startsWith(value,oawApp.config.tagProjectIndex)) {
-                projectIndex = value.replace(oawApp.config.tagProjectIndex, '');
+                var projectNumber = value.replace(oawApp.config.tagProjectIndex, '');
+                projectIndex = projectNumber - 1;
               }
             });
             var projectTitle = resource.title,
