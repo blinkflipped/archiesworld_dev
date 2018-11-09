@@ -465,47 +465,76 @@ oawApp.loadHomepage = function(data,updateHash) {
 
     $.each(data.units, function(i, unit){
       if (i !== oawApp.getAuxUnit(data)) {
-        var unitTags = unit.tags,
+        var unitID = unit.id,
+            unitTags = unit.tags,
             unitTagsArray = (typeof unitTags !== 'undefined') ? unitTags.split(" ") : [];
 
-        console.log("a");
         console.log(unitTagsArray);
         //oawApp.config.tagProjectName; oawApp.config.tagProjectColor; oawApp.config.tagTopicName ; oawApp.config.tagTopicColor; oawApp.config.tagTemplate;
         $.each(unitTagsArray, function(index, value) {
           console.log(oawApp.startsWith(value,oawApp.config.tagProjectName));
-          //Project Name
-          if (oawApp.startsWith(value,oawApp.config.tagProjectName)) {
-            var projectNameTextWeb = value;
-            console.log(value);
+          var projectColor, projectNameTextWeb, topicColor, topicNameTextWeb;
 
-            //var bookDataOAWValues = Object.values(oawApp.bookDataOAW);
-            //console.log(bookDataOAWValues);
+          if (oawApp.startsWith(value,oawApp.config.tagProjectColor)) {
+            projectColor = value.replace(oawApp.config.tagProjectColor, value);
+          } else if (oawApp.startsWith(value,oawApp.config.tagProjectName)) {
+            projectNameTextWeb = value;
+          }
+          console.log(projectNameTextWeb, projectColor);
 
-            var dataOAW = oawApp.bookDataOAW;
-            var exists = false;
-            $.each(dataOAW, function(ind, val) {
-              var projectTextweb = val['project_textweb'];
-              if (projectTextweb === value) {
-                exists = true;
-                return false;
-              }
-
-            });
-            //console.log(jQuery.inArray( 'Name_Project_Project_1_All_about_me', bookDataOAWValues ));
-            //console.log(jQuery.inArray( value, bookDataOAWValues ));
-            //var exists = jQuery.inArray( value, bookDataOAWValues ) >= 0;
-            console.log(exists);
-
-            if (!exists) {
-              console.log("To add");
-              var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? oawApp.bookDataOAW[Object.keys(oawApp.bookDataOAW)[Object.keys(oawApp.bookDataOAW).length - 1]] : 0;
-              console.log(lastKey);
-              oawApp.bookDataOAW[lastKey] = {'project_textweb' : value};
-              console.log(oawApp.bookDataOAW);
-            } else {
+          var dataOAW = oawApp.bookDataOAW;
+          var projectExists = false;
+          var currentProject = 0;
+          $.each(dataOAW, function(ind, val) {
+            var projectTextweb = val['project_textweb'];
+            if (projectTextweb === projectNameTextWeb) {
+              currentProject = ind;
+              projectExists = true;
               return false;
             }
+          });
+          console.log(projectExists, currentProject);
+
+          if (!projectExists) {
+            console.log("To add");
+            var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? oawApp.bookDataOAW[Object.keys(oawApp.bookDataOAW)[Object.keys(oawApp.bookDataOAW).length - 1]] : 0;
+            console.log(lastKey);
+            oawApp.bookDataOAW[lastKey] = {'project_textweb' : projectNameTextWeb};
+            oawApp.bookDataOAW[lastKey] = {'project_color' : projectColor};
+            console.log(oawApp.bookDataOAW);
           }
+          // Topics
+          if (oawApp.startsWith(value,oawApp.config.tagTopicName)) {
+            topicNameTextWeb = value;
+          }
+          if (oawApp.startsWith(value,oawApp.config.tagTopicColor)) {
+            topicColor = value.replace(oawApp.config.tagTopicColor, value);
+          }
+
+          console.log(projectColor, projectNameTextWeb, topicColor, topicNameTextWeb);
+
+
+
+
+          // Topic Exists?
+
+          var topicExists = false;
+          $.each(dataOAW[currentProject], function(ind, val) {
+            /*var topicTextweb = val['topics'];
+            if (projectTextweb === topicNameTextWeb) {
+              exists = true;
+              return false;
+            }*/
+            console.log(ind, val);
+          });
+          console.log(topicExists);
+
+
+
+
+
+
+
 
         });
 
