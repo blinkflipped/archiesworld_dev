@@ -143,8 +143,7 @@ oawApp.config.tree = {
   2 : {
     'id' : 'project',
     'hash' : 'project_',
-    'class' : oawApp.config.bodyClasses[2],
-    //'suffix' : ['_studentarea', '_teacherarea']
+    'class' : oawApp.config.bodyClasses[2]
   }
 }
 
@@ -272,8 +271,8 @@ oawApp.getParameterByHash = function(name, url) {
 
 // Get ID by hash
 oawApp.getIDByHash = function(hash) {
-  var unitID = hash.replace(oawApp.config.tree[1].hash, '');
-  return unitID;
+  var currentProject = hash.replace(oawApp.config.tree[2].hash, '');
+  return currentProject;
 }
 
 
