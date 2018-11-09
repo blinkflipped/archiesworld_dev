@@ -9,7 +9,6 @@ $page_project_bottom: 130px;
 
 .oaw-page {
   position: relative;
-  z-index: 1000;
   max-width: $page_maxwidth;
   margin: 0 auto;
   &-header {
@@ -62,6 +61,9 @@ $page_project_bottom: 130px;
 
 .oaw-page_home {
   height: 100vh;
+  .oaw-body-home & {
+    z-index: 1000;
+  }
   .oaw-page-header,
   .oaw-page-content {
     height: calc(50vh - #{$footer_page_home/2});
@@ -87,6 +89,9 @@ $page_project_bottom: 130px;
 }
 
 .oaw-page_project {
+  .oaw-body-project & {
+    z-index: 1000;
+  }
   height: 100vh;
   .oaw-page-content {
     height: calc(100vh - #{$page_project_bottom + $header_page});
@@ -112,6 +117,9 @@ $page_project_bottom: 130px;
 }
 
 .oaw-page_lesson {
+  .oaw-body-lesson & {
+    z-index: 1000;
+  }
   height: 100vh;
   .oaw-page-content {
     height: calc(100vh - #{$page_project_bottom + $header_page});
