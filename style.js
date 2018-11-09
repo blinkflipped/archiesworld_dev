@@ -471,9 +471,9 @@ oawApp.loadHomepage = function(data,updateHash) {
 
         console.log(unitTagsArray);
         //oawApp.config.tagProjectName; oawApp.config.tagProjectColor; oawApp.config.tagTopicName ; oawApp.config.tagTopicColor; oawApp.config.tagTemplate;
+        var projectColor, projectNameTextWeb, topicColor, topicNameTextWeb;
+
         $.each(unitTagsArray, function(index, value) {
-          console.log(oawApp.startsWith(value,oawApp.config.tagProjectName));
-          var projectColor, projectNameTextWeb, topicColor, topicNameTextWeb;
 
           if (oawApp.startsWith(value,oawApp.config.tagProjectColor)) {
             var projectColorValue = value;
