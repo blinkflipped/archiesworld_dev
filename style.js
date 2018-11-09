@@ -382,81 +382,9 @@ oawApp.loadSplash = function(data,updateHash) {
       currentHash = currentHash.replace('#','');
 
   if (!isLoaded) {
-    oawApp.config.isStudent = blink.user.esAlumno();
-    oawApp.bookData = data;
-
-    var backgroundImageSrc = oawApp.config.bookcover.image,
-        backgroundImage = (backgroundImageSrc !== '' && typeof backgroundImageSrc !== 'undefined') ? 'background-image: url('+backgroundImageSrc+');' : '';
-
-    var sectionSplashHTML = '<div id="oaw-splash" style="'+backgroundImage+'"><div class="oaw-inner"><button class="oaw-button oaw-button_1 oaw-js--loadHomepage"><span>'+oawApp.text.enter+'</span></button></div></div>';
-
-    $('body').prepend(sectionSplashHTML);
-
-    var userBodyClass = (oawApp.config.isStudent) ? 'oaw-body oaw-body-user-student' : 'oaw-body oaw-body-user-not-student';
-
-    $('body').imagesLoaded({background: 'div, a, span, button'}, function(){
-      $('html').addClass('htmlReady');
-      $('body').addClass(userBodyClass);
-      $('html, body').animate({ scrollTop: 0 }, 1);
-      if (currentHash !== '' && currentHash !== hash) {
-        oawApp.loadByHash(currentHash,data);
-      } else {
-        $('body').addClass(bodyClass);
-        oawApp.removeUnusedClass(bodyClass);
-        if (updateHash) {
-          oawApp.updateHashWithListener(hash);
-        }
-      }
-
-    });
-
-  } else {
-    // Home already loaded
-    if (currentHash !== '' && currentHash !== hash) {
-      oawApp.loadByHash(currentHash,data);
-    } else {
-      $('body').addClass(bodyClass);
-      oawApp.removeUnusedClass(bodyClass);
-      if (updateHash) {
-        oawApp.updateHashWithListener(hash);
-      }
-    }
-    $('html, body').animate({ scrollTop: 0 }, 1);
-
-  }
-
-  // Object Fit support
-  oawApp.objectFitSupport();
-
-
-}
-
-// Homepage
-oawApp.loadHomepage = function(data,updateHash) {
-
-  oawApp.console('Loading Homepage');
-  oawApp.unitAlreayLoaded = false;
-
-  var currentIndex = 1;
-  var currentPage = oawApp.config.tree[currentIndex].id,
-      bodyClass = oawApp.config.tree[currentIndex].class,
-      hash = oawApp.config.tree[currentIndex].hash,
-      currentHash = window.location.hash;
-      currentHash = currentHash.replace('#','');
-
-  var bookTitle = data.title,
-      bookDescription = data.description;
-
-
-  var isLoaded = $('.oaw-page_home').length;
-  //$('.navbar .libro-left .title').text(bookTitle);
-
-  if (!isLoaded) {
 
     oawApp.config.isStudent = blink.user.esAlumno();
     oawApp.bookData = data;
-
-
 
     $.each(data.units, function(i, unit){
       var isAux = (i === oawApp.getAuxUnit(data));
@@ -604,6 +532,74 @@ oawApp.loadHomepage = function(data,updateHash) {
     });
 
 
+    var backgroundImageSrc = oawApp.config.bookcover.image,
+        backgroundImage = (backgroundImageSrc !== '' && typeof backgroundImageSrc !== 'undefined') ? 'background-image: url('+backgroundImageSrc+');' : '';
+
+    var sectionSplashHTML = '<div id="oaw-splash" style="'+backgroundImage+'"><div class="oaw-inner"><button class="oaw-button oaw-button_1 oaw-js--loadHomepage"><span>'+oawApp.text.enter+'</span></button></div></div>';
+
+    $('body').prepend(sectionSplashHTML);
+
+    var userBodyClass = (oawApp.config.isStudent) ? 'oaw-body oaw-body-user-student' : 'oaw-body oaw-body-user-not-student';
+
+    $('body').imagesLoaded({background: 'div, a, span, button'}, function(){
+      $('html').addClass('htmlReady');
+      $('body').addClass(userBodyClass);
+      $('html, body').animate({ scrollTop: 0 }, 1);
+      if (currentHash !== '' && currentHash !== hash) {
+        oawApp.loadByHash(currentHash,data);
+      } else {
+        $('body').addClass(bodyClass);
+        oawApp.removeUnusedClass(bodyClass);
+        if (updateHash) {
+          oawApp.updateHashWithListener(hash);
+        }
+      }
+
+    });
+
+  } else {
+    // Home already loaded
+    if (currentHash !== '' && currentHash !== hash) {
+      oawApp.loadByHash(currentHash,data);
+    } else {
+      $('body').addClass(bodyClass);
+      oawApp.removeUnusedClass(bodyClass);
+      if (updateHash) {
+        oawApp.updateHashWithListener(hash);
+      }
+    }
+    $('html, body').animate({ scrollTop: 0 }, 1);
+
+  }
+
+  // Object Fit support
+  oawApp.objectFitSupport();
+
+
+}
+
+// Homepage
+oawApp.loadHomepage = function(data,updateHash) {
+
+  oawApp.console('Loading Homepage');
+  oawApp.unitAlreayLoaded = false;
+
+  var currentIndex = 1;
+  var currentPage = oawApp.config.tree[currentIndex].id,
+      bodyClass = oawApp.config.tree[currentIndex].class,
+      hash = oawApp.config.tree[currentIndex].hash,
+      currentHash = window.location.hash;
+      currentHash = currentHash.replace('#','');
+
+  var bookTitle = data.title,
+      bookDescription = data.description;
+
+
+  var isLoaded = $('.oaw-page_home').length;
+  //$('.navbar .libro-left .title').text(bookTitle);
+
+  if (!isLoaded) {
+
     //HTML STRUCTURE
     var gridTopMenu = document.createDocumentFragment();
 
@@ -631,54 +627,6 @@ oawApp.loadHomepage = function(data,updateHash) {
     var $gridWrapper = $('.oaw-page_home .oaw-grid_1');
     $gridWrapper[0].appendChild(gridTopMenu);
 
-    // Add real content
-
-    //<article class="oaw-card oaw-card_project" style="background-color: #94CEF2"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/menutop/Festivals.png" alt="Festivals"> </div> </div> </a> </article>
-    //<article class="oaw-card oaw-card_project" style="background-color: #0EB0E7"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/menutop/Seasons.png" alt="Seasons"> </div> </div> </a> </article>
-
-
-
-/*    var unitTitle = unit.title,
-        unitDescription = unit.description,
-        unitNumberBase = unit.number - 1,
-        unitNumber = ('0' + unitNumberBase).slice(-2),
-        unitImage = unit.image;
-    var unitListItem = document.createElement('div');
-    unitListItem.className = 'oaw-units-slider-item';
-    unitListItem.innerHTML = '<article class="oaw-unit"><a href="javascript:void(0)" class="oaw-js-load-unit oaw-unit-inner" data-unit="'+unitNumberBase+'"><div class="oaw-unit-number oaw-unit-number"><div class="oaw-unit-number-inner"><span>'+unitNumber+'</span></div></div><header class="oaw-unit-header"> <h2 class="oaw-title-4">'+unitTitle+'</h2> </header> <div class="oaw-unit-content"> <div class="oaw-unit-content-description">'+unitDescription+'</div> <div class="oaw-unit-content-background"> <img src="'+unitImage+'"></div></div></a></article>';
-    unitList.appendChild(unitListItem);*/
-
-
-/*
-    // Create Units slider
-    var $unitsWrapper = $('.oaw-units-slider');
-
-    if ($unitsWrapper.hasClass('slick-initialized')) {
-      $unitsWrapper.slick('unslick');
-    }
-    $unitsWrapper.empty();
-    $unitsWrapper[0].appendChild(unitList);
-
-    $unitsWrapper.slick(oawApp.config.carouselOpt);
-
-
-    var $unitsWrapperContent = $unitsWrapper.closest('.oaw-section-content');
-    $unitsWrapperContent.addClass('slider--toleft');
-    $unitsWrapper.on('afterChange', function(event, slick, currentSlide) {
-      if (currentSlide > 0) {
-        $unitsWrapperContent.removeClass('slider--toleft');
-      } else {
-        $unitsWrapperContent.addClass('slider--toleft');
-      }
-
-      if (slick.currentLeft >= 0) {
-        $unitsWrapperContent.addClass('slider--toright');
-      } else {
-        $unitsWrapperContent.removeClass('slider--toright');
-      }
-
-    });
-*/
 
     $('body').imagesLoaded({background: 'div, a, span, button'}, function(){
       $('html, body').animate({ scrollTop: 0 }, 1);
@@ -746,6 +694,7 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
       var topicTextweb = topic.topic_textweb,
           topicColor = topic.topic_color,
           topicTitleImage = '', //TODO VER de donde sale
+          gridItem = Number(i) + 1,
           topicItem = document.createElement('div');
 
       topicItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
