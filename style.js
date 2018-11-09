@@ -391,7 +391,7 @@ oawApp.loadSplash = function(data,updateHash) {
   var backgroundImageSrc = oawApp.config.bookcover.image,
       backgroundImage = (backgroundImageSrc !== '' && typeof backgroundImageSrc !== 'undefined') ? 'background-image: url('+backgroundImageSrc+');' : '';
 
-  var sectionSplashHTML = '<div id="oaw-splash" style="'+backgroundImage+'"><div class="oaw-inner"><button class="oaw-button oaw-button_1 js--loadHomepage"><span>'+oawApp.text.enter+'</span></button></div></div>';
+  var sectionSplashHTML = '<div id="oaw-splash" style="'+backgroundImage+'"><div class="oaw-inner"><button class="oaw-button oaw-button_1 oaw-js--loadHomepage"><span>'+oawApp.text.enter+'</span></button></div></div>';
 
   $('body').prepend(sectionSplashHTML);
 
@@ -585,41 +585,40 @@ oawApp.loadHomepage = function(data,updateHash) {
 
         });
 
-
-
-
-
-
-
-
-
       }
 
     });
 
 
     //HTML STRUCTURE
+    var gridTopMenu = document.createDocumentFragment();
 
     $.each(oawApp.bookDataOAW, function(i, project) {
+      console.log(project);
 
+      var projectImage = project.project_image,
+          projectColor = project.project_color,
+          projectTitle = project.project_title;
+
+      var projectItem = document.createElement('div');
+      projectItem.className = 'oaw-grid-item oaw-grid-item_'+i;
+      projectItem.innerHTML = '<article class="oaw-card oaw-card_project" style="background-color: #'+projectColor+'"><a href="javascript:void(0)" class="oaw-card-inner "> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="'+projectImage+'" alt="'+projectTitle+'"> </div> </div> </a></article>';
+      gridTopMenu.appendChild(projectItem);
     });
 
-    var homeStructure = '<section class="oaw-page oaw-page_home"> <header class="oaw-page-header"> <div class="oaw-inner"> <div class="oaw-page-header-image"> <div class="oaw-page-header-image-inner"> <img src=""> </div> </div> </div> </header> <div class="oaw-page-content"> <div class="oaw-inner"> <div class="oaw-grid oaw-grid_1"> <div class="oaw-grid-item oaw-grid-item_1"></div> <div class="oaw-grid-item oaw-grid-item_2"></div> <div class="oaw-grid-item oaw-grid-item_3"> </div> <div class="oaw-grid-item oaw-grid-item_4"> </div> <div class="oaw-grid-item oaw-grid-item_5">  </div> </div> </div> </div> <footer class="oaw-page-footer"> <div class="oaw-inner"> <div class="oaw-menu oaw-menu_1"> <nav class="oaw-menu-nav"> <ul> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Icon guide</span> </a> </li> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Help / How to</span> </a> </li> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Teacher Notes</span> </a> </li> </ul> </nav> </div> </div> </footer> </section>';
+
+    var homeStructure = '<section class="oaw-page oaw-page_home"> <header class="oaw-page-header"> <div class="oaw-inner"> <div class="oaw-page-header-image"> <div class="oaw-page-header-image-inner"> <img src=""> </div> </div> </div> </header> <div class="oaw-page-content"> <div class="oaw-inner"> <div class="oaw-grid oaw-grid_1">  </div> </div> </div> <footer class="oaw-page-footer"> <div class="oaw-inner"> <div class="oaw-menu oaw-menu_1"> <nav class="oaw-menu-nav"> <ul> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Icon guide</span> </a> </li> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Help / How to</span> </a> </li> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Teacher Notes</span> </a> </li> </ul> </nav> </div> </div> </footer> </section>';
 
     $('body').prepend(homeStructure);
 
+    var $gridWrapper = $('.oaw-page_home .oaw-grid_1');
+    $gridWrapper[0].appendChild(gridTopMenu);
+
     // Add real content
 
-    //<article class="oaw-card oaw-card_project" style="background-color: #FBBA00"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/projects/Project_1.png" alt="Project 1"> </div> </div> <!--<div class="oaw-card-text"> <h2 class="oaw-title oaw-title_2"> <span>Project 1</span> <span>All about me</span> </h2> </div>--> </a> </article>
-    //<article class="oaw-card oaw-card_project" style="background-color: #EF7D00"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/projects/Project_2.png" alt="Project 2"> </div> </div> </a> </article>
-
-    //<article class="oaw-card oaw-card_project" style="background-color: #CE1625"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/projects/Project_3.png" alt="Project 3"> </div> </div> </a> </article>
     //<article class="oaw-card oaw-card_project" style="background-color: #94CEF2"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/menutop/Festivals.png" alt="Festivals"> </div> </div> </a> </article>
-
-
     //<article class="oaw-card oaw-card_project" style="background-color: #0EB0E7"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/menutop/Seasons.png" alt="Seasons"> </div> </div> </a> </article>
 
-    var topmenuItem = document.createDocumentFragment();
 
 
 /*    var unitTitle = unit.title,
@@ -716,7 +715,7 @@ $(document).ready(function() {
 
   console.log("Test DOC Ready");
 
-  $('body').on('click', '.js--loadHomepage', function(e) {
+  $('body').on('click', '.oaw-js--loadHomepage', function(e) {
     e.preventDefault();
     var hash = oawApp.config.tree[1].hash;
     oawApp.updateHashWithListener(hash);
