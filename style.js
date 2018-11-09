@@ -376,7 +376,8 @@ oawApp.updateHashWithListener = function(hash) {
 oawApp.loadSplash = function(data,updateHash) {
 
   oawApp.console('Loading Splash');
-  oawApp.unitAlreayLoaded = false;
+
+  var isLoaded = $('#oaw-splash').length;
 
   var currentIndex = 0;
   var currentPage = oawApp.config.tree[currentIndex].id,
@@ -385,22 +386,37 @@ oawApp.loadSplash = function(data,updateHash) {
       currentHash = window.location.hash;
       currentHash = currentHash.replace('#','');
 
-  oawApp.config.isStudent = blink.user.esAlumno();
-  oawApp.bookData = data;
+  if (!isLoaded) {
+    oawApp.config.isStudent = blink.user.esAlumno();
+    oawApp.bookData = data;
 
-  var backgroundImageSrc = oawApp.config.bookcover.image,
-      backgroundImage = (backgroundImageSrc !== '' && typeof backgroundImageSrc !== 'undefined') ? 'background-image: url('+backgroundImageSrc+');' : '';
+    var backgroundImageSrc = oawApp.config.bookcover.image,
+        backgroundImage = (backgroundImageSrc !== '' && typeof backgroundImageSrc !== 'undefined') ? 'background-image: url('+backgroundImageSrc+');' : '';
 
-  var sectionSplashHTML = '<div id="oaw-splash" style="'+backgroundImage+'"><div class="oaw-inner"><button class="oaw-button oaw-button_1 oaw-js--loadHomepage"><span>'+oawApp.text.enter+'</span></button></div></div>';
+    var sectionSplashHTML = '<div id="oaw-splash" style="'+backgroundImage+'"><div class="oaw-inner"><button class="oaw-button oaw-button_1 oaw-js--loadHomepage"><span>'+oawApp.text.enter+'</span></button></div></div>';
 
-  $('body').prepend(sectionSplashHTML);
+    $('body').prepend(sectionSplashHTML);
 
-  var userBodyClass = (oawApp.config.isStudent) ? 'oaw-body-user-student' : 'oaw-body-user-not-student';
+    var userBodyClass = (oawApp.config.isStudent) ? 'oaw-body oaw-body-user-student' : 'oaw-body oaw-body-user-not-student';
 
-  $('body').imagesLoaded({background: 'div, a, span, button'}, function(){
-    $('html').addClass('htmlReady');
-    $('body').addClass(userBodyClass);
-    $('html, body').animate({ scrollTop: 0 }, 1);
+    $('body').imagesLoaded({background: 'div, a, span, button'}, function(){
+      $('html').addClass('htmlReady');
+      $('body').addClass(userBodyClass);
+      $('html, body').animate({ scrollTop: 0 }, 1);
+      if (currentHash !== '' && currentHash !== hash) {
+        oawApp.loadByHash(currentHash,data);
+      } else {
+        $('body').addClass(bodyClass);
+        oawApp.removeUnusedClass(bodyClass);
+        if (updateHash) {
+          oawApp.updateHashWithListener(hash);
+        }
+      }
+
+    });
+
+  } else {
+    // Home already loaded
     if (currentHash !== '' && currentHash !== hash) {
       oawApp.loadByHash(currentHash,data);
     } else {
@@ -410,11 +426,13 @@ oawApp.loadSplash = function(data,updateHash) {
         oawApp.updateHashWithListener(hash);
       }
     }
+    $('html, body').animate({ scrollTop: 0 }, 1);
 
-  });
+  }
 
   // Object Fit support
   oawApp.objectFitSupport();
+
 
 }
 
