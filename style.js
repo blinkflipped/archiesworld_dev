@@ -445,41 +445,8 @@ oawApp.loadHomepage = function(data,updateHash) {
 
     $.each(data.units, function(i, unit){
       var isAux = (i === oawApp.getAuxUnit(data));
-      if (isAux) {
+      if (!isAux) {
 
-        $.each(unit.resources, function(ind, resource){
-
-          var resourceTags = resource.tags,
-              resourceTagsArray = (typeof resourceTags !== 'undefined') ? resourceTags.split(" ") : [];
-
-          if (resourceTagsArray.length) {
-            var projectIndex, projectTitle;
-
-            $.each(resourceTagsArray, function(index, value) {
-              if (oawApp.startsWith(value,oawApp.config.tagProjectIndex)) {
-                var projectNumber = value.replace(oawApp.config.tagProjectIndex, '');
-                projectIndex = projectNumber - 1;
-              }
-            });
-
-            var projectTitle = resource.title,
-                projectImage = resource.fileurl;
-
-            //var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? Object.keys(oawApp.bookDataOAW).length : 0;
-            oawApp.bookDataOAW[projectIndex] = {
-              'project_textweb' : '',
-              'project_color' : '',
-              'project_title' : projectTitle,
-              'project_image': projectImage,
-              'topics' : {}
-            };
-          }
-
-        });
-
-
-
-      } else {
         var unitID = unit.id,
             unitTags = unit.tags,
             unitTagsArray = (typeof unitTags !== 'undefined') ? unitTags.split(" ") : [];
@@ -517,11 +484,17 @@ oawApp.loadHomepage = function(data,updateHash) {
           if (!projectExists) {
             oawApp.console("Project to add");
             var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? Object.keys(oawApp.bookDataOAW).length : 0;
-            oawApp.bookDataOAW[lastKey] = {'project_textweb' : projectNameTextWeb, 'project_color' : projectColor, 'topics' : {}};
+            oawApp.bookDataOAW[lastKey] = {
+              'project_textweb' : projectNameTextWeb,
+              'project_color' : projectColor,
+              'project_title' : '',
+              'project_image': '',
+              'topics' : {}
+            };
           } else {
-            oawApp.console("Add color and textweb to Porject");
-            oawApp.bookDataOAW[currentProject].project_textweb = projectNameTextWeb;
-            oawApp.bookDataOAW[currentProject].project_color = projectColor;
+            //oawApp.console("Add color and textweb to Project");
+            //oawApp.bookDataOAW[currentProject].project_textweb = projectNameTextWeb;
+            //oawApp.bookDataOAW[currentProject].project_color = projectColor;
           }
 
           // Topic Exists?
@@ -557,6 +530,61 @@ oawApp.loadHomepage = function(data,updateHash) {
           }
 
         }
+
+      } else {
+
+        $.each(unit.resources, function(ind, resource){
+
+          var resourceTags = resource.tags,
+              resourceTagsArray = (typeof resourceTags !== 'undefined') ? resourceTags.split(" ") : [];
+
+          if (resourceTagsArray.length) {
+            var projectIndex, projectTitle;
+
+            $.each(resourceTagsArray, function(index, value) {
+              if (oawApp.startsWith(value,oawApp.config.tagProjectIndex)) {
+                var projectNumber = value.replace(oawApp.config.tagProjectIndex, '');
+                projectIndex = projectNumber - 1;
+              }
+            });
+
+            var projectTitle = resource.title,
+                projectImage = resource.fileurl;
+
+
+            var dataOAW = oawApp.bookDataOAW;
+            var projectExists = false;
+            $.each(dataOAW, function(ind, val) {
+              if (ind === projectIndex) {
+                projectExists = true;
+                return false;
+              }
+            });
+
+            if (projectExists) {
+              oawApp.bookDataOAW[projectIndex].project_title = projectTitle;
+              oawApp.bookDataOAW[projectIndex].project_image = projectImage;
+            } else {
+              oawApp.bookDataOAW[projectIndex] = {
+                'project_textweb' : '',
+                'project_color' : '',
+                'project_title' : projectTitle,
+                'project_image': projectImage,
+                'topics' : {}
+              };
+            }
+
+          }
+
+        });
+
+
+
+
+
+
+
+
 
       }
 
