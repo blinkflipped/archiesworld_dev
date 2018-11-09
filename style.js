@@ -687,6 +687,7 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
 
 
   var topicList = document.createDocumentFragment();
+  var auxList = document.createDocumentFragment();
 
   $.each(projectTopics, function(i, topic){
     console.log(topic);
@@ -702,9 +703,16 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
 
       topicList.appendChild(topicItem);
     } else { // Aux topics
-
+      //auxList
     }
   });
+
+  var $gridWrapper = $('.oaw-page_project .oaw-grid_2');
+  $gridWrapper[0].appendChild(topicList);
+
+  var $gridWrapper2 = $('.oaw-page_project .oaw-grid_3');
+  $gridWrapper[0].appendChild(auxList);
+
 
 
   /*  $('.oaw-page_unit').imagesLoaded({background: 'div, a, span, button'}, function(){
