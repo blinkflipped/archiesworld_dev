@@ -391,6 +391,7 @@ oawApp.loadSplash = function(data,updateHash) {
       if (!isAux) {
 
         var unitID = unit.id,
+            unitTitle = unit.title,
             unitTags = unit.tags,
             unitTagsArray = (typeof unitTags !== 'undefined') ? unitTags.split(" ") : [];
 
@@ -460,16 +461,21 @@ oawApp.loadSplash = function(data,updateHash) {
             var lastKey = (Object.keys(topics).length > 0 ) ? Object.keys(topics).length : 0;
             topics[lastKey] = {
               'topic_textweb' : topicNameTextWeb,
-              'topic_color' : topicColor,
-              'topic_units' : {
-                unitID : {
-                  'unit_template': unitTemplate
-                }
-              }
+              'topic_color' : topicColor
             };
+            topics[lastKey].topic_units[unitID] = {
+              'unit_template': unitTemplate,
+              'unit_title' : unitTitle,
+              'unit_id' : unitID
+            };
+
           } else {
             oawApp.console("Add Unit to topic");
-            topics[currentTopic].topic_units[unitID] = {'unit_template': unitTemplate};
+            topics[currentTopic].topic_units[unitID] = {
+              'unit_template': unitTemplate,
+              'unit_title' : unitTitle,
+              'unit_id' : unitID
+            };
           }
 
         }
@@ -686,8 +692,8 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
   $('body').prepend(projectStructureHTML);
 
 
-  var topicList = document.createDocumentFragment();
-  var auxList = document.createDocumentFragment();
+  var topicWrapper = document.createDocumentFragment();
+  var auxWrapper = document.createDocumentFragment();
 
   $.each(projectTopics, function(i, topic){
     console.log(topic);
@@ -695,26 +701,38 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
       var topicTextweb = topic.topic_textweb,
           topicColor = topic.topic_color,
           topicTitleImage = '', //TODO VER de donde sale
-          topicUnits = Object.keys(topic.topic_units),
+          topicUnits = topic.topic_units,
           gridItem = Number(i) + 1,
           topicItem = document.createElement('div');
 
-      console.log(topicUnits);
+      var topicList = document.createDocumentFragment();
+
+      $.each(topicUnits, function(i, unit){
+        var template = unit.unit_template,
+            unitID = unit.unit_id,
+            title = unit.unit_title;
+
+        var topicListItem = document.createElement('li');
+        topicListItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
+        topicListItem.innerHTML = '<a href="#" class="oaw-button oaw-button_3 oaw-js--loadUnit" data-unit-id="'+unitID+'" data-unit-template="'+template+'"><span>'+title+'</span></a>';
+
+        topicList.appendChild(topicListItem);
+      });
 
       topicItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
-      topicItem.innerHTML = '<div class="oaw-projects-list" style="background-color: #'+topicColor+'"><h2 class="oaw-title oaw-title_image oaw-title_2"><img src="'+topicTitleImage+'"></h2><ul></ul></div>';
+      topicItem.innerHTML = '<div class="oaw-projects-list" style="background-color: #'+topicColor+'"><h2 class="oaw-title oaw-title_image oaw-title_2"><img src="'+topicTitleImage+'"></h2><ul>'+topicList+'</ul></div>';
 
-      topicList.appendChild(topicItem);
+      topicWrapper.appendChild(topicItem);
     } else { // Aux topics
-      //auxList
+      //auxWrapper
     }
   });
 
   var $gridWrapper = $('.oaw-page_project .oaw-grid_2');
-  $gridWrapper[0].appendChild(topicList);
+  $gridWrapper[0].appendChild(topicWrapper);
 
   var $gridWrapper2 = $('.oaw-page_project .oaw-grid_3');
-  $gridWrapper[0].appendChild(auxList);
+  $gridWrapper[0].appendChild(auxWrapper);
 
 
 

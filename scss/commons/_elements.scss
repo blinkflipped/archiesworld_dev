@@ -57,7 +57,7 @@
 
 @mixin button-medium {
 	@include font-size(1.4);
-	padding: 12px 50px;
+	padding: 8px 50px;
 }
 
 @mixin button-large {
