@@ -216,7 +216,8 @@ body.view-mode {
 .oaw-page {
   position: relative;
   max-width: 100%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  background: #009edf; }
   .oaw-page-header {
     height: 60px; }
     .oaw-page_home .oaw-page-header {

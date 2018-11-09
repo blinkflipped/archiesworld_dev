@@ -11,6 +11,7 @@ $page_project_bottom: 130px;
   position: relative;
   max-width: $page_maxwidth;
   margin: 0 auto;
+  background: $color_3;
   &-header {
     height: $header_page;
     .oaw-page_home & {
