@@ -717,15 +717,15 @@ oawApp.loadHomepage = function(data,updateHash) {
 }
 
 // Load Project
-abpApp.loadProject = function(data,currentProject,updateHash) {
+oawApp.loadProject = function(data,currentProject,updateHash) {
 
   var currentIndex = 2;
-  var currentPage = abpApp.config.tree[currentIndex].id,
-      bodyClass = abpApp.config.tree[currentIndex].class,
-      hash = abpApp.config.tree[currentIndex].hash,
+  var currentPage = oawApp.config.tree[currentIndex].id,
+      bodyClass = oawApp.config.tree[currentIndex].class,
+      hash = oawApp.config.tree[currentIndex].hash,
       hashWithID = hash+currentProject;
 
-  abpApp.console("Load Project Index "+currentProject);
+  oawApp.console("Load Project Index "+currentProject);
 
   var projectTitleImage =  '', //TODO VER DONDE APARECE
       projectTitle =  oawApp.bookDataOAW[currentProject].project_title,
@@ -758,19 +758,19 @@ abpApp.loadProject = function(data,currentProject,updateHash) {
   });
 
 
-  /*  $('.abp-page_unit').imagesLoaded({background: 'div, a, span, button'}, function(){
+  /*  $('.oaw-page_unit').imagesLoaded({background: 'div, a, span, button'}, function(){
       if (updateHash) {
-        abpApp.updateHashWithListener(hashWithID);
+        oawApp.updateHashWithListener(hashWithID);
       }
 
     });
 */
 
 
-  $('.abp-page_unit').imagesLoaded({background: 'div, a, span, button'}, function(){
+  $('.oaw-page_unit').imagesLoaded({background: 'div, a, span, button'}, function(){
     // Object Fit support
-    abpApp.objectFitSupport();
-    abpApp.removeUnusedClass(bodyClass);
+    oawApp.objectFitSupport();
+    oawApp.removeUnusedClass(bodyClass);
     $('body').addClass(bodyClass);
     $('html, body').animate({ scrollTop: 0 }, 1);
   });
