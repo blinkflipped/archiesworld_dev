@@ -454,12 +454,14 @@ oawApp.loadHomepage = function(data,updateHash) {
 
           if (resourceTagsArray.length) {
             var projectIndex, projectTitle;
+
             $.each(resourceTagsArray, function(index, value) {
               if (oawApp.startsWith(value,oawApp.config.tagProjectIndex)) {
                 var projectNumber = value.replace(oawApp.config.tagProjectIndex, '');
                 projectIndex = projectNumber - 1;
               }
             });
+
             var projectTitle = resource.title,
                 projectImage = resource.fileurl;
 
@@ -550,7 +552,7 @@ oawApp.loadHomepage = function(data,updateHash) {
               }
             };
           } else {
-            oaw.console("Add Unit to topic");
+            oawApp.console("Add Unit to topic");
             topics[currentTopic].topic_units[unitID] = {'unit_template': unitTemplate};
           }
 
