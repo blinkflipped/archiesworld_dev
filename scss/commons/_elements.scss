@@ -3,10 +3,8 @@
 
 @mixin button-base() {
 	font-family: $font_family_1;
-	line-height: 1em;
-
+	line-height: 1.25em;
 	overflow: hidden;
-
   padding: 0;
   margin: 0;
   border: 0;

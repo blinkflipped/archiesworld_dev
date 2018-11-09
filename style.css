@@ -29,7 +29,7 @@ body.view-mode {
 
 .oaw-button {
   font-family: "Comfortaa", cursive;
-  line-height: 1em;
+  line-height: 1.25em;
   overflow: hidden;
   padding: 0;
   margin: 0;
@@ -285,18 +285,18 @@ body.view-mode {
             display: none !important; }
 
 .oaw-page_home {
-  height: calc(100vh  - 64px); }
+  height: calc(100vh  - 44px); }
   .oaw-body-home .oaw-page_home {
     z-index: 1000; }
   .oaw-page_home .oaw-page-header,
   .oaw-page_home .oaw-page-content {
-    height: calc(50vh - 32px - 30px); }
+    height: calc(50vh - 22px - 30px); }
   .oaw-page_home .oaw-page-header .oaw-inner {
     height: 100%; }
   .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item {
     height: 80px; }
     .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_1, .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_2, .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_3 {
-      height: calc(50vh - 32px - 110px); }
+      height: calc(50vh - 22px - 110px); }
   .oaw-page_home .oaw-page-footer {
     position: relative;
     z-index: 10;
@@ -304,11 +304,11 @@ body.view-mode {
     overflow: hidden; }
 
 .oaw-page_project {
-  height: calc(100vh - 64px); }
+  height: calc(100vh - 44px); }
   .oaw-body-project .oaw-page_project {
     z-index: 1000; }
   .oaw-page_project .oaw-page-content {
-    height: calc(100vh - 64px - 190px); }
+    height: calc(100vh - 44px - 190px); }
     .oaw-page_project .oaw-page-content .oaw-inner, .oaw-page_project .oaw-page-content .oaw-grid {
       height: 100%; }
       .oaw-page_project .oaw-page-content .oaw-inner .oaw-projects-list, .oaw-page_project .oaw-page-content .oaw-grid .oaw-projects-list {
@@ -324,11 +324,11 @@ body.view-mode {
     height: 130px; }
 
 .oaw-page_lesson {
-  height: calc(100vh - 64px); }
+  height: calc(100vh - 44px); }
   .oaw-body-lesson .oaw-page_lesson {
     z-index: 1000; }
   .oaw-page_lesson .oaw-page-content {
-    height: calc(100vh - 64px - 190px); }
+    height: calc(100vh - 44px - 190px); }
     .oaw-page_lesson .oaw-page-content .oaw-inner, .oaw-page_lesson .oaw-page-content .oaw-grid {
       height: 100%; }
       .oaw-page_lesson .oaw-page-content .oaw-inner .oaw-projects-list, .oaw-page_lesson .oaw-page-content .oaw-grid .oaw-projects-list {
@@ -345,13 +345,13 @@ body.view-mode {
 
 @media (max-height: 600px) {
   .oaw-page_home {
-    height: calc(100vh - 64px); }
+    height: calc(100vh - 44px); }
     .oaw-page_home .oaw-page-header {
-      height: calc(40vh - 32px - 30px); }
+      height: calc(40vh - 22px - 30px); }
     .oaw-page_home .oaw-page-content {
-      height: calc(60vh - 32px - 30px); }
+      height: calc(60vh - 22px - 30px); }
     .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_1, .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_2, .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_3 {
-      height: calc(60vh - 32px - 110px); }
+      height: calc(60vh - 22px - 110px); }
     .oaw-page_home .oaw-page-footer {
       position: relative;
       z-index: 10;
@@ -359,7 +359,7 @@ body.view-mode {
       overflow: hidden; }
 
   .oaw-page_project .oaw-page-content {
-    height: calc(100vh - 64px - 125px); }
+    height: calc(100vh - 44px - 125px); }
   .oaw-page_project .oaw-grid_3 .oaw-grid-item {
     height: 65px; } }
 #oaw-splash {
@@ -382,4 +382,4 @@ body.view-mode {
     width: 100%; }
     #oaw-splash .oaw-inner .oaw-button {
       color: #009edf;
-      margin-bottom: 104px; }
+      margin-bottom: 84px; }

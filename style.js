@@ -741,9 +741,10 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
   var topicList = document.createDocumentFragment();
 
   $.each(projectTopics, function(i, topic){
+    console.log(topic);
     if (i < 2) { //Main topics
-      var topicTextweb = topic[i].topic_textweb,
-          topicColor = topic[i].topic_color,
+      var topicTextweb = topic.topic_textweb,
+          topicColor = topic.topic_color,
           topicTitleImage = '', //TODO VER de donde sale
           topicItem = document.createElement('div');
 
