@@ -679,12 +679,9 @@ oawApp.loadHomepage = function(data,updateHash) {
       }
 
     });
-
-    var userBodyClass = (oawApp.config.isStudent) ? 'oaw-body-user-student' : 'oaw-body-user-not-student';
+*/
 
     $('body').imagesLoaded({background: 'div, a, span, button'}, function(){
-      $('html').addClass('htmlReady');
-      $('body').addClass(userBodyClass);
       $('html, body').animate({ scrollTop: 0 }, 1);
       if (currentHash !== '' && currentHash !== hash) {
         oawApp.loadByHash(currentHash,data);
@@ -696,10 +693,8 @@ oawApp.loadHomepage = function(data,updateHash) {
         }
       }
 
-      oawApp.config.firstTime = false;
-
     });
-*/
+
   } else {
 
     // Home already loaded
