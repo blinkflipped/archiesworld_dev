@@ -721,7 +721,8 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
 
         topicList.appendChild(topicListItem);
       });
-      console.log(topicList);
+      //console.log(topicList);
+
       topicItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
       topicItem.innerHTML = '<div class="oaw-projects-list" style="background-color: #'+topicColor+'"><h2 class="oaw-title oaw-title_image oaw-title_2"><img src="'+topicTitleImage+'"></h2><ul></ul></div>';
 
