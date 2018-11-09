@@ -12,7 +12,6 @@ $page_project_bottom: 130px;
   max-width: $page_maxwidth;
   margin: 0 auto;
   background: $color_3;
-  padding-bottom: $blink_header_height;
   &-header {
     height: $header_page;
     .oaw-page_home & {
@@ -67,14 +66,16 @@ $page_project_bottom: 130px;
 
 
 .oaw-page_home {
-  height: 100vh;
+  height: calc(100vh  - #{$blink_header_height});
   .oaw-body-home & {
     z-index: 1000;
   }
   .oaw-page-header,
-  .oaw-page-header .oaw-inner,
   .oaw-page-content {
-    height: calc(50vh - #{$footer_page_home/2});
+    height: calc(50vh - #{$blink_header_height/2} - #{$footer_page_home/2});
+  }
+  .oaw-page-header .oaw-inner {
+    height: 100%;
   }
   .oaw-page-content {
     .oaw-grid_1 {
@@ -83,7 +84,7 @@ $page_project_bottom: 130px;
         &_1,
         &_2,
         &_3 {
-          height: calc(50vh - #{$footer_page_home/2 + $aux_page_home});
+          height: calc(50vh - #{$blink_header_height/2} - #{$footer_page_home/2 + $aux_page_home});
         }
       }
     }
@@ -100,9 +101,9 @@ $page_project_bottom: 130px;
   .oaw-body-project & {
     z-index: 1000;
   }
-  height: 100vh;
+  height: calc(100vh - #{$blink_header_height});
   .oaw-page-content {
-    height: calc(100vh - #{$page_project_bottom + $header_page});
+    height: calc(100vh - #{$blink_header_height} - #{$page_project_bottom + $header_page});
     .oaw-inner, .oaw-grid {
       height: 100%;
       .oaw-projects-list {height: 100%;}
@@ -128,9 +129,9 @@ $page_project_bottom: 130px;
   .oaw-body-lesson & {
     z-index: 1000;
   }
-  height: 100vh;
+  height: calc(100vh - #{$blink_header_height});
   .oaw-page-content {
-    height: calc(100vh - #{$page_project_bottom + $header_page});
+    height: calc(100vh - #{$blink_header_height} - #{$page_project_bottom + $header_page});
     .oaw-inner, .oaw-grid {
       height: 100%;
       .oaw-projects-list {height: 100%;}
@@ -155,12 +156,12 @@ $page_project_bottom: 130px;
 
 @media (max-height: $mq_height_2) {
   .oaw-page_home {
-    height: 100vh;
+    height: calc(100vh - #{$blink_header_height});
     .oaw-page-header {
-      height: calc(40vh - #{$footer_page_home/2});
+      height: calc(40vh - #{$blink_header_height/2} - #{$footer_page_home/2});
     }
     .oaw-page-content {
-      height: calc(60vh - #{$footer_page_home/2});
+      height: calc(60vh - #{$blink_header_height/2} - #{$footer_page_home/2});
     }
     .oaw-page-content {
       .oaw-grid_1 {
@@ -168,7 +169,7 @@ $page_project_bottom: 130px;
           &_1,
           &_2,
           &_3 {
-            height: calc(60vh - #{$footer_page_home/2 + $aux_page_home});
+            height: calc(60vh - #{$blink_header_height/2} - #{$footer_page_home/2 + $aux_page_home});
           }
         }
       }
@@ -183,7 +184,7 @@ $page_project_bottom: 130px;
 
   .oaw-page_project {
     .oaw-page-content {
-      height: calc(100vh - #{$page_project_bottom/2 + $header_page});
+      height: calc(100vh - #{$blink_header_height} - #{$page_project_bottom/2 + $header_page});
     }
     .oaw-grid_3 {
       .oaw-grid-item {
