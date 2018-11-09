@@ -478,11 +478,24 @@ oawApp.loadHomepage = function(data,updateHash) {
             var projectNameTextWeb = value;
             console.log(value);
 
-            var bookDataOAWValues = Object.values(oawApp.bookDataOAW);
-            console.log(bookDataOAWValues);
+            //var bookDataOAWValues = Object.values(oawApp.bookDataOAW);
+            //console.log(bookDataOAWValues);
 
-            console.log(jQuery.inArray( value, bookDataOAWValues ));
-            var exists = jQuery.inArray( value, bookDataOAWValues ) >= 0;
+            var dataOAW = oawApp.bookDataOAW;
+            var exists = false;
+            $.each(dataOAW, function(ind, val) {
+              var projectTextweb = val['project_textweb'];
+              if (projectTextweb === value) {
+                exists = true;
+                return false;
+              }
+
+            });
+            //console.log(jQuery.inArray( 'Name_Project_Project_1_All_about_me', bookDataOAWValues ));
+            //console.log(jQuery.inArray( value, bookDataOAWValues ));
+            //var exists = jQuery.inArray( value, bookDataOAWValues ) >= 0;
+            console.log(exists);
+
             if (!exists) {
               console.log("To add");
               var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? oawApp.bookDataOAW[Object.keys(oawApp.bookDataOAW)[Object.keys(oawApp.bookDataOAW).length - 1]] : 0;
@@ -599,7 +612,7 @@ $(document).ready(function() {
 
   console.log("Test DOC Ready");
 
-  $('body').on('click', '.js--loadHomepage').click(function(e) {
+  $('body').on('click', '.js--loadHomepage', function(e) {
     e.preventDefault();
     var hash = oawApp.config.tree[1].hash;
     oawApp.updateHashWithListener(hash);
