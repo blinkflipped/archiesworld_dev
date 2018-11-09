@@ -619,7 +619,7 @@ oawApp.loadHomepage = function(data,updateHash) {
           projectTitle = project.project_title;
 
       var projectItem = document.createElement('div'),
-          gridItem = i + 1;
+          gridItem = Number(i) + 1;
       projectItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
       projectItem.innerHTML = '<article class="oaw-card oaw-card_project" style="background-color: #'+projectColor+'"><a href="javascript:void(0)" class="oaw-card-inner "> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="'+projectImage+'" alt="'+projectTitle+'"> </div> </div> </a></article>';
       gridTopMenu.appendChild(projectItem);
