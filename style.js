@@ -486,8 +486,8 @@ oawApp.loadHomepage = function(data,updateHash) {
             if (!exists) {
               console.log("To add");
               var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? oawApp.bookDataOAW[Object.keys(oawApp.bookDataOAW)[Object.keys(oawApp.bookDataOAW).length - 1]] : 0;
-
-              oawApp.bookDataOAW[lastKey].project_textweb[value];
+              console.log(lastKey);
+              oawApp.bookDataOAW[lastKey] = {'project_textweb' : value};
               console.log(oawApp.bookDataOAW);
             } else {
               return false;
