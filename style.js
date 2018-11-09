@@ -477,6 +477,7 @@ oawApp.loadHomepage = function(data,updateHash) {
 
           if (oawApp.startsWith(value,oawApp.config.tagProjectColor)) {
             var projectColorValue = value;
+            console.log(value, oawApp.config.tagProjectColor);
             projectColor = value.replace(oawApp.config.tagProjectColor, projectColorValue);
           } else if (oawApp.startsWith(value,oawApp.config.tagProjectName)) {
             projectNameTextWeb = value;
@@ -508,8 +509,7 @@ oawApp.loadHomepage = function(data,updateHash) {
           console.log("To add");
           var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? oawApp.bookDataOAW[Object.keys(oawApp.bookDataOAW)[Object.keys(oawApp.bookDataOAW).length - 1]] : 0;
           console.log(lastKey);
-          oawApp.bookDataOAW[lastKey] = {'project_textweb' : projectNameTextWeb};
-          oawApp.bookDataOAW[lastKey] = {'project_color' : projectColor};
+          oawApp.bookDataOAW[lastKey] = {'project_textweb' : projectNameTextWeb, 'project_color' : projectColor};
           console.log(oawApp.bookDataOAW);
         }
 
