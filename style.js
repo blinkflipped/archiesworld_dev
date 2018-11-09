@@ -531,7 +531,12 @@ oawApp.loadHomepage = function(data,updateHash) {
 
         }
 
-      } else {
+      }
+    });
+
+    $.each(data.units, function(i, unit){
+      var isAux = (i === oawApp.getAuxUnit(data));
+      if (isAux) {
 
         $.each(unit.resources, function(ind, resource){
 
