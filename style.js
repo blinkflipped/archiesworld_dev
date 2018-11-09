@@ -553,32 +553,34 @@ oawApp.loadHomepage = function(data,updateHash) {
               }
             });
 
-            var projectTitle = resource.title,
-                projectImage = resource.fileurl;
+            if (typeof projectIndex !== 'undefined' && projectIndex >= 0) {
+              var dataOAW = oawApp.bookDataOAW;
+              var projectExists = false;
+              $.each(dataOAW, function(ind, val) {
+                console.log(ind);
+                if (Number(ind) === projectIndex) {
+                  projectExists = true;
+                  return false;
+                }
+              });
+              console.log(projectExists);
 
+              var projectTitle = resource.title,
+                  projectImage = resource.fileurl;
 
-            var dataOAW = oawApp.bookDataOAW;
-            var projectExists = false;
-            $.each(dataOAW, function(ind, val) {
-              if (ind === projectIndex) {
-                projectExists = true;
-                return false;
+              if (projectExists) {
+                oawApp.bookDataOAW[projectIndex].project_title = projectTitle;
+                oawApp.bookDataOAW[projectIndex].project_image = projectImage;
+              } else {
+                oawApp.bookDataOAW[projectIndex] = {
+                  'project_textweb' : '',
+                  'project_color' : '',
+                  'project_title' : projectTitle,
+                  'project_image': projectImage,
+                  'topics' : {}
+                };
               }
-            });
-
-            if (projectExists) {
-              oawApp.bookDataOAW[projectIndex].project_title = projectTitle;
-              oawApp.bookDataOAW[projectIndex].project_image = projectImage;
-            } else {
-              oawApp.bookDataOAW[projectIndex] = {
-                'project_textweb' : '',
-                'project_color' : '',
-                'project_title' : projectTitle,
-                'project_image': projectImage,
-                'topics' : {}
-              };
             }
-
           }
 
         });
