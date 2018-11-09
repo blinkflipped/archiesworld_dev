@@ -5,7 +5,7 @@ $header_page_home : 270px;
 $footer_page_home : $header_page;
 $aux_page_home : 80px;
 
-$page_project_bottom: 130px;
+$page_project_bottom: 100px;
 
 .oaw-page {
   position: relative;
@@ -28,6 +28,10 @@ $page_project_bottom: 130px;
       .oaw-page_home & {
         height: $header_page_home;
       }
+    }
+    &-button {
+      position: relative;
+      z-index: 10;
     }
     &-title {
       padding: 0;

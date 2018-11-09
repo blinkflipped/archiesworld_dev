@@ -50,9 +50,14 @@
 	padding: 10px;
 }
 
-@mixin button-medium {
+@mixin button-small {
 	@include font-size(1.0);
 	padding: 8px;
+}
+
+@mixin button-medium {
+	@include font-size(1.4);
+	padding: 12px 50px;
 }
 
 @mixin button-large {
@@ -69,10 +74,14 @@
 	}
 	&_2 {
 		@include button-2;
-		@include button-medium;
+		@include button-small;
 	}
 	&_3 {
 		@include button-3;
+	}
+	&_4 {
+		@include button-1;
+		@include button-medium;
 	}
 }
 

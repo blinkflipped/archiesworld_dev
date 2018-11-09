@@ -681,7 +681,7 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
 
   $('.oaw-page_project').remove();
 
-  var projectStructureHTML = '<section class="oaw-page oaw-page_project"> <header class="oaw-page-header" style="background-color: #'+projectColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"> <img src="'+projectTitleImage+'" alt="'+projectTitle+'"> </div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_2 oaw-js--goback" style="color: #fbba00"> <i class="icon" aria-hidden="true"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_2"></div></div></div><footer class="oaw-page-footer"><div class="oaw-inner"><div class="oaw-grid oaw-grid_3"></div></div></footer></section>';
+  var projectStructureHTML = '<section class="oaw-page oaw-page_project"> <header class="oaw-page-header" style="background-color: #'+projectColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"> <img src="'+projectTitleImage+'" alt="'+projectTitle+'"> </div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_4 oaw-js--goback" style="color: #'+projectColor+'"> <i class="icon" aria-hidden="true"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_2"></div></div></div><footer class="oaw-page-footer"><div class="oaw-inner"><div class="oaw-grid oaw-grid_3"></div></div></footer></section>';
 
   $('body').prepend(projectStructureHTML);
 
@@ -695,14 +695,11 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
       var topicTextweb = topic.topic_textweb,
           topicColor = topic.topic_color,
           topicTitleImage = '', //TODO VER de donde sale
-          topicUnits = topic.topic_units,
+          topicUnits = Object.keys(topic.topic_units),
           gridItem = Number(i) + 1,
           topicItem = document.createElement('div');
 
-      $.each(topicUnits, function(ind, unit){
-        console.log(unit);
-
-      });
+      console.log(topicUnits);
 
       topicItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
       topicItem.innerHTML = '<div class="oaw-projects-list" style="background-color: #'+topicColor+'"><h2 class="oaw-title oaw-title_image oaw-title_2"><img src="'+topicTitleImage+'"></h2><ul></ul></div>';

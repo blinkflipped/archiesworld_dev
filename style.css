@@ -75,6 +75,13 @@ body.view-mode {
     font-size: 14px;
     font-size: 1.4rem;
     padding: 10px; }
+  .oaw-button_4 {
+    background: #ffffff;
+    color: #ff8e00;
+    border-radius: 100px;
+    font-size: 14px;
+    font-size: 1.4rem;
+    padding: 12px 50px; }
 
 .oaw-title {
   font-family: "Comfortaa", cursive;
@@ -232,6 +239,9 @@ body.view-mode {
       position: relative; }
       .oaw-page_home .oaw-page-header .oaw-inner {
         height: 270px; }
+    .oaw-page-header-button {
+      position: relative;
+      z-index: 10; }
     .oaw-page-header-title {
       padding: 0;
       margin: 0 auto;
@@ -308,7 +318,7 @@ body.view-mode {
   .oaw-body-project .oaw-page_project {
     z-index: 1000; }
   .oaw-page_project .oaw-page-content {
-    height: calc(100vh - 44px - 190px); }
+    height: calc(100vh - 44px - 160px); }
     .oaw-page_project .oaw-page-content .oaw-inner, .oaw-page_project .oaw-page-content .oaw-grid {
       height: 100%; }
       .oaw-page_project .oaw-page-content .oaw-inner .oaw-projects-list, .oaw-page_project .oaw-page-content .oaw-grid .oaw-projects-list {
@@ -321,14 +331,14 @@ body.view-mode {
       .oaw-page_project .oaw-page-content .oaw-projects-list > * {
         min-width: 100%; }
   .oaw-page_project .oaw-grid_3 .oaw-grid-item {
-    height: 130px; }
+    height: 100px; }
 
 .oaw-page_lesson {
   height: calc(100vh - 44px); }
   .oaw-body-lesson .oaw-page_lesson {
     z-index: 1000; }
   .oaw-page_lesson .oaw-page-content {
-    height: calc(100vh - 44px - 190px); }
+    height: calc(100vh - 44px - 160px); }
     .oaw-page_lesson .oaw-page-content .oaw-inner, .oaw-page_lesson .oaw-page-content .oaw-grid {
       height: 100%; }
       .oaw-page_lesson .oaw-page-content .oaw-inner .oaw-projects-list, .oaw-page_lesson .oaw-page-content .oaw-grid .oaw-projects-list {
@@ -341,7 +351,7 @@ body.view-mode {
       .oaw-page_lesson .oaw-page-content .oaw-projects-list > * {
         min-width: 100%; }
   .oaw-page_lesson .oaw-grid_3 .oaw-grid-item {
-    height: 130px; }
+    height: 100px; }
 
 @media (max-height: 600px) {
   .oaw-page_home {
@@ -359,9 +369,9 @@ body.view-mode {
       overflow: hidden; }
 
   .oaw-page_project .oaw-page-content {
-    height: calc(100vh - 44px - 125px); }
+    height: calc(100vh - 44px - 110px); }
   .oaw-page_project .oaw-grid_3 .oaw-grid-item {
-    height: 65px; } }
+    height: 50px; } }
 #oaw-splash {
   position: fixed;
   width: 100%;
