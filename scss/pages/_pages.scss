@@ -12,6 +12,7 @@ $page_project_bottom: 130px;
   max-width: $page_maxwidth;
   margin: 0 auto;
   background: $color_3;
+  padding-bottom: $blink_header_height;
   &-header {
     height: $header_page;
     .oaw-page_home & {
