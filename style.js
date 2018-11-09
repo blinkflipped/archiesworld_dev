@@ -120,6 +120,7 @@ oawApp.config.coverName = 'Portada';
 oawApp.config.auxUnitName = 'Portada';
 oawApp.config.bookcover = '';
 oawApp.config.isStudent = false;
+oawApp.config.tagProjectIndex = 'project';
 oawApp.config.tagProjectName = 'Name_Project_';
 oawApp.config.tagProjectColor = 'Color_Project_';
 oawApp.config.tagTopicName = 'Name_Topic_';
@@ -442,35 +443,44 @@ oawApp.loadHomepage = function(data,updateHash) {
     oawApp.config.isStudent = blink.user.esAlumno();
     oawApp.bookData = data;
 
-    var homeStructure = '<section class="oaw-page oaw-page_home"> <header class="oaw-page-header"> <div class="oaw-inner"> <div class="oaw-page-header-image"> <div class="oaw-page-header-image-inner"> <img src=""> </div> </div> </div> </header> <div class="oaw-page-content"> <div class="oaw-inner"> <div class="oaw-grid oaw-grid_1"> <div class="oaw-grid-item oaw-grid-item_1"></div> <div class="oaw-grid-item oaw-grid-item_2"></div> <div class="oaw-grid-item oaw-grid-item_3"> </div> <div class="oaw-grid-item oaw-grid-item_4"> </div> <div class="oaw-grid-item oaw-grid-item_5">  </div> </div> </div> </div> <footer class="oaw-page-footer"> <div class="oaw-inner"> <div class="oaw-menu oaw-menu_1"> <nav class="oaw-menu-nav"> <ul> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Icon guide</span> </a> </li> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Help / How to</span> </a> </li> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Teacher Notes</span> </a> </li> </ul> </nav> </div> </div> </footer> </section>';
-
-    $('body').prepend(homeStructure);
-
-    // Add real content
-
-    //<article class="oaw-card oaw-card_project" style="background-color: #FBBA00"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/projects/Project_1.png" alt="Project 1"> </div> </div> <!--<div class="oaw-card-text"> <h2 class="oaw-title oaw-title_2"> <span>Project 1</span> <span>All about me</span> </h2> </div>--> </a> </article>
-    //<article class="oaw-card oaw-card_project" style="background-color: #EF7D00"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/projects/Project_2.png" alt="Project 2"> </div> </div> </a> </article>
-
-    //<article class="oaw-card oaw-card_project" style="background-color: #CE1625"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/projects/Project_3.png" alt="Project 3"> </div> </div> </a> </article>
-    //<article class="oaw-card oaw-card_project" style="background-color: #94CEF2"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/menutop/Festivals.png" alt="Festivals"> </div> </div> </a> </article>
-
-
-    //<article class="oaw-card oaw-card_project" style="background-color: #0EB0E7"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/menutop/Seasons.png" alt="Seasons"> </div> </div> </a> </article>
-
-    var topmenuItem = document.createDocumentFragment();
-
-    // Update Array Projects
-
-    //oawApp.bookDataOAW
-
     $.each(data.units, function(i, unit){
-      if (i !== oawApp.getAuxUnit(data)) {
+      var isAux = (i === oawApp.getAuxUnit(data));
+      if (isAux) {
+
+        $.each(unit.resources, function(ind, resource){
+
+          var resourceTags = resource.tags,
+              resourceTagsArray = (typeof resourceTags !== 'undefined') ? resourceTags.split(" ") : [];
+
+          if (resourceTagsArray.length) {
+            var projectIndex, projectTitle;
+
+            if (oawApp.startsWith(value,oawApp.config.tagProjectIndex)) {
+              projectIndex = value.replace(oawApp.config.tagProjectIndex, '');
+            }
+
+            var projectTitle = resource.title,
+                projectImage = resource.fileurl;
+
+            //var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? Object.keys(oawApp.bookDataOAW).length : 0;
+            oawApp.bookDataOAW[projectIndex] = {
+              'project_textweb' : '',
+              'project_color' : '', 
+              'project_title' : projectTitle,
+              'project_image': projectImage,
+              'topics' : {}
+            };
+          }
+
+        });
+
+
+
+      } else {
         var unitID = unit.id,
             unitTags = unit.tags,
             unitTagsArray = (typeof unitTags !== 'undefined') ? unitTags.split(" ") : [];
 
-        console.log(unitTagsArray);
-        //oawApp.config.tagProjectName; oawApp.config.tagProjectColor; oawApp.config.tagTopicName ; oawApp.config.tagTopicColor; oawApp.config.tagTemplate;
         if (unitTagsArray.length) {
           var projectColor, projectNameTextWeb, topicColor, topicNameTextWeb, unitTemplate;
 
@@ -489,8 +499,6 @@ oawApp.loadHomepage = function(data,updateHash) {
             }
           });
 
-          console.log(projectColor, projectNameTextWeb, topicColor, topicNameTextWeb, unitTemplate);
-
           var dataOAW = oawApp.bookDataOAW;
           var projectExists = false;
           var currentProject = 0;
@@ -502,14 +510,15 @@ oawApp.loadHomepage = function(data,updateHash) {
               return false;
             }
           });
-          console.log(projectExists, currentProject);
 
           if (!projectExists) {
-            console.log("To add");
+            oawApp.console("Project to add");
             var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? Object.keys(oawApp.bookDataOAW).length : 0;
-            console.log(lastKey);
             oawApp.bookDataOAW[lastKey] = {'project_textweb' : projectNameTextWeb, 'project_color' : projectColor, 'topics' : {}};
-            console.log(oawApp.bookDataOAW);
+          } else {
+            oawApp.console("Add color and textweb to Porject");
+            oawApp.bookDataOAW[currentProject].project_textweb = projectNameTextWeb;
+            oawApp.bookDataOAW[currentProject].project_color = projectColor;
           }
 
           // Topic Exists?
@@ -517,7 +526,7 @@ oawApp.loadHomepage = function(data,updateHash) {
           var topicExists = false;
           var topics = dataOAW[currentProject].topics;
           var currentTopic = 0;
-          console.log(topics);
+
           $.each(topics, function(ind, val) {
             var topicTextweb = topics[ind].topic_textweb;
             if (topicTextweb === topicNameTextWeb) {
@@ -526,10 +535,9 @@ oawApp.loadHomepage = function(data,updateHash) {
               return false;
             }
           });
-          console.log(topicExists);
 
           if (!topicExists) {
-            console.log("Add topic");
+            oawApp.console("Topic to add");
             var lastKey = (Object.keys(topics).length > 0 ) ? Object.keys(topics).length : 0;
             topics[lastKey] = {
               'topic_textweb' : topicNameTextWeb,
@@ -541,26 +549,50 @@ oawApp.loadHomepage = function(data,updateHash) {
               }
             };
           } else {
-            console.log("Add Unit to topic");
+            oaw.console("Add Unit to topic");
             topics[currentTopic].topic_units[unitID] = {'unit_template': unitTemplate};
           }
 
         }
 
-
-    /*    var unitTitle = unit.title,
-            unitDescription = unit.description,
-            unitNumberBase = unit.number - 1,
-            unitNumber = ('0' + unitNumberBase).slice(-2),
-            unitImage = unit.image;
-        var unitListItem = document.createElement('div');
-        unitListItem.className = 'oaw-units-slider-item';
-        unitListItem.innerHTML = '<article class="oaw-unit"><a href="javascript:void(0)" class="oaw-js-load-unit oaw-unit-inner" data-unit="'+unitNumberBase+'"><div class="oaw-unit-number oaw-unit-number"><div class="oaw-unit-number-inner"><span>'+unitNumber+'</span></div></div><header class="oaw-unit-header"> <h2 class="oaw-title-4">'+unitTitle+'</h2> </header> <div class="oaw-unit-content"> <div class="oaw-unit-content-description">'+unitDescription+'</div> <div class="oaw-unit-content-background"> <img src="'+unitImage+'"></div></div></a></article>';
-        unitList.appendChild(unitListItem);*/
       }
 
     });
 
+
+    //HTML STRUCTURE
+
+    $.each(oawApp.bookDataOAW, function(i, project) {
+
+    });
+
+    var homeStructure = '<section class="oaw-page oaw-page_home"> <header class="oaw-page-header"> <div class="oaw-inner"> <div class="oaw-page-header-image"> <div class="oaw-page-header-image-inner"> <img src=""> </div> </div> </div> </header> <div class="oaw-page-content"> <div class="oaw-inner"> <div class="oaw-grid oaw-grid_1"> <div class="oaw-grid-item oaw-grid-item_1"></div> <div class="oaw-grid-item oaw-grid-item_2"></div> <div class="oaw-grid-item oaw-grid-item_3"> </div> <div class="oaw-grid-item oaw-grid-item_4"> </div> <div class="oaw-grid-item oaw-grid-item_5">  </div> </div> </div> </div> <footer class="oaw-page-footer"> <div class="oaw-inner"> <div class="oaw-menu oaw-menu_1"> <nav class="oaw-menu-nav"> <ul> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Icon guide</span> </a> </li> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Help / How to</span> </a> </li> <li> <a href="#" class="oaw-button oaw-button_2 oaw-button_a"> <span>Teacher Notes</span> </a> </li> </ul> </nav> </div> </div> </footer> </section>';
+
+    $('body').prepend(homeStructure);
+
+    // Add real content
+
+    //<article class="oaw-card oaw-card_project" style="background-color: #FBBA00"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/projects/Project_1.png" alt="Project 1"> </div> </div> <!--<div class="oaw-card-text"> <h2 class="oaw-title oaw-title_2"> <span>Project 1</span> <span>All about me</span> </h2> </div>--> </a> </article>
+    //<article class="oaw-card oaw-card_project" style="background-color: #EF7D00"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/projects/Project_2.png" alt="Project 2"> </div> </div> </a> </article>
+
+    //<article class="oaw-card oaw-card_project" style="background-color: #CE1625"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/projects/Project_3.png" alt="Project 3"> </div> </div> </a> </article>
+    //<article class="oaw-card oaw-card_project" style="background-color: #94CEF2"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/menutop/Festivals.png" alt="Festivals"> </div> </div> </a> </article>
+
+
+    //<article class="oaw-card oaw-card_project" style="background-color: #0EB0E7"> <a href="javascript:void(0)" class="oaw-card-inner"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="img/menutop/Seasons.png" alt="Seasons"> </div> </div> </a> </article>
+
+    var topmenuItem = document.createDocumentFragment();
+
+
+/*    var unitTitle = unit.title,
+        unitDescription = unit.description,
+        unitNumberBase = unit.number - 1,
+        unitNumber = ('0' + unitNumberBase).slice(-2),
+        unitImage = unit.image;
+    var unitListItem = document.createElement('div');
+    unitListItem.className = 'oaw-units-slider-item';
+    unitListItem.innerHTML = '<article class="oaw-unit"><a href="javascript:void(0)" class="oaw-js-load-unit oaw-unit-inner" data-unit="'+unitNumberBase+'"><div class="oaw-unit-number oaw-unit-number"><div class="oaw-unit-number-inner"><span>'+unitNumber+'</span></div></div><header class="oaw-unit-header"> <h2 class="oaw-title-4">'+unitTitle+'</h2> </header> <div class="oaw-unit-content"> <div class="oaw-unit-content-description">'+unitDescription+'</div> <div class="oaw-unit-content-background"> <img src="'+unitImage+'"></div></div></a></article>';
+    unitList.appendChild(unitListItem);*/
 
 
 /*
