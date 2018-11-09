@@ -472,7 +472,7 @@ oawApp.loadHomepage = function(data,updateHash) {
         console.log(unitTagsArray);
         //oawApp.config.tagProjectName; oawApp.config.tagProjectColor; oawApp.config.tagTopicName ; oawApp.config.tagTopicColor; oawApp.config.tagTemplate;
         if (unitTagsArray.length) {
-          var projectColor, projectNameTextWeb, topicColor, topicNameTextWeb;
+          var projectColor, projectNameTextWeb, topicColor, topicNameTextWeb, unitTemplate;
 
           $.each(unitTagsArray, function(index, value) {
 
@@ -484,10 +484,12 @@ oawApp.loadHomepage = function(data,updateHash) {
               topicNameTextWeb = value;
             } else if (oawApp.startsWith(value,oawApp.config.tagTopicColor)) {
               topicColor = value.replace(oawApp.config.tagTopicColor, '');
+            } else if (oawApp.startsWith(value,oawApp.config.tagTemplate)) {
+              unitTemplate = value.replace(oawApp.config.tagTemplate, '');
             }
           });
 
-          console.log(projectColor, projectNameTextWeb, topicColor, topicNameTextWeb);
+          console.log(projectColor, projectNameTextWeb, topicColor, topicNameTextWeb, unitTemplate);
 
           var dataOAW = oawApp.bookDataOAW;
           var projectExists = false;
@@ -506,23 +508,42 @@ oawApp.loadHomepage = function(data,updateHash) {
             console.log("To add");
             var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? Object.keys(oawApp.bookDataOAW).length : 0;
             console.log(lastKey);
-            oawApp.bookDataOAW[lastKey] = {'project_textweb' : projectNameTextWeb, 'project_color' : projectColor};
+            oawApp.bookDataOAW[lastKey] = {'project_textweb' : projectNameTextWeb, 'project_color' : projectColor, 'topics' : {}};
             console.log(oawApp.bookDataOAW);
           }
 
           // Topic Exists?
 
           var topicExists = false;
-          console.log(dataOAW[currentProject]);
-          $.each(dataOAW[currentProject], function(ind, val) {
-            /*var topicTextweb = val['topics'];
-            if (projectTextweb === topicNameTextWeb) {
-              exists = true;
+          var topics = dataOAW[currentProject].topics;
+          var currentTopic = 0;
+          console.log(topics);
+          $.each(topics, function(ind, val) {
+            var topicTextweb = topics[ind].topic_textweb;
+            if (topicTextweb === topicNameTextWeb) {
+              topicExists = true;
+              currentTopic = ind;
               return false;
-            }*/
-            console.log(ind, val);
+            }
           });
           console.log(topicExists);
+
+          if (!topicExists) {
+            console.log("Add topic");
+            var lastKey = (Object.keys(topics).length > 0 ) ? Object.keys(topics).length : 0;
+            topics[lastKey] = {
+              'topic_textweb' : topicNameTextWeb,
+              'topic_color' : topicColor,
+              'topic_units' : {
+                unitID : {
+                  'unit_template': unitTemplate
+                }
+              }
+            };
+          } else {
+            console.log("Add Unit to topic");
+            topics[currentTopic].topic_units[unitID] = {'unit_template': unitTemplate};
+          }
 
         }
 
