@@ -695,11 +695,17 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
       var topicTextweb = topic.topic_textweb,
           topicColor = topic.topic_color,
           topicTitleImage = '', //TODO VER de donde sale
+          topicUnits = topic.topic_units,
           gridItem = Number(i) + 1,
           topicItem = document.createElement('div');
 
+      $.each(topicUnits, function(ind, unit){
+        console.log(unit);
+
+      });
+
       topicItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
-      topicItem.innerHTML = '<div class="oaw-projects-list" style="background-color: #'+projectColor+'"><h2 class="oaw-title oaw-title_image oaw-title_2"><img src="'+topicTitleImage+'"></h2><ul></ul></div>';
+      topicItem.innerHTML = '<div class="oaw-projects-list" style="background-color: #'+topicColor+'"><h2 class="oaw-title oaw-title_image oaw-title_2"><img src="'+topicTitleImage+'"></h2><ul></ul></div>';
 
       topicList.appendChild(topicItem);
     } else { // Aux topics
