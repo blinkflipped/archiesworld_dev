@@ -292,7 +292,7 @@ oawApp.hashDistributor = function(currentHash,data,updateHash) {
 
     // This works different because we need an ID to load the Project
     var oawproject = oawApp.getIDByHash(currentHash),
-        projectExists = (oawApp.config.unitsIDs.indexOf(oawproject) >= 0);
+        projectExists = (Object.keys(oawApp.bookDataOAW).length > 0);
 
     if (oawproject !== '' && oawproject !== null && projectExists) {
       var currentUnit = oawproject;
