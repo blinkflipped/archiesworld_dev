@@ -290,6 +290,7 @@ body.view-mode {
   .oaw-body-home .oaw-page_home {
     z-index: 1000; }
   .oaw-page_home .oaw-page-header,
+  .oaw-page_home .oaw-page-header .oaw-inner,
   .oaw-page_home .oaw-page-content {
     height: calc(50vh - 30px); }
   .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item {

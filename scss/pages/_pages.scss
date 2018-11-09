@@ -72,6 +72,7 @@ $page_project_bottom: 130px;
     z-index: 1000;
   }
   .oaw-page-header,
+  .oaw-page-header .oaw-inner,
   .oaw-page-content {
     height: calc(50vh - #{$footer_page_home/2});
   }
