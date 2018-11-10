@@ -724,7 +724,7 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
       });
 
       topicItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
-      topicItem.innerHTML = '<div class="oaw-projects-list" style="background-color: #'+topicColor+'"><h2 class="oaw-title oaw-title_image oaw-title_2"><img src="'+topicTitleImage+'"></h2><ul>'+topicList+'</ul></div>';
+      topicItem.innerHTML = '<div class="oaw-projects-list" style="background-color: #'+topicColor+'"><h2 class="oaw-title oaw-title_image oaw-title_2"><img src="'+topicTitleImage+'"></h2><style>.oaw-grid-item_'+gridItem+' .oaw-projects-list .oaw-button_3:hover {color: #'+topicColor+'}</style><ul>'+topicList+'</ul></div>';
 
       topicWrapper.appendChild(topicItem);
     } else { // Aux topics
