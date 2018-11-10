@@ -415,6 +415,7 @@ oawApp.loadSplash = function(data,updateHash) {
 
         var unitID = unit.id,
             unitNumber = unit.number,
+            unitIndex = Number(unit.number) - 1,
             unitTitle = unit.title,
             unitTags = unit.tags,
             unitTagsArray = (typeof unitTags !== 'undefined') ? unitTags.split(" ") : [];
@@ -460,10 +461,10 @@ oawApp.loadSplash = function(data,updateHash) {
               'project_image': '',
               'topics' : {}
             };
-            oawApp.relationUnitsProjects[unitID] = lastKey;
+            oawApp.relationUnitsProjects[unitIndex] = lastKey;
 
           } else {
-            oawApp.relationUnitsProjects[unitID] = currentProject;
+            oawApp.relationUnitsProjects[unitIndex] = currentProject;
             //oawApp.console("Add color and textweb to Project");
             //oawApp.bookDataOAW[currentProject].project_textweb = projectNameTextWeb;
             //oawApp.bookDataOAW[currentProject].project_color = projectColor;
@@ -820,12 +821,13 @@ oawApp.loadLesson = function(data,currentLesson,updateHash) {
 
   $('body').prepend(projectStructureHTML);
 
-  $.each(oawApp.bookDataOAW, function(ind, project){
-    $.each(project.topics, function(i, topic){
-      console.log(topic);
-      console.log(topic.topic_units)
+  var currentProject = oawApp.relationUnitsProjects[currentLesson]
 
-    });
+  $.each(oawApp.bookDataOAW[currentProject].topics, function(i, topic){
+
+    console.log(topic);
+    console.log(topic.topic_units)
+
   });
 
 
@@ -861,6 +863,13 @@ $(document).ready(function() {
     e.preventDefault();
     var projectIndex = $(this).attr('data-project-index'),
         hash = oawApp.config.tree[2].hash + projectIndex;
+    oawApp.updateHashWithListener(hash);
+  });
+
+  $('body').on('click', '.oaw-js--loadLesson', function(e) {
+    e.preventDefault();
+    var unitIndex = Number($(this).attr('data-unit-number')) - 1,
+        hash = oawApp.config.tree[3].hash + unitIndex;
     oawApp.updateHashWithListener(hash);
   });
 
