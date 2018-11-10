@@ -746,7 +746,7 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
   $gridWrapper[0].appendChild(topicWrapper);
 
   var $gridWrapper2 = $('.oaw-page_project .oaw-grid_3');
-  $gridWrapper[0].appendChild(auxWrapper);
+  $gridWrapper2[0].appendChild(auxWrapper);
 
 
 
