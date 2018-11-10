@@ -837,7 +837,7 @@ oawApp.loadUnit = function(data,currentLesson,updateHash) {
 
   var boxesArray = [];
 
-  var resources = oawApp.bookData[currentLesson].resources;
+  var resources = oawApp.bookData.units[currentLesson].resources;
   $.each(resources, function(i, resource){
 
     console.log(resource);
