@@ -162,6 +162,9 @@
 			padding: 0;
 			padding-bottom: $space_1/2;
 			margin: 0;
+			.oaw-button_3:hover {
+				background: $negative_color;
+			}
 		}
 	}
 
