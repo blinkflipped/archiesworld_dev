@@ -126,6 +126,9 @@ oawApp.config.tagProjectColor = 'Color_Project_';
 oawApp.config.tagTopicName = 'Name_Topic_';
 oawApp.config.tagTopicColor = 'Color_Topic_';
 oawApp.config.tagTemplate = 'Template_';
+oawApp.config.tagBox = 'Box';
+oawApp.config.tagBoxColor = 'Color_box_';
+oawApp.config.tagBoxPosition = 'Position_box_';
 
 oawApp.config.bodyClasses = ['oaw-body-splash', 'oaw-body-home', 'oaw-body-project', 'oaw-body-lesson'];
 
@@ -830,13 +833,48 @@ oawApp.loadUnit = function(data,currentLesson,updateHash) {
 
   $('body').prepend(projectStructureHTML);
 
+  var $lessonGrid = $('.oaw-page_lesson .oaw-grid_lesson');
 
-  $.each(oawApp.bookDataOAW[currentProject].topics, function(i, topic){
+  var boxesArray = [];
 
-    console.log(topic);
-    console.log(topic.topic_units)
+  var resources = oawApp.bookData[currentLesson].resources;
+  $.each(resources, function(i, resource){
+
+    console.log(resource);
+    var resourceTags = resource.tags,
+        resourceTagsArray = (typeof resourceTags !== 'undefined') ? resourceTags.split(" ") : [];
+
+    if (resourceTagsArray.length) {
+      var resourceBox, resourceBoxColor, resourceBoxPosition;
+
+      $.each(resourceTagsArray, function(index, value) {
+        if (oawApp.startsWith(value,oawApp.config.tagBox)) {
+          resourceBox = value.replace(value,oawApp.config.tagBox, '');
+        } else if (oawApp.startsWith(value,oawApp.config.tagBoxColor)) {
+          resourceBoxColor = value.replace(value,oawApp.config.tagBoxColor, '');
+        } else if (oawApp.startsWith(value,oawApp.config.tagBoxPosition)) {
+          resourceBoxPosition = value.replace(value,oawApp.config.tagBoxPosition, '');
+        }
+      });
+
+      if (typeof resourceBox === 'undefined') resourceBox = 1;
+      if (typeof resourceBoxColor === 'undefined') resourceBoxColor = '';
+      if (typeof resourceBoxPosition === 'undefined') resourceBoxPosition = '';
+
+      console.log(resourceBox, resourceBoxColor, resourceBoxPosition)
+
+      if($.inArray(resourceBox, boxesArray) === -1) {
+        boxesArray.push(resourceBox);
+      }
+      console.log(boxesArray);
+
+    }
+
+    var resourceType = resource.type;
+
 
   });
+
 
 
 
