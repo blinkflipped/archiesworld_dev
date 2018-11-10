@@ -849,11 +849,11 @@ oawApp.loadUnit = function(data,currentLesson,updateHash) {
 
       $.each(resourceTagsArray, function(index, value) {
         if (oawApp.startsWith(value,oawApp.config.tagBox)) {
-          resourceBox = value.replace(value,oawApp.config.tagBox, '');
+          resourceBox = value.replace(oawApp.config.tagBox, '');
         } else if (oawApp.startsWith(value,oawApp.config.tagBoxColor)) {
-          resourceBoxColor = value.replace(value,oawApp.config.tagBoxColor, '');
+          resourceBoxColor = value.replace(oawApp.config.tagBoxColor, '');
         } else if (oawApp.startsWith(value,oawApp.config.tagBoxPosition)) {
-          resourceBoxPosition = value.replace(value,oawApp.config.tagBoxPosition, '');
+          resourceBoxPosition = value.replace(oawApp.config.tagBoxPosition, '');
         }
       });
 
