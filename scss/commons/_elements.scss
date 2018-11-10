@@ -171,6 +171,39 @@
 }
 
 
+// Resources list
+
+.oaw-resources-list {
+	padding: $space_1;
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: (0px) (0px) (-$space_1/2);
+	}
+	&-item {
+		padding: 0;
+		margin: 0 0 $space_1/2;
+		&-inner {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			font-weight: 700;
+			color: $negative_color;
+			text-decoration: none;
+			@include font-size(1.4);
+			letter-spacing: -0.01px;
+		}
+		&-icon {
+			display: inline-block;
+			min-width: 40px;
+			width: 40px;
+			height: 40px;
+			background: $negative_color;
+			margin-right: 10px;
+		}
+	}
+}
+
 // Height
 
 @media (max-height: $mq_height_1) {

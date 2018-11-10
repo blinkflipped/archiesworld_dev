@@ -144,11 +144,17 @@ oawApp.config.tree = {
     'id' : 'project',
     'hash' : 'project_',
     'class' : oawApp.config.bodyClasses[2]
+  },
+  3 : {
+    'id' : 'lesson',
+    'hash' : 'lesson_',
+    'class' : oawApp.config.bodyClasses[3]
   }
 }
 
 oawApp.bookData = '';
 oawApp.bookDataOAW = {};
+oawApp.relationUnitsProjects = {};
 
 oawApp.text = {
   enter : 'Enter',
@@ -270,9 +276,9 @@ oawApp.getParameterByHash = function(name, url) {
 }
 
 // Get ID by hash
-oawApp.getIDByHash = function(hash) {
-  var currentProject = hash.replace(oawApp.config.tree[2].hash, '');
-  return currentProject;
+oawApp.getIDByHash = function(indexTree,hash) {
+  var currentID = hash.replace(oawApp.config.tree[indexTree].hash, '');
+  return currentID;
 }
 
 
@@ -290,18 +296,35 @@ oawApp.hashDistributor = function(currentHash,data,updateHash) {
   } else if (currentHash.startsWith(oawApp.config.tree[2].hash)) { // Project and ID
 
     // This works different because we need an ID to load the Project
-    var oawproject = oawApp.getIDByHash(currentHash),
-        projectExists = (Object.keys(oawApp.bookDataOAW).length > 0);
+    var oawproject = oawApp.getIDByHash(2,currentHash),
+        projectExists = (Object.keys(oawApp.bookDataOAW).length > 0); //TODO REVIEW
 
     if (oawproject !== '' && oawproject !== null && projectExists) {
-      var currentUnit = oawproject;
+      var currentProject = oawproject;
 
-      hashDistributorTimeout = setTimeout(function() {oawApp.loadProject(data,currentUnit,updateHash)}, timeToWait);
+      hashDistributorTimeout = setTimeout(function() {oawApp.loadProject(data,currentProject,updateHash)}, timeToWait);
 
     } else {
 
-      oawApp.console("Not Unit ID given, redirecting to Units");
-      var hash = oawApp.config.tree[0].hash;
+      oawApp.console("Not Unit ID given, redirecting to Home");
+      var hash = oawApp.config.tree[1].hash;
+      oawApp.updateHashWithListener(hash);
+    }
+  } else if (currentHash.startsWith(oawApp.config.tree[3].hash)) { // Lesson and Index
+
+    // This works different because we need an ID to load the Project
+    var oawlesson = oawApp.getIDByHash(3,currentHash),
+        lessonExists = (Object.keys(oawApp.bookData.units).length > 0); //TODO REVIEW
+
+    if (oawlesson !== '' && oawlesson !== null && lessonExists) {
+      var currentLesson = oawlesson;
+
+      hashDistributorTimeout = setTimeout(function() {oawApp.loadLesson(data,currentLesson,updateHash)}, timeToWait);
+
+    } else {
+
+      oawApp.console("Not Lesson ID given, redirecting to Home");
+      var hash = oawApp.config.tree[1].hash;
       oawApp.updateHashWithListener(hash);
     }
 
@@ -391,6 +414,7 @@ oawApp.loadSplash = function(data,updateHash) {
       if (!isAux) {
 
         var unitID = unit.id,
+            unitNumber = unit.number,
             unitTitle = unit.title,
             unitTags = unit.tags,
             unitTagsArray = (typeof unitTags !== 'undefined') ? unitTags.split(" ") : [];
@@ -436,13 +460,16 @@ oawApp.loadSplash = function(data,updateHash) {
               'project_image': '',
               'topics' : {}
             };
+            oawApp.relationUnitsProjects[unitID] = lastKey;
+
           } else {
+            oawApp.relationUnitsProjects[unitID] = currentProject;
             //oawApp.console("Add color and textweb to Project");
             //oawApp.bookDataOAW[currentProject].project_textweb = projectNameTextWeb;
             //oawApp.bookDataOAW[currentProject].project_color = projectColor;
           }
 
-          // Topic Exists?
+          // Topics
 
           var topicExists = false;
           var topics = dataOAW[currentProject].topics;
@@ -469,7 +496,8 @@ oawApp.loadSplash = function(data,updateHash) {
             topics[lastKey].topic_units[lastTopicKey] = {
               'unit_template': unitTemplate,
               'unit_title' : unitTitle,
-              'unit_id' : unitID
+              'unit_id' : unitID,
+              'unit_number': unitNumber
             };
 
           } else {
@@ -478,7 +506,8 @@ oawApp.loadSplash = function(data,updateHash) {
             topics[currentTopic].topic_units[lastTopicKey] = {
               'unit_template': unitTemplate,
               'unit_title' : unitTitle,
-              'unit_id' : unitID
+              'unit_id' : unitID,
+              'unit_number': unitNumber
             };
           }
 
@@ -716,9 +745,10 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
       $.each(topicUnits, function(i, unit){
         var template = unit.unit_template,
             unitID = unit.unit_id,
+            unitNumber = unit.unit_number,
             title = unit.unit_title;
 
-        var topicListItem = '<li><a href="#" class="oaw-button oaw-button_3 oaw-js--loadUnit" data-unit-id="'+unitID+'" data-unit-template="'+template+'"><span>'+title+'</span></a></li>';
+        var topicListItem = '<li><a href="#" class="oaw-button oaw-button_3 oaw-js--loadUnit" data-unit-id="'+unitID+'" data-unit-number="'+unitNumber+'" data-unit-template="'+template+'"><span>'+title+'</span></a></li>';
         topicList += topicListItem;
 
       });
@@ -750,7 +780,7 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
 
 
 
-  /*  $('.oaw-page_unit').imagesLoaded({background: 'div, a, span, button'}, function(){
+  /*  $('.oaw-page_project').imagesLoaded({background: 'div, a, span, button'}, function(){
       if (updateHash) {
         oawApp.updateHashWithListener(hashWithID);
       }
@@ -759,7 +789,49 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
 */
 
 
-  $('.oaw-page_unit').imagesLoaded({background: 'div, a, span, button'}, function(){
+  $('.oaw-page_project').imagesLoaded({background: 'div, a, span, button'}, function(){
+    // Object Fit support
+    oawApp.objectFitSupport();
+    oawApp.removeUnusedClass(bodyClass);
+    $('body').addClass(bodyClass);
+    $('html, body').animate({ scrollTop: 0 }, 1);
+  });
+
+}
+
+// Load Project
+oawApp.loadLesson = function(data,currentLesson,updateHash) {
+
+  var currentIndex = 3;
+  var currentPage = oawApp.config.tree[currentIndex].id,
+      bodyClass = oawApp.config.tree[currentIndex].class,
+      hash = oawApp.config.tree[currentIndex].hash,
+      hashWithID = hash+currentLesson;
+
+  oawApp.console("Load Lesson Index "+currentLesson);
+
+  var lessonTitle =  oawApp.bookData.units[currentLesson].title;
+
+  //lessonTemplate,topicColor
+
+  $('.oaw-page_lesson').remove();
+
+  var projectStructureHTML = '<section class="oaw-page oaw-page_lesson"> <header class="oaw-page-header" style="background-color: #'+topicColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"><span>'+lessonTitle+'</span></div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_4 oaw-js--goback" style="color: #'+topicColor+'"> <i class="icon" aria-hidden="true" style="border-right-color: #'+topicColor+'"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_lesson oaw-grid_lesson_'+lessonTemplate+'"></div></div></div><footer class="oaw-page-footer"><div class="oaw-inner"><div class="oaw-grid oaw-grid_3"></div></div></footer></section>';
+
+  $('body').prepend(projectStructureHTML);
+
+  $.each(oawApp.bookDataOAW, function(ind, project){
+    $.each(project.topics, function(i, topic){
+      console.log(topic);
+      console.log(topic.topic_units)
+
+    });
+  });
+
+
+
+
+  $('.oaw-page_lesson').imagesLoaded({background: 'div, a, span, button'}, function(){
     // Object Fit support
     oawApp.objectFitSupport();
     oawApp.removeUnusedClass(bodyClass);

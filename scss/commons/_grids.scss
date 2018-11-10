@@ -36,21 +36,44 @@
   &_lesson {
     display: flex;
     flex-wrap: wrap;
+    .oaw-grid-item {
+      height: 100%;
+      * {
+        max-height: 100%;
+      }
+    }
     &_4 {
       .oaw-grid-item {
         width: 50%;
         min-width: 50%;
+        max-height: 60%;
+        &_1,&_2 {
+          max-height: 40%;
+        }
+        &_5,
+        &_6,
+        &_7,
+        &_8 {
+          display: none;
+        }
       }
     }
     &_5 {
       .oaw-grid-item {
         width: 50%;
         min-width: 50%;
+        max-height: 40%;
         &_1,
         &_2,
         &_3 {
           width: 33.333%;
           min-width: 33.333%;
+          max-height: 60%;
+        }
+        &_6,
+        &_7,
+        &_8 {
+          display: none;
         }
       }
     }
@@ -58,12 +81,68 @@
       .oaw-grid-item {
         width: 50%;
         min-width: 50%;
+        max-height: 40%;
         &_3,
         &_4,
         &_5 {
           width: 33.333%;
           min-width: 33.333%;
+          max-height: 60%;
         }
+        &_6,
+        &_7,
+        &_8 {
+          display: none;
+        }
+      }
+    }
+    &_6 {
+      .oaw-grid-item {
+        width: 33.3333%;
+        min-width: 33.3333%;
+        max-height: 50%;
+        &_7,
+        &_8 {
+          display: none;
+        }
+      }
+    }
+    &_7 {
+      .oaw-grid-item {
+        width: 25%;
+        min-width: 25%;
+        max-height: 40%;
+        &_5,
+        &_6,
+        &_7 {
+          width: 33.333%;
+          min-width: 33.333%;
+          max-height: 60%;
+        }
+        &_8 {
+          display: none;
+        }
+      }
+    }
+    &_7b {
+      .oaw-grid-item {
+        width: 25%;
+        min-width: 25%;
+        max-height: 50%;
+        &_2 {
+          width: 50%;
+          min-width: 50%;
+        }
+        &_8 {
+          display: none;
+        }
+      }
+    }
+    &_8 {
+      .oaw-grid-item {
+        width: 25%;
+        min-width: 25%;
+        max-height: 50%;
       }
     }
   }
