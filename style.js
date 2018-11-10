@@ -411,6 +411,7 @@ oawApp.loadSplash = function(data,updateHash) {
             } else if (oawApp.startsWith(value,oawApp.config.tagTemplate)) {
               unitTemplate = value.replace(oawApp.config.tagTemplate, '');
             }
+            if (typeof unitTemplate === 'undefined') unitTemplate = '1';
           });
 
           var dataOAW = oawApp.bookDataOAW;
@@ -690,7 +691,7 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
 
   $('.oaw-page_project').remove();
 
-  var projectStructureHTML = '<section class="oaw-page oaw-page_project"> <header class="oaw-page-header" style="background-color: #'+projectColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"> <img src="'+projectTitleImage+'" alt="'+projectTitle+'"> </div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_4 oaw-js--goback" style="color: #'+projectColor+'"> <i class="icon" aria-hidden="true"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_2"></div></div></div><footer class="oaw-page-footer"><div class="oaw-inner"><div class="oaw-grid oaw-grid_3"></div></div></footer></section>';
+  var projectStructureHTML = '<section class="oaw-page oaw-page_project"> <header class="oaw-page-header" style="background-color: #'+projectColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"> <img src="'+projectTitleImage+'" alt="'+projectTitle+'"> </div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_4 oaw-js--goback" style="color: #'+projectColor+'"> <i class="icon" aria-hidden="true" style="border-right-color: #'+projectColor+'"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_2"></div></div></div><footer class="oaw-page-footer"><div class="oaw-inner"><div class="oaw-grid oaw-grid_3"></div></div></footer></section>';
 
   $('body').prepend(projectStructureHTML);
 
@@ -698,14 +699,16 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
   var topicWrapper = document.createDocumentFragment();
   var auxWrapper = document.createDocumentFragment();
 
+  var auxGridItem = 1;
+
   $.each(projectTopics, function(i, topic){
-    console.log(topic);
+    var topicTextweb = topic.topic_textweb,
+        topicColor = topic.topic_color,
+        topicTitleImage = ' ', //TODO VER de donde sale
+        topicUnits = topic.topic_units;
+
     if (i < 2) { //Main topics
-      var topicTextweb = topic.topic_textweb,
-          topicColor = topic.topic_color,
-          topicTitleImage = ' ', //TODO VER de donde sale
-          topicUnits = topic.topic_units,
-          gridItem = Number(i) + 1,
+      var gridItem = Number(i) + 1,
           topicItem = document.createElement('div');
 
       var topicList = '';
@@ -715,18 +718,27 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
             unitID = unit.unit_id,
             title = unit.unit_title;
 
-        var topicListItem = '<li class="oaw-grid-item oaw-grid-item_'+gridItem+'"><a href="#" class="oaw-button oaw-button_3 oaw-js--loadUnit" data-unit-id="'+unitID+'" data-unit-template="'+template+'"><span>'+title+'</span></a></li>';
+        var topicListItem = '<li><a href="#" class="oaw-button oaw-button_3 oaw-js--loadUnit" data-unit-id="'+unitID+'" data-unit-template="'+template+'"><span>'+title+'</span></a></li>';
         topicList += topicListItem;
 
       });
-      //console.log(topicList);
 
       topicItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
       topicItem.innerHTML = '<div class="oaw-projects-list" style="background-color: #'+topicColor+'"><h2 class="oaw-title oaw-title_image oaw-title_2"><img src="'+topicTitleImage+'"></h2><ul>'+topicList+'</ul></div>';
 
       topicWrapper.appendChild(topicItem);
     } else { // Aux topics
-      //auxWrapper
+      var unitAuxID = topicUnits[0].unit_id,
+          unitAuxTemplate = topicUnits[0].unit_template;
+
+      var topicAuxItem = document.createElement('div');
+
+      topicAuxItem.className = 'oaw-grid-item oaw-grid-item_'+auxGridItem;
+      topicAuxItem.innerHTML = '<article class="oaw-card oaw-card_project" style="background-color: #'+topicColor+'"><a href="javascript:void(0)" class="oaw-card-inner oaw-js--loadUnit" data-unit-id="'+unitAuxID+'" data-unit-template="'+unitAuxTemplate+'"><div class="oaw-card-image"><div class="oaw-card-image-inner"><img src="'+topicTitleImage+'"></div></div></a></article>';
+
+      auxGridItem++;
+
+      auxWrapper.appendChild(topicAuxItem);
     }
   });
 

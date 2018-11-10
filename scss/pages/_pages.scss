@@ -188,11 +188,11 @@ $page_project_bottom: 100px;
 
   .oaw-page_project {
     .oaw-page-content {
-      height: calc(100vh - #{$blink_header_height} - #{$page_project_bottom/2 + $header_page});
+      height: calc(100vh - #{$blink_header_height} - #{$page_project_bottom/1.5 + $header_page});
     }
     .oaw-grid_3 {
       .oaw-grid-item {
-        height: $page_project_bottom/2;
+        height: $page_project_bottom/1.5;
       }
     }
   }

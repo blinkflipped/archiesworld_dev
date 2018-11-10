@@ -11,10 +11,10 @@
 // Font size
 
 @mixin font-size($sizeValue) {
-	$remValue: $sizeValue;
+	//$remValue: $sizeValue;
 	$pxValue: ($sizeValue * 10);
 	font-size: $pxValue+px;
-	font-size: $remValue+rem;
+	//font-size: $remValue+rem;
 }
 
 // Icons
@@ -34,12 +34,6 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-@mixin font-size($sizeValue) {
-	$remValue: $sizeValue;
-	$pxValue: ($sizeValue * 10);
-	font-size: $pxValue+px;
-	font-size: $remValue+rem;
-}
 
 // Screen Reader Text
 
