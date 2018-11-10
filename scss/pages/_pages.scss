@@ -12,6 +12,8 @@ $page_project_bottom: 100px;
   max-width: $page_maxwidth;
   margin: 0 auto;
   background: $color_3;
+  height: 0px;
+  overflow: hidden;
   &-header {
     height: $header_page;
     .oaw-page_home & {
