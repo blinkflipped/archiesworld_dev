@@ -857,26 +857,28 @@ oawApp.loadUnit = function(data,currentLesson,updateHash) {
         }
       });
 
-      if (typeof resourceBox === 'undefined') resourceBox = 1;
+      if (typeof resourceBox === 'undefined') resourceBox = '';
       if (typeof resourceBoxColor === 'undefined') resourceBoxColor = '';
       if (typeof resourceBoxPosition === 'undefined') resourceBoxPosition = '';
 
       console.log(resourceBox, resourceBoxColor, resourceBoxPosition)
 
       if($.inArray(resourceBox, boxesArray) === -1) {
+        var newBox = '<div class="oaw-grid-item oaw-grid-item_'+resourceBox+'"><article class="oaw-card oaw-card_lessonsection" style="background-color: #'+resourceBoxColor+'"><div class="oaw-card-inner"> <header class="oaw-card-header oaw-card-header_column"> <div class="oaw-card-header-image"> <div class="oaw-card-header-image-inner"> </div> </div> <h2 class="oaw-title oaw-title_image oaw-title_2"> </h2> </header> <div class="oaw-card-content"> <div class="oaw-resources-list"> <ul> </ul> </div> </div> </div></article></div>';
+        $lessonGrid.append(newBox);
         boxesArray.push(resourceBox);
       }
       console.log(boxesArray);
 
+      var resourceType = resource.type;
+      if (resourceBoxPosition !== '') {
+        // Title Element.
+
+      }
+
     }
 
-    var resourceType = resource.type;
-
-
   });
-
-
-
 
 
   $('.oaw-page_lesson').imagesLoaded({background: 'div, a, span, button'}, function(){
