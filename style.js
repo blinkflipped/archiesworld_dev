@@ -843,7 +843,7 @@ oawApp.loadUnit = function(data,currentLesson,updateHash) {
     console.log(resource);
     var resourceTags = resource.tags,
         resourceTagsArray = (typeof resourceTags !== 'undefined') ? resourceTags.split(" ") : [];
-
+    console.log(resourceTagsArray);
     if (resourceTagsArray.length) {
       var resourceBox, resourceBoxColor, resourceBoxPosition;
 
