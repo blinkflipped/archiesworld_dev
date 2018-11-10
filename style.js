@@ -155,6 +155,8 @@ oawApp.config.tree = {
 oawApp.bookData = '';
 oawApp.bookDataOAW = {};
 oawApp.relationUnitsProjects = {};
+oawApp.relationUnitsTopics = {};
+oawApp.relationUnitsTemplates = {};
 
 oawApp.text = {
   enter : 'Enter',
@@ -319,7 +321,7 @@ oawApp.hashDistributor = function(currentHash,data,updateHash) {
     if (oawlesson !== '' && oawlesson !== null && lessonExists) {
       var currentLesson = oawlesson;
 
-      hashDistributorTimeout = setTimeout(function() {oawApp.loadLesson(data,currentLesson,updateHash)}, timeToWait);
+      hashDistributorTimeout = setTimeout(function() {oawApp.loadUnit(data,currentLesson,updateHash)}, timeToWait);
 
     } else {
 
@@ -500,7 +502,7 @@ oawApp.loadSplash = function(data,updateHash) {
               'unit_id' : unitID,
               'unit_number': unitNumber
             };
-
+            oawApp.relationUnitsTopics[unitIndex] = lastTopicKey;
           } else {
             oawApp.console("Add Unit to topic");
             var lastTopicKey = (Object.keys(topics[currentTopic].topic_units).length > 0 ) ? Object.keys(topics[currentTopic].topic_units).length : 0;
@@ -510,7 +512,11 @@ oawApp.loadSplash = function(data,updateHash) {
               'unit_id' : unitID,
               'unit_number': unitNumber
             };
+            oawApp.relationUnitsTopics[unitIndex] = lastTopicKey;
+
           }
+          oawApp.relationUnitsTemplates[unitIndex] = unitTemplate;
+
 
         }
 
@@ -801,7 +807,7 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
 }
 
 // Load Project
-oawApp.loadLesson = function(data,currentLesson,updateHash) {
+oawApp.loadUnit = function(data,currentLesson,updateHash) {
 
   var currentIndex = 3;
   var currentPage = oawApp.config.tree[currentIndex].id,
@@ -809,11 +815,14 @@ oawApp.loadLesson = function(data,currentLesson,updateHash) {
       hash = oawApp.config.tree[currentIndex].hash,
       hashWithID = hash+currentLesson;
 
-  oawApp.console("Load Lesson Index "+currentLesson);
+  oawApp.console("Load Unit Index "+currentLesson);
 
-  var lessonTitle =  oawApp.bookData.units[currentLesson].title;
 
-  //lessonTemplate,topicColor
+  var currentProject = oawApp.relationUnitsProjects[currentLesson],
+      currentTopic = oawApp.relationUnitsTopics[currentLesson],
+      topicColor = oawApp.bookDataOAW[currentProject].topics[currentTopic].topic_color,
+      lessonTemplate = oawApp.relationUnitsTemplates[currentLesson],
+      lessonTitle =  oawApp.bookData.units[currentLesson].title;
 
   $('.oaw-page_lesson').remove();
 
@@ -821,7 +830,6 @@ oawApp.loadLesson = function(data,currentLesson,updateHash) {
 
   $('body').prepend(projectStructureHTML);
 
-  var currentProject = oawApp.relationUnitsProjects[currentLesson]
 
   $.each(oawApp.bookDataOAW[currentProject].topics, function(i, topic){
 
