@@ -642,7 +642,7 @@ oawApp.loadSplash = function(data,updateHash) {
     });
 
   } else {
-    // Home already loaded
+    // Splash already loaded
     if (currentHash !== '' && currentHash !== hash) {
       oawApp.loadByHash(currentHash,data);
     } else {
@@ -752,15 +752,15 @@ oawApp.loadHomepage = function(data,updateHash) {
   } else {
 
     // Home already loaded
-    if (currentHash !== '' && currentHash !== hash) {
-      oawApp.loadByHash(currentHash,data);
-    } else {
+    //if (currentHash !== '' && currentHash !== hash) {
+    //  oawApp.loadByHash(currentHash,data);
+    //} else {
       $('body').addClass(bodyClass);
       oawApp.removeUnusedClass(bodyClass);
       if (updateHash) {
         oawApp.updateHashWithListener(hash);
       }
-    }
+    //}
     $('html, body').animate({ scrollTop: 0 }, 1);
 
   }
