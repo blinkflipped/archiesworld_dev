@@ -158,7 +158,10 @@ oawApp.config.tree = {
 
 oawApp.bookData = '';
 oawApp.bookDataOAW = {};
-oawApp.bookDataOAWAux = {};
+oawApp.bookDataOAWAux = {
+  home_aux : {},
+  home_footer_aux : {}
+};
 oawApp.relationUnitsProjects = {};
 oawApp.relationUnitsTopics = {};
 oawApp.relationUnitsTemplates = {};
