@@ -245,12 +245,12 @@ oawApp.getCover = function(data) {
 }
 
 
-oawApp.openActivity = function(url,subunitID) {
+oawApp.openActivity = function(url,id) {
 
   if (blink.isApp) {
     blink.rest.openUrl('fullscreen', url);
   } else {
-    blink.goToActivity(idcurso,subunitID);
+    blink.goToActivity(idcurso,id);
   }
 
 }
@@ -583,12 +583,14 @@ oawApp.loadSplash = function(data,updateHash) {
               // Auxiliary items
               var homeAuxTitle = resource.title,
                   homeAuxID = resource.id,
+                  homeAuxUrl = resource.url,
                   homeAuxImage = resource.fileurl;
               oawApp.bookDataOAWAux.home_aux[homeAuxID] = {
                 'id' : homeAuxID,
                 'color' : homeAuxColor,
                 'title' : homeAuxTitle,
-                'image': homeAuxImage
+                'image': homeAuxImage,
+                'url' : homeAuxUrl
               }
 
             }
@@ -599,11 +601,13 @@ oawApp.loadSplash = function(data,updateHash) {
         $.each(unit.subunits, function(ind, subunit) {
           // Auxiliary items
           var homeFooterAuxTitle = subunit.title,
+              homeFooterAuxURL = subunit.url,
               homeFooterAuxID = subunit.id;
           if (homeFooterAuxID !== oawApp.config.bookcover.id) {
             oawApp.bookDataOAWAux.home_footer_aux[homeFooterAuxID] = {
               'id' : homeFooterAuxID,
-              'title' : homeFooterAuxTitle
+              'title' : homeFooterAuxTitle,
+              'url' : homeFooterAuxURL
             }
           }
         });
@@ -698,13 +702,15 @@ oawApp.loadHomepage = function(data,updateHash) {
     });
 
     $.each(oawApp.bookDataOAWAux.home_aux, function(i, auxUnit) {
+      gridItem++;
       var auxUnitItem = document.createElement('div'),
           title = auxUnit.title,
           image = auxUnit.image,
+          url = auxUnit.url,
           backgroundColor = auxUnit.color,
           auxUnitID = auxUnit.id;
       auxUnitItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
-      auxUnitItem.innerHTML = '<article class="oaw-card oaw-card_project" style="background-color: #'+backgroundColor+'"><a href="javascript:void(0)" class="oaw-card-inner oaw-js--openActivity" data-unit-id="'+auxUnitID+'"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="'+image+'" alt="'+title+'"> </div> </div> </a></article>';
+      auxUnitItem.innerHTML = '<article class="oaw-card oaw-card_project" style="background-color: #'+backgroundColor+'"><a href="javascript:void(0)" class="oaw-card-inner oaw-js--openActivity" data-id="'+auxUnitID+'" data-url="'+url+'"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="'+image+'" alt="'+title+'"> </div> </div> </a></article>';
 
       gridTopMenu.appendChild(auxUnitItem);
     });
@@ -712,8 +718,9 @@ oawApp.loadHomepage = function(data,updateHash) {
     var homeFooterAux = '';
     $.each(oawApp.bookDataOAWAux.home_footer_aux, function(i, auxFooterUnit) {
       var title = auxFooterUnit.title,
+          url = auxFooterUnit.url,
           id = auxFooterUnit.id;
-      homeFooterAux += '<li> <a href="javascript:void(0)" class="oaw-button oaw-button_2 oaw-button_a oasw-js--openActivity" data-unit-id="'+id+'"> <span>'+title+'</span> </a> </li> ';
+      homeFooterAux += '<li> <a href="javascript:void(0)" class="oaw-button oaw-button_2 oaw-button_a oasw-js--openActivity" data-id="'+id+'" data-url="'+url+'"> <span>'+title+'</span> </a> </li> ';
     });
 
 
@@ -968,6 +975,14 @@ $(document).ready(function() {
     var unitIndex = Number($(this).attr('data-unit-number')) - 1,
         hash = oawApp.config.tree[3].hash + unitIndex;
     oawApp.updateHashWithListener(hash);
+  });
+
+  // Open Activities
+  $('body').on('click', '.oaw-js--openActivity', function(e) {
+    e.preventDefault();
+    var id = $(this).attr('data-id'),
+        url = $(this).attr('data-url');
+    oawApp.openActivity(url,id);
   });
 
   // DEMO ONLY
