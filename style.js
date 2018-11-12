@@ -584,7 +584,7 @@ oawApp.loadSplash = function(data,updateHash) {
               var homeAuxTitle = resource.title,
                   homeAuxID = resource.id,
                   homeAuxImage = resource.fileurl;
-              oawApp.bookDataOAWAux.home_aux[ind] = {
+              oawApp.bookDataOAWAux.home_aux[homeAuxID] = {
                 'home_aux_id' : homeAuxID,
                 'home_aux_color' : homeAuxColor,
                 'home_aux_title' : homeAuxTitle,
@@ -600,9 +600,11 @@ oawApp.loadSplash = function(data,updateHash) {
           // Auxiliary items
           var homeFooterAuxTitle = subunit.title,
               homeFooterAuxID = subunit.id;
-          oawApp.bookDataOAWAux.home_footer_aux[ind] = {
-            'home_footer_aux_id' : homeFooterAuxID,
-            'home_footer_aux_title' : homeFooterAuxTitle
+          if (homeFooterAuxID !== oawApp.config.bookcover.id) {
+            oawApp.bookDataOAWAux.home_footer_aux[homeFooterAuxID] = {
+              'home_footer_aux_id' : homeFooterAuxID,
+              'home_footer_aux_title' : homeFooterAuxTitle
+            }
           }
         });
       }
