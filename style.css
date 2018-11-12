@@ -464,44 +464,42 @@ body.view-mode {
           .oaw-page-header-image-inner.compat-object-fit img {
             display: none !important; }
 
-.oaw-page_home {
+.oaw-body-home .oaw-page_home {
+  z-index: 1000;
   height: calc(100vh  - 44px); }
-  .oaw-body-home .oaw-page_home {
-    z-index: 1000; }
-  .oaw-page_home .oaw-page-header,
-  .oaw-page_home .oaw-page-content {
-    height: calc(50vh - 22px - 30px); }
-  .oaw-page_home .oaw-page-header .oaw-inner {
-    height: 100%; }
-  .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item {
-    height: 80px; }
-    .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_1, .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_2, .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_3 {
-      height: calc(50vh - 22px - 110px); }
-  .oaw-page_home .oaw-page-footer {
-    position: relative;
-    z-index: 10;
-    height: 60px;
-    overflow: hidden; }
+.oaw-page_home .oaw-page-header,
+.oaw-page_home .oaw-page-content {
+  height: calc(50vh - 22px - 30px); }
+.oaw-page_home .oaw-page-header .oaw-inner {
+  height: 100%; }
+.oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item {
+  height: 80px; }
+  .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_1, .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_2, .oaw-page_home .oaw-page-content .oaw-grid_1 .oaw-grid-item_3 {
+    height: calc(50vh - 22px - 110px); }
+.oaw-page_home .oaw-page-footer {
+  position: relative;
+  z-index: 10;
+  height: 60px;
+  overflow: hidden; }
 
-.oaw-page_project {
-  height: calc(100vh - 44px); }
-  .oaw-body-project .oaw-page_project {
-    z-index: 1000; }
-  .oaw-page_project .oaw-page-content {
-    height: calc(100vh - 44px - 160px); }
-    .oaw-page_project .oaw-page-content .oaw-inner, .oaw-page_project .oaw-page-content .oaw-grid {
+.oaw-body-project .oaw-page_project {
+  z-index: 1000;
+  height: calc(100vh  - 44px); }
+.oaw-page_project .oaw-page-content {
+  height: calc(100vh - 44px - 160px); }
+  .oaw-page_project .oaw-page-content .oaw-inner, .oaw-page_project .oaw-page-content .oaw-grid {
+    height: 100%; }
+    .oaw-page_project .oaw-page-content .oaw-inner .oaw-projects-list, .oaw-page_project .oaw-page-content .oaw-grid .oaw-projects-list {
       height: 100%; }
-      .oaw-page_project .oaw-page-content .oaw-inner .oaw-projects-list, .oaw-page_project .oaw-page-content .oaw-grid .oaw-projects-list {
-        height: 100%; }
-    .oaw-page_project .oaw-page-content .oaw-projects-list {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center; }
-      .oaw-page_project .oaw-page-content .oaw-projects-list > * {
-        min-width: 100%; }
-  .oaw-page_project .oaw-grid_3 .oaw-grid-item {
-    height: 100px; }
+  .oaw-page_project .oaw-page-content .oaw-projects-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    .oaw-page_project .oaw-page-content .oaw-projects-list > * {
+      min-width: 100%; }
+.oaw-page_project .oaw-grid_3 .oaw-grid-item {
+  height: 100px; }
 
 .oaw-page_lesson {
   height: calc(100vh - 44px); }

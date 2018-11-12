@@ -72,9 +72,9 @@ $page_project_bottom: 100px;
 
 
 .oaw-page_home {
-  height: calc(100vh  - #{$blink_header_height});
   .oaw-body-home & {
     z-index: 1000;
+    height: calc(100vh  - #{$blink_header_height});
   }
   .oaw-page-header,
   .oaw-page-content {
@@ -106,8 +106,8 @@ $page_project_bottom: 100px;
 .oaw-page_project {
   .oaw-body-project & {
     z-index: 1000;
+    height: calc(100vh  - #{$blink_header_height});
   }
-  height: calc(100vh - #{$blink_header_height});
   .oaw-page-content {
     height: calc(100vh - #{$blink_header_height} - #{$page_project_bottom + $header_page});
     .oaw-inner, .oaw-grid {
