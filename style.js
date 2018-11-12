@@ -44,13 +44,14 @@
     onCourseDataLoaded: function(data) {
       oawApp.config.bookcover = oawApp.getCover(data);
       var isBookCover = idclase.toString() === oawApp.config.bookcover.id;
-      console.log("Test 2");
       if (isBookCover) {
+        console.log("Is Book Cover");
         //this.loadUserData();
         $('html').addClass('oaw-isBookCover');
         var updateHash = false;
         oawApp.loadSplash(data, updateHash);
       } else {
+        console.log("Not Book Cover");
         $('html').removeClass('oaw-isBookCover');
       }
 
@@ -299,7 +300,7 @@ oawApp.hashDistributor = function(currentHash,data,updateHash) {
   clearTimeout(hashDistributorTimeout);
 
   var timeToWait = 500;
-  if (currentHash === oawApp.config.tree[0].hash) { //Splash
+  if (currentHash === oawApp.config.tree[0].hash) { // Splash
     hashDistributorTimeout = setTimeout(function() {oawApp.loadSplash(data,updateHash)}, timeToWait);
   } else if (currentHash.startsWith(oawApp.config.tree[1].hash)) { // Home
     hashDistributorTimeout = setTimeout(function() {oawApp.loadHomepage(data,updateHash)}, timeToWait);
@@ -720,7 +721,7 @@ oawApp.loadHomepage = function(data,updateHash) {
       var title = auxFooterUnit.title,
           url = auxFooterUnit.url,
           id = auxFooterUnit.id;
-      homeFooterAux += '<li> <a href="javascript:void(0)" class="oaw-button oaw-button_2 oaw-button_a oasw-js--openActivity" data-id="'+id+'" data-url="'+url+'"> <span>'+title+'</span> </a> </li> ';
+      homeFooterAux += '<li> <a href="javascript:void(0)" class="oaw-button oaw-button_2 oaw-button_a oaw-js--openActivity" data-id="'+id+'" data-url="'+url+'"> <span>'+title+'</span> </a> </li> ';
     });
 
 
