@@ -127,8 +127,9 @@ oawApp.config.tagTopicName = 'Name_Topic_';
 oawApp.config.tagTopicColor = 'Color_Topic_';
 oawApp.config.tagTemplate = 'Template_';
 oawApp.config.tagBox = 'Box';
-oawApp.config.tagBoxColor = 'Color_box_';
-oawApp.config.tagBoxPosition = 'Position_box_';
+oawApp.config.tagBoxColor = 'Color_Box_';
+oawApp.config.tagBoxPosition = 'Position_Box_';
+oawApp.config.tagAuxColor = 'Color_';
 
 oawApp.config.bodyClasses = ['oaw-body-splash', 'oaw-body-home', 'oaw-body-project', 'oaw-body-lesson'];
 
@@ -157,6 +158,7 @@ oawApp.config.tree = {
 
 oawApp.bookData = '';
 oawApp.bookDataOAW = {};
+oawApp.bookDataOAWAux = {};
 oawApp.relationUnitsProjects = {};
 oawApp.relationUnitsTopics = {};
 oawApp.relationUnitsTemplates = {};
@@ -536,12 +538,14 @@ oawApp.loadSplash = function(data,updateHash) {
               resourceTagsArray = (typeof resourceTags !== 'undefined') ? resourceTags.split(" ") : [];
 
           if (resourceTagsArray.length) {
-            var projectIndex, projectTitle;
+            var projectIndex, projectTitle, homeAuxColor;
 
             $.each(resourceTagsArray, function(index, value) {
               if (oawApp.startsWith(value,oawApp.config.tagProjectIndex)) {
                 var projectNumber = value.replace(oawApp.config.tagProjectIndex, '');
                 projectIndex = projectNumber - 1;
+              } else if (oawApp.startsWith(value,oawApp.config.tagAuxColor)) {
+                homeAuxColor = value.replace(oawApp.config.tagAuxColor, '');
               }
             });
 
@@ -572,11 +576,32 @@ oawApp.loadSplash = function(data,updateHash) {
                   'topics' : {}
                 };
               }
+            } else {
+              // Auxiliary items
+              var homeAuxTitle = resource.title,
+                  homeAuxID = resource.id,
+                  homeAuxImage = resource.fileurl;
+              oawApp.bookDataOAWAux.home_aux[ind] = {
+                'home_aux_id' : homeAuxID,
+                'home_aux_color' : homeAuxColor,
+                'home_aux_title' : homeAuxTitle,
+                'home_aux_image': homeAuxImage
+              }
+
             }
           }
 
         });
 
+        $.each(unit.subunits, function(ind, subunit) {
+          // Auxiliary items
+          var homeFooterAuxTitle = subunit.title,
+              homeFooterAuxID = subunit.id;
+          oawApp.bookDataOAWAux.home_footer_aux[ind] = {
+            'home_footer_aux_id' : homeFooterAuxID,
+            'home_footer_aux_title' : homeFooterAuxTitle
+          }
+        });
       }
     });
 
@@ -917,6 +942,13 @@ $(document).ready(function() {
     e.preventDefault();
     var unitIndex = Number($(this).attr('data-unit-number')) - 1,
         hash = oawApp.config.tree[3].hash + unitIndex;
+    oawApp.updateHashWithListener(hash);
+  });
+
+  // DEMO ONLY
+  $('body').on('click', '.oaw-js--goback', function(e) {
+    e.preventDefault();
+    var hash = oawApp.config.tree[1].hash;
     oawApp.updateHashWithListener(hash);
   });
 
