@@ -122,15 +122,15 @@ oawApp.config.auxUnitName = 'Portada';
 oawApp.config.bookcover = '';
 oawApp.config.isStudent = false;
 oawApp.config.tagProjectIndex = 'project';
-oawApp.config.tagProjectName = 'Name_Project_';
-oawApp.config.tagProjectColor = 'Color_Project_';
-oawApp.config.tagTopicName = 'Name_Topic_';
-oawApp.config.tagTopicColor = 'Color_Topic_';
-oawApp.config.tagTemplate = 'Template_';
-oawApp.config.tagBox = 'Box';
-oawApp.config.tagBoxColor = 'Color_Box_';
-oawApp.config.tagBoxPosition = 'Position_Box_';
-oawApp.config.tagAuxColor = 'Color_';
+oawApp.config.tagProjectName = 'name_project_';
+oawApp.config.tagProjectColor = 'color_project_';
+oawApp.config.tagTopicName = 'name_topic_';
+oawApp.config.tagTopicColor = 'color_topic_';
+oawApp.config.tagTemplate = 'template_';
+oawApp.config.tagBox = 'box';
+oawApp.config.tagBoxColor = 'color_box_';
+oawApp.config.tagBoxPosition = 'position_box_';
+oawApp.config.tagAuxColor = 'color_';
 
 oawApp.config.bodyClasses = ['oaw-body-splash', 'oaw-body-home', 'oaw-body-project', 'oaw-body-lesson'];
 
