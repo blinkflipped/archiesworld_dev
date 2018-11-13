@@ -465,7 +465,7 @@ oawApp.loadSplash = function(data,updateHash) {
           $.each(dataOAW, function(ind, val) {
             var projectTextweb = val['project_textweb'];
             if (projectTextweb === projectNameTextWeb) {
-              currentProject = ind;
+              currentProject = ind + 1;
               projectExists = true;
               return false;
             }
@@ -563,7 +563,7 @@ oawApp.loadSplash = function(data,updateHash) {
             $.each(resourceTagsArray, function(index, value) {
               if (oawApp.startsWith(value,oawApp.config.tagProjectIndex)) {
                 var projectNumber = value.replace(oawApp.config.tagProjectIndex, '');
-                projectIndex = Number(projectNumber);
+                projectIndex = projectNumber;
               } else if (oawApp.startsWith(value,oawApp.config.tagAuxColor)) {
                 homeAuxColor = value.replace(oawApp.config.tagAuxColor, '');
               }
@@ -604,7 +604,7 @@ oawApp.loadSplash = function(data,updateHash) {
               var projectExists = false;
               $.each(dataOAW, function(ind, val) {
                 console.log(ind);
-                if (Number(ind)+1 === projectIndex) {
+                if (Number(ind) === projectIndex) {
                   projectExists = true;
                   return false;
                 }
