@@ -457,7 +457,7 @@ oawApp.loadSplash = function(data,updateHash) {
 
 
           $.each(unitTagsArray, function(index, value) {
-
+            value = value.toLowerCase();
             if (oawApp.startsWith(value,oawApp.config.tagProjectColor)) {
               projectColor = value.replace(oawApp.config.tagProjectColor, '');
             } else if (oawApp.startsWith(value,oawApp.config.tagProjectName)) {
@@ -605,13 +605,6 @@ oawApp.loadSplash = function(data,updateHash) {
                 }
 
               }
-
-              //oawApp.config.tagHeadingProject = 'heading_project_';
-              //oawApp.config.tagHeadingProjectName = '_name_project';
-              //oawApp.config.tagHeadingTopic = '_topic_"'; "heading_project_1_topic_2"
-              //oawApp.config.tagHeadingHelloPoster = '_helloposter'; "heading_project_1_helloposter"
-              //oawApp.config.tagHeadingProjectReview = '_projectreview'; "heading_project_1_projectreview"
-              //oawApp.config.tagHeadingReviewStory = '_reviewstory';
 
             });
 
