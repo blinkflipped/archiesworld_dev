@@ -332,71 +332,71 @@ body.view-mode {
         background-position: center center; }
         .oaw-card_lessonsection .oaw-card-header-image-inner.compat-object-fit img {
           display: none !important; }
-  .oaw-card_lessonsection .oaw-card-header.oaw-card-header_column {
+  .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_down, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_column {
     display: flex;
     flex-direction: column;
     justify-content: flex-start; }
-  .oaw-card_lessonsection .oaw-card-header.oaw-card-header_column_reverse {
+  .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_up, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_column_reverse {
     display: flex;
     flex-direction: column-reverse;
     justify-content: flex-end; }
-  .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row {
+  .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_right, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center; }
-    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row .oaw-title_image img {
+    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_right .oaw-title_image img, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row .oaw-title_image img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       object-position: left center;
       display: block; }
-    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row .oaw-title_image.compat-object-fit {
+    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_right .oaw-title_image.compat-object-fit, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row .oaw-title_image.compat-object-fit {
       background-size: contain;
       background-repeat: no-repeat;
       background-position: left center; }
-      .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row .oaw-title_image.compat-object-fit img {
+      .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_right .oaw-title_image.compat-object-fit img, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row .oaw-title_image.compat-object-fit img {
         display: none !important; }
-    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row .oaw-card-header-image-inner img {
+    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_right .oaw-card-header-image-inner img, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row .oaw-card-header-image-inner img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       object-position: right center;
       display: block; }
-    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row .oaw-card-header-image-inner.compat-object-fit {
+    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_right .oaw-card-header-image-inner.compat-object-fit, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row .oaw-card-header-image-inner.compat-object-fit {
       background-size: contain;
       background-repeat: no-repeat;
       background-position: right center; }
-      .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row .oaw-card-header-image-inner.compat-object-fit img {
+      .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_right .oaw-card-header-image-inner.compat-object-fit img, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row .oaw-card-header-image-inner.compat-object-fit img {
         display: none !important; }
-  .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse {
+  .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_left, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
     align-items: center; }
-    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse .oaw-title_image img {
+    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_left .oaw-title_image img, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse .oaw-title_image img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       object-position: right center;
       display: block; }
-    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse .oaw-title_image.compat-object-fit {
+    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_left .oaw-title_image.compat-object-fit, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse .oaw-title_image.compat-object-fit {
       background-size: contain;
       background-repeat: no-repeat;
       background-position: right center; }
-      .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse .oaw-title_image.compat-object-fit img {
+      .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_left .oaw-title_image.compat-object-fit img, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse .oaw-title_image.compat-object-fit img {
         display: none !important; }
-    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse .oaw-card-header-image-inner img {
+    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_left .oaw-card-header-image-inner img, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse .oaw-card-header-image-inner img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       object-position: left center;
       display: block; }
-    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse .oaw-card-header-image-inner.compat-object-fit {
+    .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_left .oaw-card-header-image-inner.compat-object-fit, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse .oaw-card-header-image-inner.compat-object-fit {
       background-size: contain;
       background-repeat: no-repeat;
       background-position: left center; }
-      .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse .oaw-card-header-image-inner.compat-object-fit img {
+      .oaw-card_lessonsection .oaw-card-header.oaw-card-header_titlepos_left .oaw-card-header-image-inner.compat-object-fit img, .oaw-card_lessonsection .oaw-card-header.oaw-card-header_row_reverse .oaw-card-header-image-inner.compat-object-fit img {
         display: none !important; }
   .oaw-card_lessonsection .oaw-resources-list {
     position: relative;

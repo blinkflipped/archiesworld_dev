@@ -129,8 +129,9 @@ oawApp.config.tagTopicColor = 'color_topic_';
 oawApp.config.tagTemplate = 'template_';
 oawApp.config.tagBox = 'Box'; //TODO to lowercase box
 oawApp.config.tagBoxColor = 'Color_box_'; //TODO to lowercase color_box_
-oawApp.config.tagBoxPosition = 'position_box_';
+oawApp.config.tagBoxPosition = 'position_';
 oawApp.config.tagResourceType = 'icon_';
+oawApp.config.tagResourceHeadingType = 'type_';
 oawApp.config.tagAuxColor = 'color_';
 oawApp.config.tagHeadingProject = 'heading_project_';
 oawApp.config.tagHeadingProjectName = '_name_project';
@@ -980,7 +981,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
         resourceTagsArray = (typeof resourceTags !== 'undefined') ? resourceTags.split(" ") : [];
     console.log(resourceTagsArray);
     if (resourceTagsArray.length) {
-      var resourceBox, resourceBoxColor, resourceBoxPosition, resourceBoxIcon;
+      var resourceBox, resourceBoxColor, resourceBoxPosition, resourceBoxIcon, resourceHeadingType;
 
       $.each(resourceTagsArray, function(index, value) {
         if (oawApp.startsWith(value,oawApp.config.tagBox)) {
@@ -991,6 +992,8 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
           resourceBoxPosition = value.replace(oawApp.config.tagBoxPosition, '');
         } else if (oawApp.startsWith(value,oawApp.config.tagResourceType)) {
           resourceBoxIcon = value.replace(oawApp.config.tagResourceType, '');
+        } else if (oawApp.startsWith(value,oawApp.config.tagResourceHeadingType)) {
+          resourceHeadingType = value.replace(oawApp.config.tagResourceHeadingType, '');
         }
       });
 
@@ -1001,7 +1004,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
       console.log(resourceBox, resourceBoxColor, resourceBoxPosition, resourceBoxIcon)
 
       if($.inArray(resourceBox, boxesArray) === -1 && typeof resourceBox !== 'undefined') {
-        var newBox = '<div class="oaw-grid-item oaw-grid-item_'+resourceBox+'"><article class="oaw-card oaw-card_lessonsection" style="background-color: #'+resourceBoxColor+'"><div class="oaw-card-inner"> <header class="oaw-card-header oaw-card-header_column"> <div class="oaw-card-header-image"> <div class="oaw-card-header-image-inner"> </div> </div> <h2 class="oaw-title oaw-title_image oaw-title_2"> </h2> </header> <div class="oaw-card-content"> <div class="oaw-resources-list"> <ul> </ul> </div> </div> </div></article></div>';
+        var newBox = '<div class="oaw-grid-item oaw-grid-item_'+resourceBox+'"><article class="oaw-card oaw-card_lessonsection" style="background-color: #'+resourceBoxColor+'"><div class="oaw-card-inner"> <header class="oaw-card-header oaw-card-header_titlepos_'+resourceBoxPosition+'"> <div class="oaw-card-header-image"> <div class="oaw-card-header-image-inner"> </div> </div> <h2 class="oaw-title oaw-title_image oaw-title_2"> </h2> </header> <div class="oaw-card-content"> <div class="oaw-resources-list"> <ul> </ul> </div> </div> </div></article></div>';
         $lessonGrid.append(newBox);
         boxesArray.push(resourceBox);
       }
@@ -1013,7 +1016,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
         var resourceImage = resource.fileurl,
             $boxHeader = $lessonGrid.find('.oaw-grid-item_'+resourceBox+' .oaw-card-header');
         console.log("Is title or character");
-        if (resourceBoxPosition !== '' && typeof resourceBox !== 'undefined') {
+        if (resourceHeadingType === 'heading') {
           $boxHeader.find('.oaw-title_image').append('<img src="'+resourceImage+'">');
         } else {
           $boxHeader.find('.oaw-card-header-image-inner').append('<img src="'+resourceImage+'">');
