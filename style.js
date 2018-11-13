@@ -879,7 +879,7 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
   $.each(projectTopics, function(i, topic){
     var topicTextweb = topic.topic_textweb,
         topicColor = topic.topic_color,
-        topicTitleImage = ' ', //TODO VER de donde sale
+        topicTitleImage = topic.topic_title_image,
         topicUnits = topic.topic_units;
 
     if (i < 2) { //Main topics
