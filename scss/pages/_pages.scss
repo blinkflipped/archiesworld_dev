@@ -154,10 +154,11 @@ $page_lesson_bottom: $header_page;
       }
     }
   }
-  .oaw-grid_3 {
-    .oaw-grid-item {
-      height: $page_project_bottom;
-    }
+  .oaw-page-footer {
+    position: relative;
+    z-index: 10;
+    height: $page_lesson_bottom;
+    overflow: hidden;
   }
 }
 

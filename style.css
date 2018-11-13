@@ -539,8 +539,11 @@ body.oaw-body {
     align-items: center; }
     .oaw-page_lesson .oaw-page-content .oaw-projects-list > * {
       min-width: 100%; }
-.oaw-page_lesson .oaw-grid_3 .oaw-grid-item {
-  height: 100px; }
+.oaw-page_lesson .oaw-page-footer {
+  position: relative;
+  z-index: 10;
+  height: 60px;
+  overflow: hidden; }
 
 @media (max-height: 600px) {
   .oaw-body-home .oaw-page_home {
