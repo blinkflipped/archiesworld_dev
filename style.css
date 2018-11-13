@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Comfortaa:300,400,700");
-body.view-mode {
+body.oaw-body {
   background: #ffffff;
   overflow: auto;
   padding: 0;
   margin: 0; }
-  body.view-mode::before {
+  body.oaw-body::before {
     content: '';
     display: block;
     position: fixed;
@@ -14,11 +14,9 @@ body.view-mode {
     bottom: 0;
     background: #ffffff;
     z-index: 1002; }
-  body.view-mode.canvas_events_loaded::before, .htmlReady body.view-mode::before {
+  body.oaw-body.canvas_events_loaded::before, .htmlReady body.oaw-body::before {
     z-index: 0;
     pointer-events: none; }
-  .abp-isBookCover body.view-mode::before, .htmlReady body.view-mode.abp-body-home::before, .htmlReady body.view-mode.abp-body-unit::before {
-    z-index: 110; }
 
 .oaw-body {
   font-family: "Comfortaa", cursive;

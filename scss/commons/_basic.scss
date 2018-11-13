@@ -1,4 +1,4 @@
-body.view-mode {
+body.oaw-body {
 	background: $background_color;
 	overflow: auto;
 	padding: 0;
@@ -20,33 +20,7 @@ body.view-mode {
 		z-index: 0;
 		pointer-events: none;
 	}
-	.abp-isBookCover &,
-	.htmlReady &.abp-body-home,
-	.htmlReady &.abp-body-unit {
-		&::before {
-			z-index: 110;
-		}
-	}
 }
-
-body.view-mode.body_clase,
-body.view-mode.body_curso {
-	.navbar.libro {
-		//background: $color_1!important;
-		.libro-left,
-		.libro-right {
-			//background: $color_1!important;
-		}
-		.libro-right ul li.close-back-wrapper,
-		.navbar-divider {
-			&::after {
-				//background-color: $color_1;
-				//left: 0;
-			}
-		}
-	}
-}
-
 
 .oaw-body {
 	font-family: $font_family_1;

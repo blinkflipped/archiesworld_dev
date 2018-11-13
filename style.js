@@ -277,6 +277,19 @@ oawApp.startsWith = function(string1,string2) {
 
 }
 
+// Images size in Units/Lessons
+
+oawApp.unitImageSize = function() {
+
+  $('.oaw-page_lesson .oaw-card-inner').each(function(i,e) {
+    var totalHeight = $(e).outerHeight(),
+        contentHeight = $(e).find('.oaw-card-content').outerHeight(),
+        diffHeight = totalHeight - contentHeight;
+    $(e).find('.oaw-card-header-image').css('height', diffHeight);
+  });
+
+}
+
 //----------------------------------//
 //                                  //
 //  Hash navigation                 //
@@ -1004,7 +1017,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
       console.log(resourceBox, resourceBoxColor, resourceBoxPosition, resourceBoxIcon)
 
       if($.inArray(resourceBox, boxesArray) === -1 && typeof resourceBox !== 'undefined') {
-        var newBox = '<div class="oaw-grid-item oaw-grid-item_'+resourceBox+'"><article class="oaw-card oaw-card_lessonsection" style="background-color: #'+resourceBoxColor+'"><div class="oaw-card-inner"> <header class="oaw-card-header oaw-card-header_titlepos_'+resourceBoxPosition+'"> <div class="oaw-card-header-image"> <div class="oaw-card-header-image-inner"> </div> </div> <h2 class="oaw-title oaw-title_image oaw-title_2"> </h2> </header> <div class="oaw-card-content"> <div class="oaw-resources-list"> <ul> </ul> </div> </div> </div></article></div>';
+        var newBox = '<div class="oaw-grid-item oaw-grid-item_'+resourceBox+'"><article class="oaw-card oaw-card_lessonsection" style="background-color: #'+resourceBoxColor+'"><div class="oaw-card-inner"> <header class="oaw-card-header"> <div class="oaw-card-header-image"> <div class="oaw-card-header-image-inner"> </div> </div> <h2 class="oaw-title oaw-title_image oaw-title_2"> </h2> </header> <div class="oaw-card-content"> <div class="oaw-resources-list"> <ul> </ul> </div> </div> </div></article></div>';
         $lessonGrid.append(newBox);
         boxesArray.push(resourceBox);
       }
@@ -1018,6 +1031,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
         console.log("Is title or character");
         if (resourceHeadingType === 'heading') {
           $boxHeader.find('.oaw-title_image').append('<img src="'+resourceImage+'">');
+          $boxHeader.addClass('oaw-card-header_titlepos_'+resourceBoxPosition);
         } else {
           $boxHeader.find('.oaw-card-header-image-inner').append('<img src="'+resourceImage+'">');
         }
@@ -1081,6 +1095,10 @@ $(document).ready(function() {
     oawApp.openActivity(url,id);
   });
 
+  // Height in Lessons/Units
+
+  oawApp.unitImageSize();
+
   // DEMO ONLY
   $('body').on('click', '.oaw-js--goback', function(e) {
     e.preventDefault();
@@ -1088,4 +1106,8 @@ $(document).ready(function() {
     oawApp.updateHashWithListener(hash);
   });
 
+});
+
+$(window).on('orientationchange resize', function() {
+  oawApp.unitImageSize();
 });
