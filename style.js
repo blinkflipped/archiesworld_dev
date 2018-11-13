@@ -461,11 +461,11 @@ oawApp.loadSplash = function(data,updateHash) {
 
           var dataOAW = oawApp.bookDataOAW;
           var projectExists = false;
-          var currentProject = 1;
+          var currentProject = 0;
           $.each(dataOAW, function(ind, val) {
             var projectTextweb = val['project_textweb'];
             if (projectTextweb === projectNameTextWeb) {
-              currentProject = ind + 1;
+              currentProject = ind;
               projectExists = true;
               return false;
             }
@@ -473,7 +473,7 @@ oawApp.loadSplash = function(data,updateHash) {
 
           if (!projectExists) {
             oawApp.console("Project to add");
-            var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? Object.keys(oawApp.bookDataOAW).length : 1;
+            var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? Object.keys(oawApp.bookDataOAW).length : 0;
             oawApp.bookDataOAW[lastKey] = {
               'project_textweb' : projectNameTextWeb,
               'project_color' : projectColor,
@@ -563,7 +563,7 @@ oawApp.loadSplash = function(data,updateHash) {
             $.each(resourceTagsArray, function(index, value) {
               if (oawApp.startsWith(value,oawApp.config.tagProjectIndex)) {
                 var projectNumber = value.replace(oawApp.config.tagProjectIndex, '');
-                projectIndex = projectNumber;
+                projectIndex = projectNumber - 1;
               } else if (oawApp.startsWith(value,oawApp.config.tagAuxColor)) {
                 homeAuxColor = value.replace(oawApp.config.tagAuxColor, '');
               }
@@ -599,7 +599,7 @@ oawApp.loadSplash = function(data,updateHash) {
               */
             });
 
-            if (typeof projectIndex !== 'undefined' && projectIndex >= 1) {
+            if (typeof projectIndex !== 'undefined' && projectIndex >= 0) {
               var dataOAW = oawApp.bookDataOAW;
               var projectExists = false;
               $.each(dataOAW, function(ind, val) {
