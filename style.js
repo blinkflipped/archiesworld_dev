@@ -574,16 +574,15 @@ oawApp.loadSplash = function(data,updateHash) {
                 var string1 = value.replace(oawApp.config.tagHeadingProject, '');
                 //1. Get Heading Project
                 currentProjectNumber = string1.slice(0,1);
-
-                // 2. Is Name project
-
+                console.log(currentProjectNumber);
                 if (value.indexOf(oawApp.config.tagHeadingProjectName) >= 0) {
                   isHeadingProject = true;
+                  console.log(value);
                 } else if (value.indexOf(oawApp.config.tagHeadingTopic) >= 0) {
                   isHeadingTopic = true;
                   var string2 = string1.replace(currentProjectNumber+oawApp.config.tagHeadingTopic, '');
-                  //1. Get Heading Project
                   currentTopicNumber = string2.slice(0,1);
+                  console.log(string2,currentTopicNumber);
                 } else if (value.indexOf(oawApp.config.tagHeadingHelloPoster) >= 0) {
                   isHeadingHelloPoster = true;
                 } else if (value.indexOf(oawApp.config.tagHeadingProjectReview) >= 0) {
