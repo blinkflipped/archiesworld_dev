@@ -455,7 +455,6 @@ oawApp.loadSplash = function(data,updateHash) {
         if (unitTagsArray.length) {
           var projectColor, projectNameTextWeb, topicColor, topicNameTextWeb, unitTemplate;
 
-
           $.each(unitTagsArray, function(index, value) {
             value = value.toLowerCase();
             if (oawApp.startsWith(value,oawApp.config.tagProjectColor)) {
@@ -469,6 +468,7 @@ oawApp.loadSplash = function(data,updateHash) {
             } else if (oawApp.startsWith(value,oawApp.config.tagTemplate)) {
               unitTemplate = value.replace(oawApp.config.tagTemplate, '');
             }
+            if (typeof projectNameTextWeb === 'undefined') projectNameTextWeb = 'no_project';
             if (typeof unitTemplate === 'undefined') unitTemplate = '1';
 
           });
