@@ -546,7 +546,8 @@ oawApp.loadSplash = function(data,updateHash) {
       if (isAux) {
 
         $.each(unit.resources, function(ind, resource){
-          var isHeadingTopic = false,
+          var isHeading = false,
+              isHeadingTopic = false,
               isHeadingProject = false,
               isHeadingHelloPoster = false,
               isHeadingProjectReview = false,
@@ -572,18 +573,15 @@ oawApp.loadSplash = function(data,updateHash) {
               // Get headings
               var string1;
               if (oawApp.startsWith(value,oawApp.config.tagHeadingProject)) {
+                isHeading = true;
                 string1 = value.replace(oawApp.config.tagHeadingProject, '');
-                //1. Get Heading Project
                 currentProjectNumber = string1.slice(0,1);
-                console.log(currentProjectNumber);
                 if (value.indexOf(oawApp.config.tagHeadingProjectName) >= 0) {
                   isHeadingProject = true;
-                  console.log(value);
                 } else if (value.indexOf(oawApp.config.tagHeadingTopic) >= 0) {
                   isHeadingTopic = true;
                   var string2 = string1.replace(currentProjectNumber+oawApp.config.tagHeadingTopic, '');
                   currentTopicNumber = string2.slice(0,1);
-                  console.log(string2,currentTopicNumber);
                 } else if (value.indexOf(oawApp.config.tagHeadingHelloPoster) >= 0) {
                   isHeadingHelloPoster = true;
                 } else if (value.indexOf(oawApp.config.tagHeadingProjectReview) >= 0) {
@@ -631,7 +629,7 @@ oawApp.loadSplash = function(data,updateHash) {
                 };
               }
             } else {
-              if (!isHeadingProject && !isHeadingTopic) {
+              if (!isHeading) {
                 // Auxiliary items
                 var homeAuxTitle = resource.title,
                     homeAuxID = resource.id,
@@ -859,7 +857,7 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
 
   oawApp.console("Load Project Index "+currentProject);
 
-  var projectTitleImage =  '', //TODO VER DONDE APARECE
+  var projectTitleImage =  oawApp.bookDataOAW[currentProject].project_title_image,
       projectTitle =  oawApp.bookDataOAW[currentProject].project_title,
       projectColor =  oawApp.bookDataOAW[currentProject].project_color,
       projectTopics =  oawApp.bookDataOAW[currentProject].topics;
