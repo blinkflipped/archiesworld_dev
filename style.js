@@ -936,7 +936,8 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
           resourceTitle = resource.title;
       if (resourceType === 'img') {
         var resourceImage = resource.fileurl,
-            $boxHeader = $lessonGrid.find('.oaw-grid-item_'+resourceBox+' .oaw-card-header');
+            $boxHeader = $lessonGrid.find('.oaw-grid-item_'+resourceBox+' .oaw-card-header'),
+            $boxList = $lessonGrid.find('.oaw-grid-item_'+resourceBox+' .oaw-resources-list ul');
         console.log("Is title or character");
         if (resourceBoxPosition !== '' && typeof resourceBox !== 'undefined') {
           $boxHeader.find('.oaw-title_image').append('<img src="'+resourceImage+'">');
@@ -944,14 +945,15 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
           $boxHeader.find('.oaw-card-header-image-inner').append('<img src="'+resourceImage+'">');
         }
       } else {
-        resourcesList += '<li class="oaw-resources-list-item oaw-resources-list-item_'+resourceBoxIcon+'"></li><a href="javascript:void(0)" class="oaw-resources-list-item-inner"><i class="oaw-resources-list-item-icon"></i><span>'+resourceTitle+'</span></a></li>';
+        resourcesList = '<li class="oaw-resources-list-item oaw-resources-list-item_'+resourceBoxIcon+'"></li><a href="javascript:void(0)" class="oaw-resources-list-item-inner"><i class="oaw-resources-list-item-icon"></i><span>'+resourceTitle+'</span></a></li>';
+        $boxList.append(resourcesList);
       }
 
     }
 
   });
 
-  $lessonGrid.find('.oaw-resources-list ul').append(resourcesList);
+
 
   $('.oaw-page_lesson').imagesLoaded({background: 'div, a, span, button'}, function(){
     // Object Fit support
