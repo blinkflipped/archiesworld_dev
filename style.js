@@ -570,8 +570,9 @@ oawApp.loadSplash = function(data,updateHash) {
               }
 
               // Get headings
+              var string1;
               if (oawApp.startsWith(value,oawApp.config.tagHeadingProject)) {
-                var string1 = value.replace(oawApp.config.tagHeadingProject, '');
+                string1 = value.replace(oawApp.config.tagHeadingProject, '');
                 //1. Get Heading Project
                 currentProjectNumber = string1.slice(0,1);
                 console.log(currentProjectNumber);
