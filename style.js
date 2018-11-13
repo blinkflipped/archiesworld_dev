@@ -615,7 +615,7 @@ oawApp.loadSplash = function(data,updateHash) {
 
             });
 
-            if (typeof projectIndex !== 'undefined' && projectIndex >= 0) {
+            if (typeof projectIndex !== 'undefined' && projectIndex >= 0 && !isHeading) {
               var dataOAW = oawApp.bookDataOAW;
               var projectExists = false;
               $.each(dataOAW, function(ind, val) {
