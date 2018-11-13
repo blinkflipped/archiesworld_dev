@@ -631,7 +631,7 @@ oawApp.loadSplash = function(data,updateHash) {
                 };
               }
             } else {
-              if (!isHeadingProject && isHeadingTopic) {
+              if (!isHeadingProject && !isHeadingTopic) {
                 // Auxiliary items
                 var homeAuxTitle = resource.title,
                     homeAuxID = resource.id,
