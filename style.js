@@ -1053,6 +1053,9 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
     oawApp.removeUnusedClass(bodyClass);
     $('body').addClass(bodyClass);
     $('html, body').animate({ scrollTop: 0 }, 1);
+
+    // Height in Lessons/Units
+    oawApp.unitImageSize();
   });
 
 }
@@ -1094,10 +1097,6 @@ $(document).ready(function() {
         url = $(this).attr('data-url');
     oawApp.openActivity(url,id);
   });
-
-  // Height in Lessons/Units
-
-  oawApp.unitImageSize();
 
   // DEMO ONLY
   $('body').on('click', '.oaw-js--goback', function(e) {
