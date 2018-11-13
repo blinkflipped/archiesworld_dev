@@ -631,20 +631,20 @@ oawApp.loadSplash = function(data,updateHash) {
                 };
               }
             } else {
-              if (isHeadingProject || isHeadingTopic) return;
-              // Auxiliary items
-              var homeAuxTitle = resource.title,
-                  homeAuxID = resource.id,
-                  homeAuxUrl = resource.url,
-                  homeAuxImage = resource.fileurl;
-              oawApp.bookDataOAWAux.home_aux[homeAuxID] = {
-                'id' : homeAuxID,
-                'color' : homeAuxColor,
-                'title' : homeAuxTitle,
-                'image': homeAuxImage,
-                'url' : homeAuxUrl
+              if (!isHeadingProject && isHeadingTopic) {
+                // Auxiliary items
+                var homeAuxTitle = resource.title,
+                    homeAuxID = resource.id,
+                    homeAuxUrl = resource.url,
+                    homeAuxImage = resource.fileurl;
+                oawApp.bookDataOAWAux.home_aux[homeAuxID] = {
+                  'id' : homeAuxID,
+                  'color' : homeAuxColor,
+                  'title' : homeAuxTitle,
+                  'image': homeAuxImage,
+                  'url' : homeAuxUrl
+                }
               }
-
             }
 
 
