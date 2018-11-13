@@ -188,7 +188,8 @@
 	ul {
 		list-style: none;
 		padding: 0;
-		margin: (0px) (0px) (-$space_1/2);
+		margin: 0;
+		//margin: (0px) (0px) (-$space_1/2);
 	}
 	&-item {
 		padding: 0;
