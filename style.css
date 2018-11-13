@@ -152,7 +152,7 @@ body.view-mode {
   .oaw-projects-list ul {
     list-style: none;
     padding: 0;
-    margin: 0px -10px 0px; }
+    margin: 0px; }
     .oaw-projects-list ul li {
       padding: 0;
       padding-bottom: 10px;

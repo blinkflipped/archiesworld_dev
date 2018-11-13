@@ -561,6 +561,7 @@ oawApp.loadSplash = function(data,updateHash) {
             var projectIndex, projectTitle, homeAuxColor;
 
             $.each(resourceTagsArray, function(index, value) {
+              value = value.toLowerCase();
               if (oawApp.startsWith(value,oawApp.config.tagProjectIndex)) {
                 var projectNumber = value.replace(oawApp.config.tagProjectIndex, '');
                 projectIndex = projectNumber - 1;
@@ -576,14 +577,14 @@ oawApp.loadSplash = function(data,updateHash) {
 
                 // 2. Is Name project
 
-                if (value.indexOf(oawApp.config.tagHeadingProjectName)) {
+                if (value.indexOf(oawApp.config.tagHeadingProjectName) >= 0) {
                   isHeadingProject = true;
-                } else if (value.indexOf(oawApp.config.tagHeadingTopic)) {
+                } else if (value.indexOf(oawApp.config.tagHeadingTopic) >= 0) {
                   isHeadingTopic = true;
                   var string2 = string1.replace(currentProjectIndex+oawApp.config.tagHeadingTopic, '');
                   //1. Get Heading Project
                   currentTopicIndex = string2.slice(0,1);
-                } else if (value.indexOf(oawApp.config.tagHeadingHelloPoster)) {
+                } else if (value.indexOf(oawApp.config.tagHeadingHelloPoster) >= 0) {
                   isHeadingHelloPoster = true;
                   //TODO COMPLETE
                 }
@@ -627,6 +628,7 @@ oawApp.loadSplash = function(data,updateHash) {
                 };
               }
             } else {
+              if (isHeadingProject || isHeadingTopic) return;
               // Auxiliary items
               var homeAuxTitle = resource.title,
                   homeAuxID = resource.id,
@@ -651,7 +653,7 @@ oawApp.loadSplash = function(data,updateHash) {
             if (isHeadingTopic) {
               oawApp.bookDataOAW[currentProjectIndex].topics[currentTopicIndex].topic_title_image = resource.fileurl;
             }
-            
+
           }
 
         });
