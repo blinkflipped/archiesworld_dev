@@ -132,6 +132,12 @@ oawApp.config.tagBoxColor = 'Color_box_'; //TODO to lowercase Color_box_
 oawApp.config.tagBoxPosition = 'position_box_';
 oawApp.config.tagResourceType = 'icon_';
 oawApp.config.tagAuxColor = 'color_';
+oawApp.config.tagHeadingProject = 'heading_project_';
+oawApp.config.tagHeadingProjectName = '_name_project';
+oawApp.config.tagHeadingTopic = '_topic_"';
+oawApp.config.tagHeadingHelloPoster = '_helloposter';
+oawApp.config.tagHeadingProjectReview = '_projectreview';
+oawApp.config.tagHeadingReviewStory = '_reviewstory';
 
 oawApp.config.bodyClasses = ['oaw-body-splash', 'oaw-body-home', 'oaw-body-project', 'oaw-body-lesson'];
 
@@ -435,6 +441,7 @@ oawApp.loadSplash = function(data,updateHash) {
         if (unitTagsArray.length) {
           var projectColor, projectNameTextWeb, topicColor, topicNameTextWeb, unitTemplate;
 
+
           $.each(unitTagsArray, function(index, value) {
 
             if (oawApp.startsWith(value,oawApp.config.tagProjectColor)) {
@@ -449,11 +456,12 @@ oawApp.loadSplash = function(data,updateHash) {
               unitTemplate = value.replace(oawApp.config.tagTemplate, '');
             }
             if (typeof unitTemplate === 'undefined') unitTemplate = '1';
+
           });
 
           var dataOAW = oawApp.bookDataOAW;
           var projectExists = false;
-          var currentProject = 0;
+          var currentProject = 1;
           $.each(dataOAW, function(ind, val) {
             var projectTextweb = val['project_textweb'];
             if (projectTextweb === projectNameTextWeb) {
@@ -465,7 +473,7 @@ oawApp.loadSplash = function(data,updateHash) {
 
           if (!projectExists) {
             oawApp.console("Project to add");
-            var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? Object.keys(oawApp.bookDataOAW).length : 0;
+            var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? Object.keys(oawApp.bookDataOAW).length : 1;
             oawApp.bookDataOAW[lastKey] = {
               'project_textweb' : projectNameTextWeb,
               'project_color' : projectColor,
@@ -538,6 +546,13 @@ oawApp.loadSplash = function(data,updateHash) {
       if (isAux) {
 
         $.each(unit.resources, function(ind, resource){
+          var isHeadingTopic = false,
+              isHeadingProject = false,
+              isHeadingHelloPoster = false,
+              isHeadingProjectReview = false,
+              isHeadingReviewStory = false,
+              currentProjectIndex,
+              currentTopicIndex;
 
           var resourceTags = resource.tags,
               resourceTagsArray = (typeof resourceTags !== 'undefined') ? resourceTags.split(" ") : [];
@@ -548,13 +563,42 @@ oawApp.loadSplash = function(data,updateHash) {
             $.each(resourceTagsArray, function(index, value) {
               if (oawApp.startsWith(value,oawApp.config.tagProjectIndex)) {
                 var projectNumber = value.replace(oawApp.config.tagProjectIndex, '');
-                projectIndex = projectNumber - 1;
+                projectIndex = projectNumber;
               } else if (oawApp.startsWith(value,oawApp.config.tagAuxColor)) {
                 homeAuxColor = value.replace(oawApp.config.tagAuxColor, '');
               }
+
+              // Get headings
+              if (oawApp.startsWith(value,oawApp.config.tagHeadingProject)) {
+                var string1 = value.replace(oawApp.config.tagHeadingProject, '');
+                //1. Get Heading Project
+                currentProjectIndex = string1.slice(0,1);
+
+                // 2. Is Name project
+
+                if (value.indexOf(oawApp.config.tagHeadingProjectName)) {
+                  isHeadingProject = true;
+                } else if (value.indexOf(oawApp.config.tagHeadingTopic)) {
+                  isHeadingTopic = true;
+                  var string2 = string1.replace(currentProjectIndex+oawApp.config.tagHeadingTopic, '');
+                  //1. Get Heading Project
+                  currentTopicIndex = string2.slice(0,1);
+                } else if (value.indexOf(oawApp.config.tagHeadingHelloPoster)) {
+                  isHeadingHelloPoster = true;
+                  //TODO COMPLETE
+                }
+
+              }
+
+              //oawApp.config.tagHeadingProject = 'heading_project_';
+              //oawApp.config.tagHeadingProjectName = '_name_project';
+              //oawApp.config.tagHeadingTopic = '_topic_"'; "heading_project_1_topic_2"
+              //oawApp.config.tagHeadingHelloPoster = '_helloposter'; "heading_project_1_helloposter"
+              //oawApp.config.tagHeadingProjectReview = '_projectreview'; "heading_project_1_projectreview"
+              //oawApp.config.tagHeadingReviewStory = '_reviewstory';
             });
 
-            if (typeof projectIndex !== 'undefined' && projectIndex >= 0) {
+            if (typeof projectIndex !== 'undefined' && projectIndex >= 1) {
               var dataOAW = oawApp.bookDataOAW;
               var projectExists = false;
               $.each(dataOAW, function(ind, val) {
@@ -596,6 +640,17 @@ oawApp.loadSplash = function(data,updateHash) {
               }
 
             }
+
+
+            // Is heading
+            if (isHeadingProject) {
+              oawApp.bookDataOAW[currentProjectIndex].project_title_image = resource.fileurl;
+            }
+
+            if (isHeadingTopic) {
+              oawApp.bookDataOAW[currentProjectIndex].topics[currentTopicIndex].topic_title_image = resource.fileurl;
+            }
+
           }
 
         });
@@ -936,8 +991,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
           resourceTitle = resource.title;
       if (resourceType === 'img') {
         var resourceImage = resource.fileurl,
-            $boxHeader = $lessonGrid.find('.oaw-grid-item_'+resourceBox+' .oaw-card-header'),
-            $boxList = $lessonGrid.find('.oaw-grid-item_'+resourceBox+' .oaw-resources-list ul');
+            $boxHeader = $lessonGrid.find('.oaw-grid-item_'+resourceBox+' .oaw-card-header');
         console.log("Is title or character");
         if (resourceBoxPosition !== '' && typeof resourceBox !== 'undefined') {
           $boxHeader.find('.oaw-title_image').append('<img src="'+resourceImage+'">');
@@ -945,6 +999,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
           $boxHeader.find('.oaw-card-header-image-inner').append('<img src="'+resourceImage+'">');
         }
       } else {
+        var $boxList = $lessonGrid.find('.oaw-grid-item_'+resourceBox+' .oaw-resources-list ul');
         resourcesList = '<li class="oaw-resources-list-item oaw-resources-list-item_'+resourceBoxIcon+'"></li><a href="javascript:void(0)" class="oaw-resources-list-item-inner"><i class="oaw-resources-list-item-icon"></i><span>'+resourceTitle+'</span></a></li>';
         $boxList.append(resourcesList);
       }
