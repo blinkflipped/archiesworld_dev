@@ -551,8 +551,8 @@ oawApp.loadSplash = function(data,updateHash) {
               isHeadingHelloPoster = false,
               isHeadingProjectReview = false,
               isHeadingReviewStory = false,
-              currentProjectIndex,
-              currentTopicIndex;
+              currentProjectNumber,
+              currentTopicNumber;
 
           var resourceTags = resource.tags,
               resourceTagsArray = (typeof resourceTags !== 'undefined') ? resourceTags.split(" ") : [];
@@ -573,7 +573,7 @@ oawApp.loadSplash = function(data,updateHash) {
               if (oawApp.startsWith(value,oawApp.config.tagHeadingProject)) {
                 var string1 = value.replace(oawApp.config.tagHeadingProject, '');
                 //1. Get Heading Project
-                currentProjectIndex = string1.slice(0,1);
+                currentProjectNumber = string1.slice(0,1);
 
                 // 2. Is Name project
 
@@ -581,12 +581,15 @@ oawApp.loadSplash = function(data,updateHash) {
                   isHeadingProject = true;
                 } else if (value.indexOf(oawApp.config.tagHeadingTopic) >= 0) {
                   isHeadingTopic = true;
-                  var string2 = string1.replace(currentProjectIndex+oawApp.config.tagHeadingTopic, '');
+                  var string2 = string1.replace(currentProjectNumber+oawApp.config.tagHeadingTopic, '');
                   //1. Get Heading Project
-                  currentTopicIndex = string2.slice(0,1);
+                  currentTopicNumber = string2.slice(0,1);
                 } else if (value.indexOf(oawApp.config.tagHeadingHelloPoster) >= 0) {
                   isHeadingHelloPoster = true;
-                  //TODO COMPLETE
+                } else if (value.indexOf(oawApp.config.tagHeadingProjectReview) >= 0) {
+                  isHeadingProjectReview = true;
+                } else if (value.indexOf(oawApp.config.tagHeadingReviewStory) >= 0) {
+                  isHeadingReviewStory = true;
                 }
 
               }
@@ -647,11 +650,27 @@ oawApp.loadSplash = function(data,updateHash) {
 
             // Is heading
             if (isHeadingProject) {
+              var currentProjectIndex = currentProjectNumber -1;
               oawApp.bookDataOAW[currentProjectIndex].project_title_image = resource.fileurl;
             }
 
             if (isHeadingTopic) {
+              var currentProjectIndex = currentProjectNumber -1;
+              var currentTopicIndex = currentTopicNumber -1;
               oawApp.bookDataOAW[currentProjectIndex].topics[currentTopicIndex].topic_title_image = resource.fileurl;
+            }
+
+            if (isHeadingHelloPoster) {
+              var currentProjectIndex = currentProjectNumber -1;
+              oawApp.bookDataOAW[currentProjectIndex].topics[2].topic_title_image = resource.fileurl;
+            }
+            if (isHeadingProjectReview) {
+              var currentProjectIndex = currentProjectNumber -1;
+              oawApp.bookDataOAW[currentProjectIndex].topics[3].topic_title_image = resource.fileurl;
+            }
+            if (isHeadingReviewStory) {
+              var currentProjectIndex = currentProjectNumber -1;
+              oawApp.bookDataOAW[currentProjectIndex].topics[4].topic_title_image = resource.fileurl;
             }
 
           }
