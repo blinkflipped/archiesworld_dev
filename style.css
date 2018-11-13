@@ -130,12 +130,25 @@ body.view-mode {
     min-width: 150px; }
 
 .oaw-projects-list {
-  padding: 40px;
   /*.oaw-grid-item & {
   	display: flex;
   	min-height: 100%;
   	flex-direction: column;
   }*/ }
+  .oaw-projects-list-inner {
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 40px; }
+    .oaw-projects-list-inner::-webkit-scrollbar {
+      width: 6px !important;
+      height: 6px !important;
+      background: rgba(255, 255, 255, 0.25); }
+    .oaw-projects-list-inner::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 20px; }
+    .oaw-projects-list-inner::-webkit-scrollbar-track {
+      background-color: rgba(255, 255, 255, 0.25);
+      border-radius: 20px; }
   .oaw-projects-list ul {
     list-style: none;
     padding: 0;

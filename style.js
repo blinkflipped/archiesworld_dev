@@ -127,8 +127,8 @@ oawApp.config.tagProjectColor = 'color_project_';
 oawApp.config.tagTopicName = 'name_topic_';
 oawApp.config.tagTopicColor = 'color_topic_';
 oawApp.config.tagTemplate = 'template_';
-oawApp.config.tagBox = 'box';
-oawApp.config.tagBoxColor = 'color_box_';
+oawApp.config.tagBox = 'Box'; //TODO to lowercase box
+oawApp.config.tagBoxColor = 'Color_box_'; //TODO to lowercase Color_box_
 oawApp.config.tagBoxPosition = 'position_box_';
 oawApp.config.tagAuxColor = 'color_';
 
@@ -868,22 +868,22 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
 }
 
 // Load Project
-oawApp.loadUnit = function(data,currentLesson,updateHash) {
+oawApp.loadUnit = function(data,currentUnit,updateHash) {
 
   var currentIndex = 3;
   var currentPage = oawApp.config.tree[currentIndex].id,
       bodyClass = oawApp.config.tree[currentIndex].class,
       hash = oawApp.config.tree[currentIndex].hash,
-      hashWithID = hash+currentLesson;
+      hashWithID = hash+currentUnit;
 
-  oawApp.console("Load Unit Index "+currentLesson);
+  oawApp.console("Load Unit Index "+currentUnit);
 
 
-  var currentProject = oawApp.relationUnitsProjects[currentLesson],
-      currentTopic = oawApp.relationUnitsTopics[currentLesson],
+  var currentProject = oawApp.relationUnitsProjects[currentUnit],
+      currentTopic = oawApp.relationUnitsTopics[currentUnit],
       topicColor = oawApp.bookDataOAW[currentProject].topics[currentTopic].topic_color,
-      lessonTemplate = oawApp.relationUnitsTemplates[currentLesson],
-      lessonTitle =  oawApp.bookData.units[currentLesson].title;
+      lessonTemplate = oawApp.relationUnitsTemplates[currentUnit],
+      lessonTitle =  oawApp.bookData.units[currentUnit].title;
 
   $('.oaw-page_lesson').remove();
 
@@ -895,7 +895,7 @@ oawApp.loadUnit = function(data,currentLesson,updateHash) {
 
   var boxesArray = [];
 
-  var resources = oawApp.bookData.units[currentLesson].resources;
+  var resources = oawApp.bookData.units[currentUnit].resources;
   $.each(resources, function(i, resource){
 
     console.log(resource);
@@ -928,11 +928,13 @@ oawApp.loadUnit = function(data,currentLesson,updateHash) {
       console.log(boxesArray);
 
       var resourceType = resource.type;
-      if (resourceBoxPosition !== '' && typeof resourceBox !== 'undefined') {
+      if (resourceType === 'img' && resourceBoxPosition !== '' && typeof resourceBox !== 'undefined') {
         // Title Element.
         console.log("Title Element");
       }
-
+      if (resourceType === 'img') {
+        console.log("Is or title or character");
+      }
     }
 
   });
