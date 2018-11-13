@@ -484,24 +484,26 @@ oawApp.loadSplash = function(data,updateHash) {
               return false;
             }
           });
+          if (projectNameTextWeb !== 'no_project') {
+            if (!projectExists) {
+              oawApp.console("Project to add");
+              var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? Object.keys(oawApp.bookDataOAW).length : 0;
+              oawApp.bookDataOAW[lastKey] = {
+                'project_textweb' : projectNameTextWeb,
+                'project_color' : projectColor,
+                'project_title' : '',
+                'project_image': '',
+                'topics' : {}
+              };
+              oawApp.relationUnitsProjects[unitIndex] = lastKey;
 
-          if (!projectExists) {
-            oawApp.console("Project to add");
-            var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? Object.keys(oawApp.bookDataOAW).length : 0;
-            oawApp.bookDataOAW[lastKey] = {
-              'project_textweb' : projectNameTextWeb,
-              'project_color' : projectColor,
-              'project_title' : '',
-              'project_image': '',
-              'topics' : {}
-            };
-            oawApp.relationUnitsProjects[unitIndex] = lastKey;
+            } else {
+              oawApp.relationUnitsProjects[unitIndex] = currentProject;
+              //oawApp.console("Add color and textweb to Project");
+              //oawApp.bookDataOAW[currentProject].project_textweb = projectNameTextWeb;
+              //oawApp.bookDataOAW[currentProject].project_color = projectColor;
+            }
 
-          } else {
-            oawApp.relationUnitsProjects[unitIndex] = currentProject;
-            //oawApp.console("Add color and textweb to Project");
-            //oawApp.bookDataOAW[currentProject].project_textweb = projectNameTextWeb;
-            //oawApp.bookDataOAW[currentProject].project_color = projectColor;
           }
 
           // Topics
