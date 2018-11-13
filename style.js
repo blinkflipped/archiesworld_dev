@@ -128,7 +128,7 @@ oawApp.config.tagTopicName = 'name_topic_';
 oawApp.config.tagTopicColor = 'color_topic_';
 oawApp.config.tagTemplate = 'template_';
 oawApp.config.tagBox = 'Box'; //TODO to lowercase box
-oawApp.config.tagBoxColor = 'Color_box_'; //TODO to lowercase Color_box_
+oawApp.config.tagBoxColor = 'Color_box_'; //TODO to lowercase color_box_
 oawApp.config.tagBoxPosition = 'position_box_';
 oawApp.config.tagResourceType = 'icon_';
 oawApp.config.tagAuxColor = 'color_';
@@ -563,7 +563,7 @@ oawApp.loadSplash = function(data,updateHash) {
             $.each(resourceTagsArray, function(index, value) {
               if (oawApp.startsWith(value,oawApp.config.tagProjectIndex)) {
                 var projectNumber = value.replace(oawApp.config.tagProjectIndex, '');
-                projectIndex = projectNumber;
+                projectIndex = Number(projectNumber);
               } else if (oawApp.startsWith(value,oawApp.config.tagAuxColor)) {
                 homeAuxColor = value.replace(oawApp.config.tagAuxColor, '');
               }
@@ -604,7 +604,7 @@ oawApp.loadSplash = function(data,updateHash) {
               var projectExists = false;
               $.each(dataOAW, function(ind, val) {
                 console.log(ind);
-                if (Number(ind) === projectIndex) {
+                if (Number(ind)+1 === projectIndex) {
                   projectExists = true;
                   return false;
                 }
