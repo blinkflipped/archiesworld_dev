@@ -574,7 +574,6 @@ oawApp.loadSplash = function(data,updateHash) {
           }
           oawApp.relationUnitsTemplates[unitIndex] = unitTemplate;
 
-
         }
 
       }
@@ -1053,6 +1052,8 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
       }
     }]
   });
+  var slickGoToCurrent = $unitsWrapper.find('.oaw-current').closest('[data-slick-index]').data('slick-index');
+  $unitsWrapper.slick('slickGoTo', slickGoToCurrent, true);
 
   var $lessonGrid = $('.oaw-page_lesson .oaw-grid_lesson');
 
