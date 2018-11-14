@@ -470,6 +470,7 @@ oawApp.loadSplash = function(data,updateHash) {
             unitNumber = unit.number,
             unitIndex = Number(unit.number) - 1,
             unitTitle = unit.title,
+            unitDescription = unit.description,
             unitTags = unit.tags,
             unitTagsArray = (typeof unitTags !== 'undefined') ? unitTags.split(" ") : [];
 
@@ -554,6 +555,7 @@ oawApp.loadSplash = function(data,updateHash) {
             topics[lastKey].topic_units[lastTopicKey] = {
               'unit_template': unitTemplate,
               'unit_title' : unitTitle,
+              'unit_description' : unitDescription,
               'unit_id' : unitID,
               'unit_number': unitNumber
             };
@@ -999,7 +1001,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
   var topicUnitsHTML = '',
       topicUnits = oawApp.bookDataOAW[currentProject].topics[currentTopic].topic_units;
   $.each(topicUnits, function(i, unit){
-    var topicUnitTitle = unit.unit_title,
+    var topicUnitTitle = unit.unit_description,
         topicUnitID = unit.unit_id,
         topicUnitNumber = unit.unit_number,
         topicUnitTemplate = unit.unit_template,
@@ -1044,7 +1046,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
         slidesToShow: 2,
         slidesToScroll: 2
       }
-    }
+    }]
   });
 
   var $lessonGrid = $('.oaw-page_lesson .oaw-grid_lesson');
