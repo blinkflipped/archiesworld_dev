@@ -33,17 +33,12 @@
     transition-timing-function: ease-in;
     transition-delay: .3s;
   }
-  .oaw-grid-item_2 .oaw-card-image {
-    transition-delay: .4s;
-  }
-  .oaw-grid-item_3 .oaw-card-image {
-    transition-delay: .5s;
-  }
-  .oaw-grid-item_4 .oaw-card-image {
-    transition-delay: .6s;
-  }
-  .oaw-grid-item_5 .oaw-card-image {
-    transition-delay: .7s;
+
+  @for $i from 2 through 8 {
+
+    .oaw-grid-item_#{$i} .oaw-card-image {
+      transition-delay: #{.2s + $i * .1s} ;
+    }
   }
   .oaw-body-home & {
     .oaw-card-image {
@@ -64,28 +59,12 @@
     transition-timing-function: ease-in;
     transition-delay: .3s;
   }
-  .oaw-grid-item_2 .oaw-card-inner {
-    transition-delay: .4s;
-  }
-  .oaw-grid-item_3 .oaw-card-inner {
-    transition-delay: .5s;
-  }
-  .oaw-grid-item_4 .oaw-card-inner {
-    transition-delay: .6s;
-  }
-  .oaw-grid-item_5 .oaw-card-inner {
-    transition-delay: .7s;
-  }
-  .oaw-grid-item_6 .oaw-card-inner {
-    transition-delay: .8s;
-  }
-  .oaw-grid-item_7 .oaw-card-inner {
-    transition-delay: .9s;
-  }
-  .oaw-grid-item_8 .oaw-card-inner {
-    transition-delay: 1s;
-  }
+  @for $i from 2 through 8 {
 
+    .oaw-grid-item_#{$i} .oaw-card-inner {
+      transition-delay: #{.2s + $i * .1s} ;
+    }
+  }
   .oaw-body-lesson & {
     .oaw-card-inner {
       opacity: 1;
