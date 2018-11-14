@@ -1098,7 +1098,7 @@ $(document).ready(function() {
   // Open Activities
   $('body').on('click', '.oaw-js--openActivity', function(e) {
     e.preventDefault();
-    var isImg = $(this).attr('data-isimg'),
+    var isImg = $(this).data('isimg'),
         id = $(this).attr('data-id'),
         url = $(this).attr('data-url');
     oawApp.openActivity(isImg,url,id);
