@@ -307,9 +307,12 @@ oawApp.startsWith = function(string1,string2) {
 oawApp.unitImageSize = function() {
 
   $('.oaw-page_lesson .oaw-card-inner').each(function(i,e) {
-    var totalHeight = $(e).outerHeight(),
-        contentHeight = $(e).find('.oaw-card-content').outerHeight(),
-        diffHeight = totalHeight - contentHeight;
+
+    var isColumn = ($('.oaw-card-header_titlepos_up').length || $('.oaw-card-header_titlepos_down').length),
+        totalHeight = $(e).outerHeight(),
+        contentHeight = $(e).find('.oaw-title_image').outerHeight(),
+        titleHeight = $(e).find('.oaw-card-content').outerHeight(),
+        diffHeight = (isColumn) ? totalHeight - titleHeight - contentHeight : totalHeight - contentHeight;
     $(e).find('.oaw-card-header-image').css('height', diffHeight);
   });
 

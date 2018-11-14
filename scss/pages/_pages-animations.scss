@@ -57,12 +57,12 @@
     transition-property: opacity;
     transition-duration: .3s;
     transition-timing-function: ease-in;
-    transition-delay: .3s;
+    transition-delay: .5s;
   }
   @for $i from 2 through 8 {
 
     .oaw-grid-item_#{$i} .oaw-card-inner {
-      transition-delay: #{.2s + $i * .1s} ;
+      transition-delay: #{.4s + $i * .1s} ;
     }
   }
   .oaw-body-lesson & {
