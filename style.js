@@ -979,7 +979,9 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
 
   $('.oaw-page_lesson').remove();
 
-  var lessonStructureHTML = '<section class="oaw-page oaw-page_lesson"> <header class="oaw-page-header" style="background-color: #'+topicColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"><span>'+lessonTitle+'</span></div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_4 oaw-js--goback" style="color: #'+topicColor+'"> <i class="icon" aria-hidden="true" style="border-right-color: #'+topicColor+'"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_lesson oaw-grid_lesson_'+lessonTemplate+'"></div></div></div><footer class="oaw-page-footer" style="background-color: #'+topicColor+'"><style>.oaw-page_lesson .oaw-page-footer .oaw-button {color: #'+topicColor+'}</style><div class="oaw-inner">  <div class="oaw-menu oaw-menu_1"><nav class="oaw-menu-nav"><ul></ul></nav></div></div></footer></section>';
+
+  var customHash = oawApp.config.tree[2].hash+currentProject;
+  var lessonStructureHTML = '<section class="oaw-page oaw-page_lesson"> <header class="oaw-page-header" style="background-color: #'+topicColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"><span>'+lessonTitle+'</span></div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_4 oaw-js--goback" data-custom-hash="'+customHash+'" style="color: #'+topicColor+'"> <i class="icon" aria-hidden="true" style="border-right-color: #'+topicColor+'"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_lesson oaw-grid_lesson_'+lessonTemplate+'"></div></div></div><footer class="oaw-page-footer" style="background-color: #'+topicColor+'"><style>.oaw-page_lesson .oaw-page-footer .oaw-button {color: #'+topicColor+'}</style><div class="oaw-inner">  <div class="oaw-menu oaw-menu_1"><nav class="oaw-menu-nav"><ul></ul></nav></div></div></footer></section>';
 
   $('body').prepend(lessonStructureHTML);
 
@@ -1107,7 +1109,8 @@ $(document).ready(function() {
   // DEMO ONLY
   $('body').on('click', '.oaw-js--goback', function(e) {
     e.preventDefault();
-    var hash = oawApp.config.tree[1].hash;
+    var customHash = $(this).attr('data-custom-hash'),
+        hash = (typeof customHash !== 'undefined') ? customHash : oawApp.config.tree[1].hash;
     oawApp.updateHashWithListener(hash);
   });
 
