@@ -111,7 +111,7 @@ $page_lesson_bottom: $header_page;
   }
   .oaw-page-content {
     height: calc(100vh - #{$blink_header_height} - #{$page_project_bottom + $header_page});
-    .oaw-inner, .oaw-grid {
+    .oaw-inner, .oaw-grid, .oaw-grid-item {
       height: 100%;
       .oaw-projects-list {height: 100%;}
     }

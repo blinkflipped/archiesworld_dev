@@ -437,6 +437,9 @@ body.oaw-body {
     min-height: 100%; }
   .oaw-card_lessonsection .oaw-card-header .oaw-title_2.oaw-title_image {
     margin-bottom: 0; }
+    .oaw-card_lessonsection .oaw-card-header .oaw-title_2.oaw-title_image img {
+      transform: scale(0.5);
+      transform-origin: 0 50%; }
   .oaw-card_lessonsection .oaw-card-header-image {
     display: flex; }
     .oaw-card_lessonsection .oaw-card-header-image-inner {
@@ -629,9 +632,9 @@ body.oaw-body {
   height: calc(100vh  - 44px); }
 .oaw-page_project .oaw-page-content {
   height: calc(100vh - 44px - 160px); }
-  .oaw-page_project .oaw-page-content .oaw-inner, .oaw-page_project .oaw-page-content .oaw-grid {
+  .oaw-page_project .oaw-page-content .oaw-inner, .oaw-page_project .oaw-page-content .oaw-grid, .oaw-page_project .oaw-page-content .oaw-grid-item {
     height: 100%; }
-    .oaw-page_project .oaw-page-content .oaw-inner .oaw-projects-list, .oaw-page_project .oaw-page-content .oaw-grid .oaw-projects-list {
+    .oaw-page_project .oaw-page-content .oaw-inner .oaw-projects-list, .oaw-page_project .oaw-page-content .oaw-grid .oaw-projects-list, .oaw-page_project .oaw-page-content .oaw-grid-item .oaw-projects-list {
       height: 100%; }
   .oaw-page_project .oaw-page-content .oaw-projects-list {
     display: flex;

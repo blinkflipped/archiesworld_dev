@@ -22,7 +22,13 @@
       min-height: 100%;
     }
     .oaw-card-header {
-      .oaw-title_2.oaw-title_image {margin-bottom: 0;}
+      .oaw-title_2.oaw-title_image {
+        margin-bottom: 0;
+        img {
+          transform: scale(.5);
+          transform-origin: 0 50%;
+        }
+      }
       &-image {
         display: flex;
         &-inner {
