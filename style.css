@@ -296,15 +296,36 @@ body.oaw-body {
       text-decoration: none;
       font-size: 14px;
       letter-spacing: -0.01px; }
+      .oaw-resources-list-item-inner:hover {
+        color: #262e2a; }
     .oaw-resources-list-item-icon {
       display: inline-block;
       min-width: 40px;
       width: 40px;
       height: 40px;
-      background: #ffffff;
+      background: url(img/iconssprite.png) 0 0 #ffffff;
+      background-size: 360px 40px;
       margin-right: 10px;
       border-radius: 200px;
       box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1); }
+    .oaw-resources-list-item_audio .oaw-resources-list-item-icon {
+      background-position: 0px 0px; }
+    .oaw-resources-list-item_read .oaw-resources-list-item-icon {
+      background-position: -40px 0px; }
+    .oaw-resources-list-item_listen .oaw-resources-list-item-icon {
+      background-position: -80px 0px; }
+    .oaw-resources-list-item_hello .oaw-resources-list-item-icon {
+      background-position: -120px 0px; }
+    .oaw-resources-list-item_play .oaw-resources-list-item-icon {
+      background-position: -160px 0px; }
+    .oaw-resources-list-item_flashcards .oaw-resources-list-item-icon {
+      background-position: -200px 0px; }
+    .oaw-resources-list-item_pop_outs .oaw-resources-list-item-icon {
+      background-position: -240px 0px; }
+    .oaw-resources-list-item_video .oaw-resources-list-item-icon {
+      background-position: -280px 0px; }
+    .oaw-resources-list-item_work .oaw-resources-list-item-icon {
+      background-position: -320px 0px; }
 
 @media (max-height: 700px) {
   .oaw-button_3 {
