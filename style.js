@@ -998,8 +998,14 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
       lessonTitle =  oawApp.bookData.units[currentUnit].title,
       lessonID =  oawApp.bookData.units[currentUnit].id;
 
+
+  $('.oaw-page_lesson').remove();
+
   var topicUnitsHTML = '',
       topicUnits = oawApp.bookDataOAW[currentProject].topics[currentTopic].topic_units;
+
+  console.log(currentProject,currentTopic);
+  console.log(topicUnits);
   $.each(topicUnits, function(i, unit){
     var topicUnitTitle = unit.unit_description,
         topicUnitID = unit.unit_id,
@@ -1010,8 +1016,6 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
     topicUnitsHTML += '<div><a href="javascript:void(0)" class="oaw-button oaw-button_2 oaw-button_a oaw-js--loadUnit '+currentClass+'" data-unit-id="'+topicUnitID+'" data-unit-number="'+topicUnitNumber+'" data-unit-template="'+topicUnitTemplate+'"><span>'+topicUnitTitle+'</span></a></div>';
 
   });
-
-  $('.oaw-page_lesson').remove();
 
   var customHash = oawApp.config.tree[2].hash+currentProject;
   var lessonStructureHTML = '<section class="oaw-page oaw-page_lesson"> <header class="oaw-page-header" style="background-color: #'+topicColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"><span>'+lessonTitle+'</span></div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_4 oaw-js--goback" data-custom-hash="'+customHash+'" style="color: #'+topicColor+'"> <i class="icon" aria-hidden="true" style="border-right-color: #'+topicColor+'"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_lesson oaw-grid_lesson_'+lessonTemplate+'"></div></div></div><footer class="oaw-page-footer" style="background-color: #'+topicColor+'"><style>.oaw-page_lesson .oaw-page-footer .oaw-button {color: #'+topicColor+'}</style><div class="oaw-inner">  <div class="oaw-menu oaw-menu_2"><nav class="oaw-menu-nav">'+topicUnitsHTML+'</nav></div></div></footer></section>';
