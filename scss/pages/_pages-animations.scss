@@ -1,0 +1,95 @@
+// Splash
+
+#oaw-splash {
+  .oaw-button-wrapper {
+    opacity: 0;
+    transform: translate(0, 30px);
+    transition-property: opacity, transform;
+    transition-duration: .3s;
+    transition-timing-function: ease-in;
+    transition-delay: .3s;
+  }
+}
+
+.oaw-body-splash {
+  #oaw-splash {
+    .oaw-button-wrapper {
+      opacity: 1;
+      transform: translate(0, 0px);
+
+    }
+  }
+}
+
+// Top Menu
+
+.oaw-page_home {
+  .oaw-card-image {
+    opacity: 0;
+    transform: scale(.9);
+    transform-origin: 50% 50%;
+    transition-property: opacity, transform;
+    transition-duration: .3s;
+    transition-timing-function: ease-in;
+    transition-delay: .3s;
+  }
+  .oaw-grid-item_2 .oaw-card-image {
+    transition-delay: .4s;
+  }
+  .oaw-grid-item_3 .oaw-card-image {
+    transition-delay: .5s;
+  }
+  .oaw-grid-item_4 .oaw-card-image {
+    transition-delay: .6s;
+  }
+  .oaw-grid-item_5 .oaw-card-image {
+    transition-delay: .7s;
+  }
+  .oaw-body-home & {
+    .oaw-card-image {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+}
+
+// Lessons
+
+.oaw-page_lesson {
+  .oaw-card-inner {
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: .3s;
+    transition-timing-function: ease-in;
+    transition-delay: .3s;
+  }
+  .oaw-grid-item_2 .oaw-card-inner {
+    transition-delay: .4s;
+  }
+  .oaw-grid-item_3 .oaw-card-inner {
+    transition-delay: .5s;
+  }
+  .oaw-grid-item_4 .oaw-card-inner {
+    transition-delay: .6s;
+  }
+  .oaw-grid-item_5 .oaw-card-inner {
+    transition-delay: .7s;
+  }
+  .oaw-grid-item_6 .oaw-card-inner {
+    transition-delay: .8s;
+  }
+  .oaw-grid-item_7 .oaw-card-inner {
+    transition-delay: .9s;
+  }
+  .oaw-grid-item_8 .oaw-card-inner {
+    transition-delay: 1s;
+  }
+
+  .oaw-body-lesson & {
+    .oaw-card-inner {
+      opacity: 1;
+    }
+  }
+
+}
