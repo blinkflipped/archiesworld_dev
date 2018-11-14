@@ -144,9 +144,8 @@
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-between;
-			&>div {
-				padding: (0px) $space_1/2 $space_1/2;
-				margin: 0;
+			.oaw-button {
+				margin: (0px) $space_1/2 $space_1/2;
 			}
 		}
 		.slick-arrow {
@@ -164,9 +163,14 @@
 				transform: translate(0,-50%);
 				width: 0;
 				height: 0;
+				opacity: 1;
+			}
+			.slick-disabled {
+				opacity: 0;
 			}
 		}
 		.slick-prev {
+			left: 8px;
 			&::before {
 				border-top: 8px solid transparent;
 				border-bottom: 8px solid transparent;
@@ -174,6 +178,7 @@
 			}
 		}
 		.slick-next {
+			right: 8px;
 			&::before {
 				border-top: 8px solid transparent;
 				border-bottom: 8px solid transparent;

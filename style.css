@@ -203,9 +203,8 @@ body.oaw-body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; }
-  .oaw-menu_2 .oaw-menu-nav > div {
-    padding: 0px 10px 10px;
-    margin: 0; }
+  .oaw-menu_2 .oaw-menu-nav .oaw-button {
+    margin: 0px 10px 10px; }
 .oaw-menu_2 .slick-arrow {
   width: 24px;
   height: 24px;
@@ -220,15 +219,22 @@ body.oaw-body {
     top: 50%;
     transform: translate(0, -50%);
     width: 0;
-    height: 0; }
-.oaw-menu_2 .slick-prev::before {
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-right: 14px solid #ffffff; }
-.oaw-menu_2 .slick-next::before {
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-left: 14px solid #ffffff; }
+    height: 0;
+    opacity: 1; }
+  .oaw-menu_2 .slick-arrow .slick-disabled {
+    opacity: 0; }
+.oaw-menu_2 .slick-prev {
+  left: 8px; }
+  .oaw-menu_2 .slick-prev::before {
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 14px solid #ffffff; }
+.oaw-menu_2 .slick-next {
+  right: 8px; }
+  .oaw-menu_2 .slick-next::before {
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 14px solid #ffffff; }
 .oaw-page_home .oaw-menu {
   background: #009edf; }
   .oaw-page_home .oaw-menu .oaw-button {

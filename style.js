@@ -1021,7 +1021,8 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
     arrows: true,
     dots: false,
     infinite: false,
-    variableWidth: true
+    slidesToShow: 5,
+    slidesToScroll: 5
   });
 
   var $lessonGrid = $('.oaw-page_lesson .oaw-grid_lesson');
