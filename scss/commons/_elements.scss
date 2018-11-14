@@ -75,6 +75,10 @@
 	&_2 {
 		@include button-2;
 		@include button-small;
+		&.oaw-current {
+			opacity: .5;
+			cursor: default;
+		}
 	}
 	&_3 {
 		@include button-3;
@@ -138,6 +142,7 @@
 	}
 	&_2 {
 		.oaw-menu-nav {
+			text-align: center;
 			padding: 15px $space_1*2 0;
 			margin: 0px;
 			list-style: none;
@@ -165,7 +170,7 @@
 				height: 0;
 				opacity: 1;
 			}
-			.slick-disabled {
+			&.slick-disabled {
 				opacity: 0;
 			}
 		}

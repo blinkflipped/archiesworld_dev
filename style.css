@@ -133,6 +133,9 @@ body.oaw-body {
     border-radius: 100px;
     font-size: 14px;
     padding: 8px 8px 6px; }
+    .oaw-button_2.oaw-current {
+      opacity: .5;
+      cursor: default; }
   .oaw-button_3 {
     background: transparent;
     color: #ffffff;
@@ -197,6 +200,7 @@ body.oaw-body {
     padding: 0px 10px 10px;
     margin: 0; }
 .oaw-menu_2 .oaw-menu-nav {
+  text-align: center;
   padding: 15px 40px 0;
   margin: 0px;
   list-style: none;
@@ -221,7 +225,7 @@ body.oaw-body {
     width: 0;
     height: 0;
     opacity: 1; }
-  .oaw-menu_2 .slick-arrow .slick-disabled {
+  .oaw-menu_2 .slick-arrow.slick-disabled {
     opacity: 0; }
 .oaw-menu_2 .slick-prev {
   left: 8px; }
