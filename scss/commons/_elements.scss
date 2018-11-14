@@ -235,7 +235,9 @@
 			padding: 0;
 			padding-bottom: $space_1/2;
 			margin: 0;
-			.oaw-button_3:hover {
+			.oaw-button_3:hover,
+			.oaw-button_3:active,
+			.oaw-button_3:focus {
 				background: $negative_color;
 			}
 		}

@@ -944,7 +944,7 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
       });
 
       topicItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
-      topicItem.innerHTML = '<div class="oaw-projects-list" style="background-color: #'+topicColor+'"><div class="oaw-projects-list-inner"><h2 class="oaw-title oaw-title_image oaw-title_2"><img src="'+topicTitleImage+'"></h2><style>.oaw-grid-item_'+gridItem+' .oaw-projects-list .oaw-button_3:hover {color: #'+topicColor+'}</style><ul>'+topicList+'</ul></div></div>';
+      topicItem.innerHTML = '<div class="oaw-projects-list" style="background-color: #'+topicColor+'"><div class="oaw-projects-list-inner"><h2 class="oaw-title oaw-title_image oaw-title_2"><img src="'+topicTitleImage+'"></h2><style>.oaw-grid-item_'+gridItem+' .oaw-projects-list .oaw-button_3:hover, .oaw-grid-item_'+gridItem+' .oaw-projects-list .oaw-button_3:active, .oaw-grid-item_'+gridItem+' .oaw-projects-list .oaw-button_3:focus {color: #'+topicColor+'}</style><ul>'+topicList+'</ul></div></div>';
 
       topicWrapper.appendChild(topicItem);
     } else { // Aux topics
