@@ -140,7 +140,8 @@ oawApp.config.auxUnitName = 'Portada';
 oawApp.config.bookcover = '';
 oawApp.config.isStudent = false;
 oawApp.config.tagProjectIndex = 'project';
-oawApp.config.tagProjectName = 'name_project_project'; //TEST
+oawApp.config.tagProjectName = 'name_project_';
+oawApp.config.tagProjectNameProtection = '_project_project_';
 oawApp.config.tagProjectColor = 'color_project_';
 oawApp.config.tagTopicName = 'name_topic_';
 oawApp.config.tagTopicColor = 'color_topic_';
@@ -490,7 +491,7 @@ oawApp.loadSplash = function(data,updateHash) {
             value = value.toLowerCase();
             if (oawApp.startsWith(value,oawApp.config.tagProjectColor)) {
               projectColor = value.replace(oawApp.config.tagProjectColor, '');
-            } else if (oawApp.startsWith(value,oawApp.config.tagProjectName)) {
+            } else if (oawApp.startsWith(value,oawApp.config.tagProjectName) && value.indexOf(oawApp.config.tagProjectNameProtection) === -1) {
               projectNameTextWeb = value;
             } else if (oawApp.startsWith(value,oawApp.config.tagTopicName)) {
               topicNameTextWeb = value;
