@@ -275,9 +275,9 @@ oawApp.getCover = function(data) {
 oawApp.openActivity = function(type,url,subunitID) {
   if (type === 'img') {
     blink.rest.image(url);
-  } else if (type === 'audio'){
+  } else if (type === 'audio' || type === 'musica') {
     blink.rest.audio(url);
-  } else if (type === 'video'){
+  } else if (type === 'video') {
     blink.rest.video(url);
   } else {
     if (blink.isApp) {
