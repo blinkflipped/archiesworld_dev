@@ -254,12 +254,15 @@ oawApp.getCover = function(data) {
 }
 
 
-oawApp.openActivity = function(url,id) {
-
-  if (blink.isApp) {
-    blink.rest.openUrl('fullscreen', url);
+oawApp.openActivity = function(isImg,url,subunitID) {
+  if (isImg) {
+    blink.rest.image(url);
   } else {
-    blink.goToActivity(idcurso,id);
+    if (blink.isApp) {
+      blink.rest.openUrl('fullscreen', url);
+    } else {
+      blink.goToActivity(idcurso,subunitID);
+    }
   }
 
 }
@@ -793,10 +796,12 @@ oawApp.loadHomepage = function(data,updateHash) {
           title = auxUnit.title,
           image = auxUnit.image,
           url = auxUnit.url,
+          type = auxUnit.type,
+          isImg = (type === 'img'),
           backgroundColor = auxUnit.color,
           auxUnitID = auxUnit.id;
       auxUnitItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
-      auxUnitItem.innerHTML = '<article class="oaw-card oaw-card_project" style="background-color: #'+backgroundColor+'"><a href="javascript:void(0)" class="oaw-card-inner oaw-js--openActivity" data-id="'+auxUnitID+'" data-url="'+url+'"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="'+image+'" alt="'+title+'"> </div> </div> </a></article>';
+      auxUnitItem.innerHTML = '<article class="oaw-card oaw-card_project" style="background-color: #'+backgroundColor+'"><a href="javascript:void(0)" class="oaw-card-inner oaw-js--openActivity" data-id="'+auxUnitID+'" data-url="'+url+'" data-isimg="'+isImg+'"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="'+image+'" alt="'+title+'"> </div> </div> </a></article>';
 
       gridTopMenu.appendChild(auxUnitItem);
     });
@@ -805,8 +810,10 @@ oawApp.loadHomepage = function(data,updateHash) {
     $.each(oawApp.bookDataOAWAux.home_footer_aux, function(i, auxFooterUnit) {
       var title = auxFooterUnit.title,
           url = auxFooterUnit.url,
+          type = auxFooterUnit.type,
+          isImg = (type === 'img'),
           id = auxFooterUnit.id;
-      homeFooterAux += ' <a href="javascript:void(0)" class="oaw-button oaw-button_2 oaw-button_a oaw-js--openActivity" data-id="'+id+'" data-url="'+url+'"> <span>'+title+'</span> </a> </li> ';
+      homeFooterAux += ' <a href="javascript:void(0)" class="oaw-button oaw-button_2 oaw-button_a oaw-js--openActivity" data-id="'+id+'" data-url="'+url+'" data-isimg="'+isImg+'"> <span>'+title+'</span> </a> </li> ';
     });
 
 
@@ -972,7 +979,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
 
   $('.oaw-page_lesson').remove();
 
-  var lessonStructureHTML = '<section class="oaw-page oaw-page_lesson"> <header class="oaw-page-header" style="background-color: #'+topicColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"><span>'+lessonTitle+'</span></div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_4 oaw-js--goback" style="color: #'+topicColor+'"> <i class="icon" aria-hidden="true" style="border-right-color: #'+topicColor+'"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_lesson oaw-grid_lesson_'+lessonTemplate+'"></div></div></div><footer class="oaw-page-footer" style="background-color: #'+topicColor+'"><style>.oaw-page-footer .oaw-button {color: #'+topicColor+'}</style><div class="oaw-inner">  <div class="oaw-menu oaw-menu_1"><nav class="oaw-menu-nav"><ul></ul></nav></div></div></footer></section>';
+  var lessonStructureHTML = '<section class="oaw-page oaw-page_lesson"> <header class="oaw-page-header" style="background-color: #'+topicColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"><span>'+lessonTitle+'</span></div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_4 oaw-js--goback" style="color: #'+topicColor+'"> <i class="icon" aria-hidden="true" style="border-right-color: #'+topicColor+'"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_lesson oaw-grid_lesson_'+lessonTemplate+'"></div></div></div><footer class="oaw-page-footer" style="background-color: #'+topicColor+'"><style>.oaw-page_lesson .oaw-page-footer .oaw-button {color: #'+topicColor+'}</style><div class="oaw-inner">  <div class="oaw-menu oaw-menu_1"><nav class="oaw-menu-nav"><ul></ul></nav></div></div></footer></section>';
 
   $('body').prepend(lessonStructureHTML);
 
@@ -1019,8 +1026,11 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
       console.log(boxesArray);
 
       var resourceType = resource.type,
+          resourceIsImg = (resourceType === 'img'),
+          resourceID = resource.id,
+          resourceUrl = resource.url,
           resourceTitle = resource.title;
-      if (resourceType === 'img') {
+      if (resourceIsImg) {
         var resourceImage = resource.fileurl,
             $boxHeader = $lessonGrid.find('.oaw-grid-item_'+resourceBox+' .oaw-card-header');
         console.log("Is title or character");
@@ -1032,7 +1042,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
         }
       } else {
         var $boxList = $lessonGrid.find('.oaw-grid-item_'+resourceBox+' .oaw-resources-list ul');
-        resourcesList = '<li class="oaw-resources-list-item oaw-resources-list-item_'+resourceBoxIcon+'"></li><a href="javascript:void(0)" class="oaw-resources-list-item-inner"><i class="oaw-resources-list-item-icon"></i><span>'+resourceTitle+'</span></a></li>';
+        resourcesList = '<li class="oaw-resources-list-item oaw-resources-list-item_'+resourceBoxIcon+'"></li><a href="javascript:void(0)" class="oaw-resources-list-item-inner oaw-js--openActivity" data-id="'+resourceID+'" data-url="'+resourceUrl+'" data-isimg="'+resourceIsImg+'"><i class="oaw-resources-list-item-icon"></i><span>'+resourceTitle+'</span></a></li>';
         $boxList.append(resourcesList);
       }
 
@@ -1088,9 +1098,10 @@ $(document).ready(function() {
   // Open Activities
   $('body').on('click', '.oaw-js--openActivity', function(e) {
     e.preventDefault();
-    var id = $(this).attr('data-id'),
+    var isImg = $(this).attr('data-isimg'),
+        id = $(this).attr('data-id'),
         url = $(this).attr('data-url');
-    oawApp.openActivity(url,id);
+    oawApp.openActivity(isImg,url,id);
   });
 
   // DEMO ONLY
