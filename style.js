@@ -980,7 +980,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
 
   var topicUnitsHTML = '',
       topicUnits = oawApp.bookDataOAW[currentProject].topics[currentTopic].topic_units;
-  $.each(topicUnits, function(i, units){
+  $.each(topicUnits, function(i, unit){
     var topicUnitTitle = unit.unit_title,
         topicUnitID = unit.unit_id,
         topicUnitNumber = unit.unit_number,
