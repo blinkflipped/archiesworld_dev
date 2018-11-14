@@ -1118,7 +1118,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
         }
       } else {
         var $boxList = $lessonGrid.find('.oaw-grid-item_'+resourceBox+' .oaw-resources-list ul');
-        resourcesList = '<li class="oaw-resources-list-item oaw-resources-list-item_'+resourceBoxIcon+'"></li><a href="javascript:void(0)" onclick="'+resourceOnclick+'" class="oaw-resources-list-item-inner oaw-js--openActivity" data-id="'+resourceID+'" data-url="'+resourceUrl+'" data-type="'+resourceType+'"><i class="oaw-resources-list-item-icon"></i><span>'+resourceTitle+'</span></a></li>';
+        resourcesList = '<li class="oaw-resources-list-item oaw-resources-list-item_'+resourceBoxIcon+'"><a href="javascript:void(0)" onclick="'+resourceOnclick+'" class="oaw-resources-list-item-inner oaw-js--openActivity" data-id="'+resourceID+'" data-url="'+resourceUrl+'" data-type="'+resourceType+'"><i class="oaw-resources-list-item-icon"></i><span>'+resourceTitle+'</span></a></li>';
         $boxList.append(resourcesList);
       }
 
