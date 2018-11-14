@@ -559,7 +559,7 @@ oawApp.loadSplash = function(data,updateHash) {
               'unit_id' : unitID,
               'unit_number': unitNumber
             };
-            oawApp.relationUnitsTopics[unitIndex] = lastTopicKey;
+            oawApp.relationUnitsTopics[unitIndex] = lastKey;
           } else {
             oawApp.console("Add Unit to topic");
             var lastTopicKey = (Object.keys(topics[currentTopic].topic_units).length > 0 ) ? Object.keys(topics[currentTopic].topic_units).length : 0;
@@ -569,7 +569,7 @@ oawApp.loadSplash = function(data,updateHash) {
               'unit_id' : unitID,
               'unit_number': unitNumber
             };
-            oawApp.relationUnitsTopics[unitIndex] = lastTopicKey;
+            oawApp.relationUnitsTopics[unitIndex] = currentTopic;
 
           }
           oawApp.relationUnitsTemplates[unitIndex] = unitTemplate;
