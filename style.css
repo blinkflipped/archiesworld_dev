@@ -793,5 +793,5 @@ body.oaw-body {
   transition-delay: 1.1s; }
 .oaw-page_lesson .oaw-grid-item_8 .oaw-card-inner {
   transition-delay: 1.2s; }
-.oaw-body-lesson .oaw-page_lesson .oaw-card-inner {
+.oaw-body-lesson-inview .oaw-page_lesson .oaw-card-inner {
   opacity: 1; }

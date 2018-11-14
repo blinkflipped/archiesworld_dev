@@ -65,7 +65,7 @@
       transition-delay: #{.4s + $i * .1s} ;
     }
   }
-  .oaw-body-lesson & {
+  .oaw-body-lesson-inview & {
     .oaw-card-inner {
       opacity: 1;
     }
