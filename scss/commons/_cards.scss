@@ -43,6 +43,9 @@
         .oaw-title_2.oaw-title_image {
           padding-top: 10px;
         }
+        .oaw-card-header-image-inner {
+          @include img-fit(contain, center bottom);  
+        }
       }
       &.oaw-card-header_titlepos_up,
       &.oaw-card-header_column_reverse {
@@ -51,6 +54,9 @@
         justify-content: flex-end;
         .oaw-title_2.oaw-title_image {
           padding-bottom: 10px;
+        }
+        .oaw-card-header-image-inner {
+          @include img-fit(contain, center top);
         }
       }
       &.oaw-card-header_titlepos_right,
