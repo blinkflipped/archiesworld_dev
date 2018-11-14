@@ -146,12 +146,12 @@ oawApp.config.tagProjectColor = 'color_project_';
 oawApp.config.tagTopicName = 'name_topic_';
 oawApp.config.tagTopicColor = 'color_topic_';
 oawApp.config.tagTemplate = 'template_';
-oawApp.config.tagBox = 'Box'; //TODO to lowercase box
-oawApp.config.tagBoxColor = 'Color_box_'; //TODO to lowercase color_box_
+oawApp.config.tagBox = 'box'; //Former Box
+oawApp.config.tagBoxColor = 'color_box_';
 oawApp.config.tagBoxPosition = 'position_';
 oawApp.config.tagResourceType = 'icon_';
 oawApp.config.tagResourceHeadingType = 'type_';
-oawApp.config.tagAuxColor = 'color_';
+oawApp.config.tagAuxColor = 'color_project_'; //Former color_
 oawApp.config.tagHeadingProject = 'heading_project_';
 oawApp.config.tagHeadingProjectName = '_name_project';
 oawApp.config.tagHeadingTopic = '_topic_';
@@ -1077,6 +1077,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
       var resourceBox, resourceBoxColor, resourceBoxPosition, resourceBoxIcon, resourceHeadingType;
 
       $.each(resourceTagsArray, function(index, value) {
+        value = value.toLowerCase();
         if (oawApp.startsWith(value,oawApp.config.tagBox)) {
           resourceBox = value.replace(oawApp.config.tagBox, '');
         } else if (oawApp.startsWith(value,oawApp.config.tagBoxColor)) {
