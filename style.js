@@ -822,9 +822,10 @@ oawApp.loadHomepage = function(data,updateHash) {
           type = auxUnit.type,
           isImg = (type === 'img'),
           backgroundColor = auxUnit.color,
+          onclick = auxUnit.onclickTitle,
           auxUnitID = auxUnit.id;
       auxUnitItem.className = 'oaw-grid-item oaw-grid-item_'+gridItem;
-      auxUnitItem.innerHTML = '<article class="oaw-card oaw-card_project" style="background-color: #'+backgroundColor+'"><a href="javascript:void(0)" class="oaw-card-inner oaw-js--openActivity" data-id="'+auxUnitID+'" data-url="'+url+'" data-type="'+type+'"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="'+image+'" alt="'+title+'"> </div> </div> </a></article>';
+      auxUnitItem.innerHTML = '<article class="oaw-card oaw-card_project" style="background-color: #'+backgroundColor+'"><a href="javascript:void(0)" onclick="'+onclick+'" class="oaw-card-inner oaw-js--openActivity" data-id="'+auxUnitID+'" data-url="'+url+'" data-type="'+type+'"> <div class="oaw-card-image"> <div class="oaw-card-image-inner"> <img src="'+image+'" alt="'+title+'"> </div> </div> </a></article>';
 
       gridTopMenu.appendChild(auxUnitItem);
     });
@@ -833,10 +834,11 @@ oawApp.loadHomepage = function(data,updateHash) {
     $.each(oawApp.bookDataOAWAux.home_footer_aux, function(i, auxFooterUnit) {
       var title = auxFooterUnit.title,
           url = auxFooterUnit.url,
+          onclick = auxFooterUnit.onclickTitle,
           type = auxFooterUnit.type,
           isImg = (type === 'img'),
           id = auxFooterUnit.id;
-      homeFooterAux += ' <a href="javascript:void(0)" class="oaw-button oaw-button_2 oaw-button_a oaw-js--openActivity" data-id="'+id+'" data-url="'+url+'" data-type="'+type+'"> <span>'+title+'</span> </a> </li> ';
+      homeFooterAux += ' <a href="javascript:void(0)" onclick="'+onclick+'" class="oaw-button oaw-button_2 oaw-button_a oaw-js--openActivity" data-id="'+id+'" data-url="'+url+'" data-type="'+type+'"> <span>'+title+'</span> </a> </li> ';
     });
 
 
@@ -1102,6 +1104,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
           resourceIsImg = (resourceType === 'img'),
           resourceID = resource.id,
           resourceUrl = resource.url,
+          resourceOnclick = resource.onclickTitle,
           resourceTitle = resource.title;
       if (resourceIsImg) {
         var resourceImage = resource.fileurl,
@@ -1115,7 +1118,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
         }
       } else {
         var $boxList = $lessonGrid.find('.oaw-grid-item_'+resourceBox+' .oaw-resources-list ul');
-        resourcesList = '<li class="oaw-resources-list-item oaw-resources-list-item_'+resourceBoxIcon+'"></li><a href="javascript:void(0)" class="oaw-resources-list-item-inner oaw-js--openActivity" data-id="'+resourceID+'" data-url="'+resourceUrl+'" data-type="'+resourceType+'"><i class="oaw-resources-list-item-icon"></i><span>'+resourceTitle+'</span></a></li>';
+        resourcesList = '<li class="oaw-resources-list-item oaw-resources-list-item_'+resourceBoxIcon+'"></li><a href="javascript:void(0)" onclick="'+resourceOnclick+'" class="oaw-resources-list-item-inner oaw-js--openActivity" data-id="'+resourceID+'" data-url="'+resourceUrl+'" data-type="'+resourceType+'"><i class="oaw-resources-list-item-icon"></i><span>'+resourceTitle+'</span></a></li>';
         $boxList.append(resourcesList);
       }
 
@@ -1169,13 +1172,13 @@ $(document).ready(function() {
   });
 
   // Open Activities
-  $('body').on('click', '.oaw-js--openActivity', function(e) {
+  /*$('body').on('click', '.oaw-js--openActivity', function(e) {
     e.preventDefault();
     var type = $(this).attr('data-type'),
         id = $(this).attr('data-id'),
         url = $(this).attr('data-url');
     oawApp.openActivity(type,url,id);
-  });
+  });*/
 
   // DEMO ONLY
   $('body').on('click', '.oaw-js--goback', function(e) {
