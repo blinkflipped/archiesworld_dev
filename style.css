@@ -463,7 +463,8 @@ body.oaw-body {
   .oaw-card_lessonsection .oaw-card-header .oaw-title_2.oaw-title_image {
     margin-bottom: 0; }
   .oaw-card_lessonsection .oaw-card-header-image {
-    display: flex; }
+    display: flex;
+    min-height: 80px; }
     .oaw-card_lessonsection .oaw-card-header-image-inner {
       min-width: 100%; }
       .oaw-card_lessonsection .oaw-card-header-image-inner img {

@@ -29,6 +29,7 @@
       }
       &-image {
         display: flex;
+        min-height: 80px;
         &-inner {
           min-width: 100%;
           @include img-fit(contain, center center)
