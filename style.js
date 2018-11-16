@@ -142,6 +142,7 @@ oawApp.config.isStudent = false;
 oawApp.config.tagProjectIndex = 'project';
 oawApp.config.tagProjectName = 'name_project_';
 oawApp.config.tagProjectNameProtection = '_project_project_';
+oawApp.config.tagProjectNameProtection_2 = 'name_project_1_';
 oawApp.config.tagProjectColor = 'color_project_';
 oawApp.config.tagTopicName = 'name_topic_';
 oawApp.config.tagTopicColor = 'color_topic_';
@@ -491,7 +492,7 @@ oawApp.loadSplash = function(data,updateHash) {
             value = value.toLowerCase();
             if (oawApp.startsWith(value,oawApp.config.tagProjectColor)) {
               projectColor = value.replace(oawApp.config.tagProjectColor, '');
-            } else if (oawApp.startsWith(value,oawApp.config.tagProjectName) && value.indexOf(oawApp.config.tagProjectNameProtection) === -1) {
+            } else if (oawApp.startsWith(value,oawApp.config.tagProjectName) && value.indexOf(oawApp.config.tagProjectNameProtection) === -1 && value.replace(oawApp.config.tagProjectNameProtection_2,''.length > 0) {
               projectNameTextWeb = value;
             } else if (oawApp.startsWith(value,oawApp.config.tagTopicName)) {
               topicNameTextWeb = value;
