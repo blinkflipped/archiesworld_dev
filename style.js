@@ -494,7 +494,7 @@ oawApp.loadSplash = function(data,updateHash) {
               projectColor = value.replace(oawApp.config.tagProjectColor, '');
             } else if (oawApp.startsWith(value,oawApp.config.tagProjectName) && value.indexOf(oawApp.config.tagProjectNameProtection) === -1) {
               console.log('HERE', value.replace(oawApp.config.tagProjectNameProtection_2,'').length);
-              projectNameTextWeb = value;
+              if (value.replace(oawApp.config.tagProjectNameProtection_2,'').length > 0) projectNameTextWeb = value;
             } else if (oawApp.startsWith(value,oawApp.config.tagTopicName)) {
               topicNameTextWeb = value;
             } else if (oawApp.startsWith(value,oawApp.config.tagTopicColor)) {
