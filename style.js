@@ -492,7 +492,7 @@ oawApp.loadSplash = function(data,updateHash) {
             value = value.toLowerCase();
             if (oawApp.startsWith(value,oawApp.config.tagProjectColor)) {
               projectColor = value.replace(oawApp.config.tagProjectColor, '');
-            } else if (oawApp.startsWith(value,oawApp.config.tagProjectName) && value.indexOf(oawApp.config.tagProjectNameProtection) === -1 && value.replace(oawApp.config.tagProjectNameProtection_2,''.length > 0) {
+            } else if (oawApp.startsWith(value,oawApp.config.tagProjectName) && value.indexOf(oawApp.config.tagProjectNameProtection) === -1 && value.replace(oawApp.config.tagProjectNameProtection_2,'').length > 0) {
               projectNameTextWeb = value;
             } else if (oawApp.startsWith(value,oawApp.config.tagTopicName)) {
               topicNameTextWeb = value;
