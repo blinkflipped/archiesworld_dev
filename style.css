@@ -199,6 +199,16 @@ body.oaw-body {
   .oaw-menu-nav ul li {
     padding: 0px 10px 10px;
     margin: 0; }
+.oaw-menu-nav_items_1 li {
+  width: 100%; }
+.oaw-menu-nav_items_2 li {
+  width: 50%; }
+.oaw-menu-nav_items_3 li {
+  width: 33.3333%; }
+.oaw-menu-nav_items_4 li {
+  width: 25%; }
+.oaw-menu-nav_items_5 li {
+  width: 20%; }
 .oaw-menu_2 .oaw-menu-nav {
   text-align: center;
   padding: 15px 40px 0;
@@ -316,13 +326,13 @@ body.oaw-body {
       background-position: -40px 0px; }
     .oaw-resources-list-item_listen .oaw-resources-list-item-icon {
       background-position: -80px 0px; }
-    .oaw-resources-list-item_hello .oaw-resources-list-item-icon {
+    .oaw-resources-list-item_hello .oaw-resources-list-item-icon, .oaw-resources-list-item_hand .oaw-resources-list-item-icon {
       background-position: -120px 0px; }
     .oaw-resources-list-item_play .oaw-resources-list-item-icon {
       background-position: -160px 0px; }
     .oaw-resources-list-item_flashcards .oaw-resources-list-item-icon {
       background-position: -200px 0px; }
-    .oaw-resources-list-item_pop_outs .oaw-resources-list-item-icon {
+    .oaw-resources-list-item_pop_outs .oaw-resources-list-item-icon, .oaw-resources-list-item_popouts .oaw-resources-list-item-icon {
       background-position: -240px 0px; }
     .oaw-resources-list-item_video .oaw-resources-list-item-icon {
       background-position: -280px 0px; }

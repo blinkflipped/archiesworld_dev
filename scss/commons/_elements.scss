@@ -310,10 +310,12 @@
 		&_audio { .oaw-resources-list-item-icon { background-position: 0px 0px} }
 		&_read { .oaw-resources-list-item-icon { background-position: -40px 0px} }
 		&_listen { .oaw-resources-list-item-icon { background-position: -80px 0px} }
-		&_hello { .oaw-resources-list-item-icon { background-position: -120px 0px} }
+		&_hello,
+		&_hand { .oaw-resources-list-item-icon { background-position: -120px 0px} }
 		&_play { .oaw-resources-list-item-icon { background-position: -160px 0px} }
 		&_flashcards { .oaw-resources-list-item-icon { background-position: -200px 0px} }
-		&_pop_outs { .oaw-resources-list-item-icon { background-position: -240px 0px} }
+		&_pop_outs,
+		&_popouts { .oaw-resources-list-item-icon { background-position: -240px 0px} }
 		&_video { .oaw-resources-list-item-icon { background-position: -280px 0px} }
 		&_work { .oaw-resources-list-item-icon { background-position: -320px 0px} }
 	}
