@@ -199,16 +199,24 @@ body.oaw-body {
   .oaw-menu-nav ul li {
     padding: 0px 10px 10px;
     margin: 0; }
-.oaw-menu-nav_items_1 li {
+.oaw-menu-nav_items_1 {
+  text-align: center;
   width: 100%; }
-.oaw-menu-nav_items_2 li {
+.oaw-menu-nav_items_2 {
+  text-align: center;
   width: 50%; }
-.oaw-menu-nav_items_3 li {
-  width: 33.3333%; }
-.oaw-menu-nav_items_4 li {
+.oaw-menu-nav_items_3 {
+  text-align: center;
+  width: 33.3333333333%; }
+.oaw-menu-nav_items_4 {
+  text-align: center;
   width: 25%; }
-.oaw-menu-nav_items_5 li {
+.oaw-menu-nav_items_5 {
+  text-align: center;
   width: 20%; }
+.oaw-menu-nav_items_6 {
+  text-align: center;
+  width: 16.6666666667%; }
 .oaw-menu_2 .oaw-menu-nav {
   text-align: center;
   padding: 15px 40px 0;
