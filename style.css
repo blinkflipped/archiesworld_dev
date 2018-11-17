@@ -190,7 +190,7 @@ body.oaw-body {
       margin-bottom: 20px; }
 
 .oaw-menu-nav ul {
-  padding: 15px 40px 0;
+  padding: 15px 0 0;
   margin: 0px;
   list-style: none;
   display: flex;
