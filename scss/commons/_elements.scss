@@ -142,8 +142,10 @@
 		@for $i from 1 through 6 {
 
 			&_items_#{$i} {
-				text-align: center;
-				width: #{100% / $i};
+				li {
+					text-align: center;
+					width: #{100% / $i};
+				}
 			}
 		}
 

@@ -199,22 +199,22 @@ body.oaw-body {
   .oaw-menu-nav ul li {
     padding: 0px 10px 10px;
     margin: 0; }
-.oaw-menu-nav_items_1 {
+.oaw-menu-nav_items_1 li {
   text-align: center;
   width: 100%; }
-.oaw-menu-nav_items_2 {
+.oaw-menu-nav_items_2 li {
   text-align: center;
   width: 50%; }
-.oaw-menu-nav_items_3 {
+.oaw-menu-nav_items_3 li {
   text-align: center;
   width: 33.3333333333%; }
-.oaw-menu-nav_items_4 {
+.oaw-menu-nav_items_4 li {
   text-align: center;
   width: 25%; }
-.oaw-menu-nav_items_5 {
+.oaw-menu-nav_items_5 li {
   text-align: center;
   width: 20%; }
-.oaw-menu-nav_items_6 {
+.oaw-menu-nav_items_6 li {
   text-align: center;
   width: 16.6666666667%; }
 .oaw-menu_2 .oaw-menu-nav {
