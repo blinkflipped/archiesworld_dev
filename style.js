@@ -850,8 +850,8 @@ oawApp.loadHomepage = function(data,updateHash) {
           id = auxFooterUnit.id;
       homeFooterAux += '<li><a href="javascript:void(0)" onclick="'+onclick+'" class="oaw-button oaw-button_2 oaw-button_a oaw-js--openActivity" data-id="'+id+'" data-url="'+url+'" data-type="'+type+'"> <span>'+title+'</span> </a> </li> ';
     });
-    var totalHomeFooteAux = homeFooteAuxData.length;
-
+    var totalHomeFooteAux = Object.keys(homeFooteAuxData).length;
+    
     var auxUnit = oawApp.getAuxUnit(oawApp.bookData),
         headerImage = oawApp.bookData.units[auxUnit].image;
     var homeStructure = '<section class="oaw-page oaw-page_home"> <header class="oaw-page-header"> <div class="oaw-inner"> <div class="oaw-page-header-image"> <div class="oaw-page-header-image-inner"> <img src="'+headerImage+'"> </div> </div> </div> </header> <div class="oaw-page-content"> <div class="oaw-inner"> <div class="oaw-grid oaw-grid_1">  </div> </div> </div> <footer class="oaw-page-footer"> <div class="oaw-inner"> <div class="oaw-menu oaw-menu_1"> <nav class="oaw-menu-nav oaw-menu-nav_items_'+totalHomeFooteAux+'"> <ul>'+homeFooterAux+'</ul> </nav> </div> </div> </footer> </section>';
