@@ -161,6 +161,8 @@ oawApp.config.tagHeadingHelloPoster = '_helloposter';
 oawApp.config.tagHeadingProjectReview = '_projectreview';
 oawApp.config.tagHeadingReviewStory = '_reviewstory';
 
+oawApp.config.projectreviewindex = 3;
+
 oawApp.config.bodyClasses = ['oaw-body-splash', 'oaw-body-home', 'oaw-body-project', 'oaw-body-lesson', 'oaw-body-projectreview'];
 
 oawApp.config.tree = {
@@ -403,7 +405,7 @@ oawApp.hashDistributor = function(currentHash,data,updateHash) {
     var oawprojectreview = oawApp.getIDByHash(4,currentHash);
     if (oawprojectreview !== '' && oawprojectreview !== null) {
       var currentProject = oawprojectreview;
-      var currentTopic = 3;
+      var currentTopic = oawApp.config.projectreviewindex;
       hashDistributorTimeout = setTimeout(function() {oawApp.loadProjectReview(data,currentProject,currentTopic,updateHash)}, timeToWait);
 
     } else {
@@ -1054,9 +1056,11 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
     topicUnitsHTML += '<div><a href="javascript:void(0)" class="oaw-button oaw-button_2 oaw-button_a oaw-js--loadUnit '+currentClass+'" data-unit-id="'+topicUnitID+'" data-unit-number="'+topicUnitNumber+'" data-unit-template="'+topicUnitTemplate+'"><span>'+topicUnitTitle+'</span></a></div>';
 
   });
+  var isProjectReviewChildren = currentTopic === oawApp.config.projectreviewindex,
+      customClass = (isProjectReviewChildren) ? 'oaw-page_lesson_projectreview' : '',
+      customHash = (isProjectReviewChildren) ? oawApp.config.tree[4].hash+currentProject : oawApp.config.tree[2].hash+currentProject;
 
-  var customHash = oawApp.config.tree[2].hash+currentProject;
-  var lessonStructureHTML = '<section class="oaw-page oaw-page_lesson"> <header class="oaw-page-header" style="background-color: #'+topicColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"><span>'+lessonTitle+'</span></div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_4 oaw-js--goback" data-custom-hash="'+customHash+'" style="color: #'+topicColor+'"> <i class="icon" aria-hidden="true" style="border-right-color: #'+topicColor+'"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_lesson oaw-grid_lesson_'+lessonTemplate+'"></div></div></div><footer class="oaw-page-footer" style="background-color: #'+topicColor+'"><style>.oaw-page_lesson .oaw-page-footer .oaw-button {color: #'+topicColor+'}</style><div class="oaw-inner">  <div class="oaw-menu oaw-menu_2"><nav class="oaw-menu-nav">'+topicUnitsHTML+'</nav></div></div></footer></section>';
+  var lessonStructureHTML = '<section class="oaw-page oaw-page_lesson '+customClass+'"> <header class="oaw-page-header" style="background-color: #'+topicColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"><span>'+lessonTitle+'</span></div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_4 oaw-js--goback" data-custom-hash="'+customHash+'" style="color: #'+topicColor+'"> <i class="icon" aria-hidden="true" style="border-right-color: #'+topicColor+'"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_lesson oaw-grid_lesson_'+lessonTemplate+'"></div></div></div><footer class="oaw-page-footer" style="background-color: #'+topicColor+'"><style>.oaw-page_lesson .oaw-page-footer .oaw-button {color: #'+topicColor+'}</style><div class="oaw-inner">  <div class="oaw-menu oaw-menu_2"><nav class="oaw-menu-nav">'+topicUnitsHTML+'</nav></div></div></footer></section>';
 
   $('body').prepend(lessonStructureHTML);
 
