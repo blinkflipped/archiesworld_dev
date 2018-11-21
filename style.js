@@ -557,7 +557,7 @@ oawApp.loadSplash = function(data,updateHash) {
                 'topics' : {}
               };
               oawApp.relationUnitsProjects[unitIndex] = lastKey;
-
+              currentProject = lastKey;
             } else {
               oawApp.relationUnitsProjects[unitIndex] = currentProject;
               //oawApp.console("Add color and textweb to Project");
