@@ -142,7 +142,7 @@ oawApp.config.isStudent = false;
 oawApp.config.tagProjectIndex = 'project';
 oawApp.config.tagProjectName = 'name_project_';
 oawApp.config.tagProjectNameProtection = '_project_project_';
-oawApp.config.tagProjectNameProtection_2 = 'name_project_1_';
+//oawApp.config.tagProjectNameProtection_2 = 'name_project_1_';
 oawApp.config.tagProjectColor = 'color_project_';
 oawApp.config.tagTopicName = 'name_topic_';
 oawApp.config.tagTopicNameProjectRewview = 'name_topic_project_review_';
@@ -507,7 +507,7 @@ oawApp.loadSplash = function(data,updateHash) {
             unitDescription = unit.description,
             unitTags = unit.tags,
             unitTagsArray = (typeof unitTags !== 'undefined') ? unitTags.split(" ") : [];
-        console.log(i, unitID);
+
         if (unitTagsArray.length) {
           var projectColor, projectNameTextWeb, topicColor, topicNameTextWeb, unitTemplate;
           var topicIsProjectReview = false;
@@ -516,8 +516,9 @@ oawApp.loadSplash = function(data,updateHash) {
             if (oawApp.startsWith(value,oawApp.config.tagProjectColor)) {
               projectColor = value.replace(oawApp.config.tagProjectColor, '');
             } else if (oawApp.startsWith(value,oawApp.config.tagProjectName) && value.indexOf(oawApp.config.tagProjectNameProtection) === -1) {
-              console.log('HERE', value.replace(oawApp.config.tagProjectNameProtection_2,'').length);
+              //console.log('HERE', value.replace(oawApp.config.tagProjectNameProtection_2,'').length);
               projectNameTextWeb = value;
+              console.log(value);
             } else if (oawApp.startsWith(value,oawApp.config.tagTopicName)) {
               topicNameTextWeb = value;
               if (oawApp.startsWith(value,oawApp.config.tagTopicNameProjectRewview)) {
@@ -598,6 +599,7 @@ oawApp.loadSplash = function(data,updateHash) {
               'unit_id' : unitID,
               'unit_number': unitNumber
             };
+            console.log("Topic to add", lastKey, lastTopicKey);
             oawApp.relationUnitsTopics[unitIndex] = lastKey;
           } else {
             oawApp.console("Add Unit to topic");
@@ -676,13 +678,11 @@ oawApp.loadSplash = function(data,updateHash) {
               var dataOAW = oawApp.bookDataOAW;
               var projectExists = false;
               $.each(dataOAW, function(ind, val) {
-                console.log(ind);
                 if (Number(ind) === projectIndex) {
                   projectExists = true;
                   return false;
                 }
               });
-              console.log(projectExists);
 
               var projectTitle = resource.title,
                   projectImage = resource.fileurl;
@@ -835,7 +835,6 @@ oawApp.loadHomepage = function(data,updateHash) {
     var gridTopMenu = document.createDocumentFragment();
     var gridItem = 0;
     $.each(oawApp.bookDataOAW, function(i, project) {
-      console.log(project);
 
       var projectImage = project.project_image,
           projectColor = project.project_color,
@@ -1128,14 +1127,11 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
       if (typeof resourceBoxPosition === 'undefined') resourceBoxPosition = '';
       if (typeof resourceBoxIcon === 'undefined') resourceBoxIcon = '';
 
-      console.log(resourceBox, resourceBoxColor, resourceBoxPosition, resourceBoxIcon)
-
       if($.inArray(resourceBox, boxesArray) === -1 && typeof resourceBox !== 'undefined') {
         var newBox = '<div class="oaw-grid-item oaw-grid-item_'+resourceBox+'"><article class="oaw-card oaw-card_lessonsection" style="background-color: #'+resourceBoxColor+'"><div class="oaw-card-inner"> <header class="oaw-card-header"> <div class="oaw-card-header-image"> <div class="oaw-card-header-image-inner"> </div> </div> <h2 class="oaw-title oaw-title_image oaw-title_2"> </h2> </header> <div class="oaw-card-content"> <div class="oaw-resources-list"> <ul> </ul> </div> </div> </div></article></div>';
         $lessonGrid.append(newBox);
         boxesArray.push(resourceBox);
       }
-      console.log(boxesArray);
 
       var resourceType = resource.type,
           resourceIsImg = (resourceType === 'img'),
@@ -1146,7 +1142,7 @@ oawApp.loadUnit = function(data,currentUnit,updateHash) {
       if (resourceIsImg) {
         var resourceImage = resource.fileurl,
             $boxHeader = $lessonGrid.find('.oaw-grid-item_'+resourceBox+' .oaw-card-header');
-        console.log("Is title or character");
+
         if (resourceHeadingType === 'heading') {
           $boxHeader.find('.oaw-title_image').append('<img src="'+resourceImage+'">');
           $boxHeader.addClass('oaw-card-header_titlepos_'+resourceBoxPosition);
