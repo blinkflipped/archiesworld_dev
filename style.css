@@ -838,3 +838,14 @@ body.oaw-body {
   transition-delay: 1.2s; }
 .oaw-body-lesson-inview .oaw-page_lesson .oaw-card-inner {
   opacity: 1; }
+
+.oaw-button_3 {
+  padding: 10px 6px;
+  line-height: 0px; }
+
+.oaw-projects-list ul li {
+  padding-bottom: 0px; }
+
+@media (max-height: 700px) {
+  .oaw-projects-list ul li {
+    padding-bottom: 8px; } }

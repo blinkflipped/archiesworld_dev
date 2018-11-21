@@ -1,0 +1,14 @@
+.oaw-button_3 {
+  padding: 10px 6px;
+  line-height: 0px;
+}
+
+.oaw-projects-list ul li {
+  padding-bottom: 0px;
+}
+
+@media (max-height: 700px) {
+  .oaw-projects-list ul li {
+    padding-bottom: 8px;
+  }
+}
