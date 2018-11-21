@@ -82,6 +82,10 @@
 	}
 	&_3 {
 		@include button-3;
+		&.oaw-button_3b {
+			line-height: 1em;
+			margin-bottom: 10px;
+		}
 	}
 	&_4 {
 		@include button-1;
@@ -253,6 +257,13 @@
 		}
 	}
 
+	.oaw-grid_4 & {
+		.oaw-projects-list-inner ul {
+			width: 620px;
+			max-width: 80%;
+			margin: 0 auto;
+		}
+	}
 }
 
 
