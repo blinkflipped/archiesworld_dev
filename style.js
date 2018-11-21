@@ -1215,7 +1215,7 @@ oawApp.loadProjectReview = function(data,currentProject,currentTopic,updateHash)
   });
 
   var $gridWrapper = $('.oaw-page_projectreview .oaw-projects-list ul');
-  $gridWrapper[0].appendChild(unitsList);
+  $gridWrapper.append(unitsList);
 
 
   $('.oaw-page_projectreview').imagesLoaded({background: 'div, a, span, button'}, function(){
