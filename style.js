@@ -941,7 +941,7 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
       projectColor =  oawApp.bookDataOAW[currentProject].project_color,
       projectTopics =  oawApp.bookDataOAW[currentProject].topics;
 
-  $('.oaw-page_project').remove();
+  $('.oaw-page_project, .oaw-page_projectreview').remove();
 
   var projectStructureHTML = '<section class="oaw-page oaw-page_project"> <header class="oaw-page-header" style="background-color: #'+projectColor+'"> <div class="oaw-inner"> <h1 class="oaw-page-header-title"> <div class="oaw-page-header-title-inner"> <img src="'+projectTitleImage+'" alt="'+projectTitle+'"> </div> </h1> <div class="oaw-page-header-button"> <button class="oaw-button oaw-button_4 oaw-js--goback" style="color: #'+projectColor+'"> <i class="icon" aria-hidden="true" style="border-right-color: #'+projectColor+'"></i> <span>'+oawApp.text.back+'</span> </button> </div> </div> </header><div class="oaw-page-content"><div class="oaw-inner"><div class="oaw-grid oaw-grid_2"></div></div></div><footer class="oaw-page-footer"><div class="oaw-inner"><div class="oaw-grid oaw-grid_3"></div></div></footer></section>';
 
@@ -1196,7 +1196,7 @@ oawApp.loadProjectReview = function(data,currentProject,currentTopic,updateHash)
       projectreviewUnits =  oawApp.bookDataOAW[currentProject].topics[currentTopic].topic_units;
 
 
-  $('.oaw-page_projectreview').remove();
+  $('.oaw-page_project, .oaw-page_projectreview').remove();
 
   var customHash = oawApp.config.tree[2].hash+currentProject;
 
