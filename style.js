@@ -547,7 +547,7 @@ oawApp.loadSplash = function(data,updateHash) {
           });
           if (projectNameTextWeb !== 'no_project') {
             if (!projectExists) {
-              oawApp.console("Project to add");
+              oawApp.console("Project to add", Object.keys(oawApp.bookDataOAW).length);
               var lastKey = (Object.keys(oawApp.bookDataOAW).length > 0 ) ? Object.keys(oawApp.bookDataOAW).length : 0;
               oawApp.bookDataOAW[lastKey] = {
                 'project_textweb' : projectNameTextWeb,
