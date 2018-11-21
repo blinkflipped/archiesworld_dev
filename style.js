@@ -568,54 +568,55 @@ oawApp.loadSplash = function(data,updateHash) {
           }
 
           // Topics
+          if (typeof topicNameTextWeb !== 'undefined') {
+            var topicExists = false;
+            var topics = dataOAW[currentProject].topics;
+            var currentTopic = 0;
 
-          var topicExists = false;
-          var topics = dataOAW[currentProject].topics;
-          var currentTopic = 0;
+            $.each(topics, function(ind, val) {
+              var topicTextweb = topics[ind].topic_textweb;
+              if (topicTextweb === topicNameTextWeb) {
+                topicExists = true;
+                currentTopic = ind;
+                return false;
+              }
+            });
 
-          $.each(topics, function(ind, val) {
-            var topicTextweb = topics[ind].topic_textweb;
-            if (topicTextweb === topicNameTextWeb) {
-              topicExists = true;
-              currentTopic = ind;
-              return false;
+            if (!topicExists) {
+              oawApp.console("Topic to add");
+              var lastKey = (Object.keys(topics).length > 0 ) ? Object.keys(topics).length : 0;
+              topics[lastKey] = {
+                'topic_textweb' : topicNameTextWeb,
+                'topic_color' : topicColor,
+                'topic_is_projectreview' : topicIsProjectReview,
+                'topic_units' : {}
+              };
+              var lastTopicKey = (Object.keys(topics[lastKey].topic_units).length > 0 ) ? Object.keys(topics[lastKey].topic_units).length : 0;
+              topics[lastKey].topic_units[lastTopicKey] = {
+                'unit_template': unitTemplate,
+                'unit_title' : unitTitle,
+                'unit_description' : unitDescription,
+                'unit_id' : unitID,
+                'unit_number': unitNumber
+              };
+              console.log("Topic to add", lastKey, lastTopicKey);
+              oawApp.relationUnitsTopics[unitIndex] = lastKey;
+            } else {
+              oawApp.console("Add Unit to topic");
+              var lastTopicKey = (Object.keys(topics[currentTopic].topic_units).length > 0 ) ? Object.keys(topics[currentTopic].topic_units).length : 0;
+              topics[currentTopic].topic_units[lastTopicKey] = {
+                'unit_template': unitTemplate,
+                'unit_title' : unitTitle,
+                'unit_description' : unitDescription,
+                'unit_id' : unitID,
+                'unit_number': unitNumber
+              };
+              oawApp.relationUnitsTopics[unitIndex] = currentTopic;
+
             }
-          });
-
-          if (!topicExists) {
-            oawApp.console("Topic to add");
-            var lastKey = (Object.keys(topics).length > 0 ) ? Object.keys(topics).length : 0;
-            topics[lastKey] = {
-              'topic_textweb' : topicNameTextWeb,
-              'topic_color' : topicColor,
-              'topic_is_projectreview' : topicIsProjectReview,
-              'topic_units' : {}
-            };
-            var lastTopicKey = (Object.keys(topics[lastKey].topic_units).length > 0 ) ? Object.keys(topics[lastKey].topic_units).length : 0;
-            topics[lastKey].topic_units[lastTopicKey] = {
-              'unit_template': unitTemplate,
-              'unit_title' : unitTitle,
-              'unit_description' : unitDescription,
-              'unit_id' : unitID,
-              'unit_number': unitNumber
-            };
-            console.log("Topic to add", lastKey, lastTopicKey);
-            oawApp.relationUnitsTopics[unitIndex] = lastKey;
-          } else {
-            oawApp.console("Add Unit to topic");
-            var lastTopicKey = (Object.keys(topics[currentTopic].topic_units).length > 0 ) ? Object.keys(topics[currentTopic].topic_units).length : 0;
-            topics[currentTopic].topic_units[lastTopicKey] = {
-              'unit_template': unitTemplate,
-              'unit_title' : unitTitle,
-              'unit_description' : unitDescription,
-              'unit_id' : unitID,
-              'unit_number': unitNumber
-            };
-            oawApp.relationUnitsTopics[unitIndex] = currentTopic;
+            oawApp.relationUnitsTemplates[unitIndex] = unitTemplate;
 
           }
-          oawApp.relationUnitsTemplates[unitIndex] = unitTemplate;
-
         }
 
       }
