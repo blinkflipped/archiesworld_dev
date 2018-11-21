@@ -568,6 +568,7 @@ oawApp.loadSplash = function(data,updateHash) {
           }
 
           // Topics
+          console.log(currentProject);
           if (typeof topicNameTextWeb !== 'undefined') {
             var topicExists = false;
             var topics = dataOAW[currentProject].topics;
