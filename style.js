@@ -991,7 +991,7 @@ oawApp.loadProject = function(data,currentProject,updateHash) {
       } else {
         var unitNumber = topicUnits[0].unit_number,
             unitIndex = unitNumber - 1,
-            onclick = oawApp.bookData[unitIndex].onclick;
+            onclick = oawApp.bookData.units[unitIndex].subunits[0].onclickTitle;
         topicAuxItem.innerHTML = '<article class="oaw-card oaw-card_project" style="background-color: #'+topicColor+'"><a href="javascript:void(0)" class="oaw-card-inner" onclick="'+onclick+'"><div class="oaw-card-image"><div class="oaw-card-image-inner"><img src="'+topicTitleImage+'"></div></div></a></article>';
 
       }
